@@ -10,6 +10,7 @@ use App\Helper\CommonHelper;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session as FacadesSession;
 
 class AuthController extends Controller
@@ -22,6 +23,9 @@ class AuthController extends Controller
     public function adminlogin(Request $request)
     {
 //$status = $id;
+
+        // echo Hash::make('Password!23');
+        // die();
 
         $data['username'] = $request->username;
         $data['password'] = $request->password;

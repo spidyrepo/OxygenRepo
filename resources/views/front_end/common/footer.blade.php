@@ -34,14 +34,14 @@
                         <div class="widget">
                             <h3 class="widget-title">Company</h3>
                             <ul class="widget-body">
-							@php
+						{{-- 	@php
 							$cmspages = App\Models\CMSPage::all();
 							@endphp
 							@foreach ($cmspages as $page)
                                                                 
                                                                
                                 <li><a href="{{url('Informations/'.$page->page_name)}}">{{$page->page_title}}</a></li>
-								 @endforeach
+								 @endforeach --}}
                                
                             </ul>
                         </div>
@@ -1116,6 +1116,24 @@ if (i == 0) {
     }
 
 }
+
+
+
+ function addCart(id) {  
+    
+            var qty = 1; // $('.quantity__input').val();
+            var url = '<?= route('customCart') ?>';
+            $.post(url, {                
+                id: id,
+                qty: qty,
+                '_token': '<?= csrf_token() ?>'
+            }, function(data) {
+                $.notify(data.message, "success");
+                $('.cart-count').show();
+                $('.cart-count').html(data.count);
+            });
+        }
+
 
 function addproduct(id) {
     //alert(id);

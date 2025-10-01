@@ -10,6 +10,7 @@ use App\Http\Controllers\user\buynow\buynowController;
 use App\Http\Controllers\user\PhonePecontroller;
 use App\Http\Controllers\Website\CartController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\NewCode\IndexController;
 use App\Http\Controllers\wishlistcontroller;
 use Laravel\Telescope\Http\Controllers\HomeController as ControllersHomeController;
 
@@ -70,6 +71,10 @@ Route::get('/ajax-search', [HomeController::class, 'ajaxSearch'])->name('ajax.se
 Route::get('/getCategoryByMainId', [HomeController::class, 'getCategoryByMainId'])->name('getCategoryByMainId');
 Route::get('/categoryWiseListProduct/{id}', [HomeController::class, 'categoryWiseListProduct'])->name('categoryWiseListProduct');
 
+
+
+Route::post('/customCart', [IndexController::class, 'customCart'])->name('customCart');
+Route::get('/getProduct/{id}/{name?}', [IndexController::class, 'getProduct'])->name('getProduct');
 
 
 Route::resource('/', HomeController::class, ['names' => 'home']);
