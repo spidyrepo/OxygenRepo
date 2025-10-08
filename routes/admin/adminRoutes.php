@@ -69,7 +69,7 @@ Route::get('/register', [AuthController::class, 'register']);
 Route::get('/', function () {
     return view('auth.adminlogin');
 });
-Route::get('login', function () {
+Route::get('/login', function () {
     $viewBag['error'] = '';
     return view('auth.adminlogin');
 })->name('adminerror');
