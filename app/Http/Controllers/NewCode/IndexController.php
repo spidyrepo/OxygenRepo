@@ -79,4 +79,23 @@ class IndexController extends Controller
             'cart' => Cart::getContent()
         ]);
     }
+
+    public function getSideCart()
+    {
+        $count   = Cart::getTotalQuantity();
+        $records = Cart::getContent();
+        $total   = Cart::getTotal();           
+        return view('front_end.site.side_cart', compact('count', 'records', 'total'));
+    }
+
+     public function removeCart($id)
+    {
+        Cart::remove($id);
+        return response()->json([
+            'message' => 'Item removed successfully.',
+            'removed'   => 1,
+        ]);
+    }
+
+
 }

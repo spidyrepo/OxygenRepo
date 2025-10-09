@@ -69,7 +69,7 @@
                         
                         <div class="dropdown cart-dropdown cart-offcanvas mr-0 mr-lg-2">
                             <div class="cart-overlay"></div>
-                            <a href="#" class="cart-toggle label-down link text-white">
+                            <a href="javascript:void(0)" onclick="showSideCart()" class="cart-toggle label-down link text-white">
                                 <i class="w-icon-cart">
                                     <span class="cart-count">0</span>
                                 </i>
@@ -188,7 +188,7 @@
                                        @endif
                                        @endforeach                                     
                                     </ul>
-                                     {{-- @foreach ($categorymain as $categoriesmain)
+                                      @foreach ($categorymain as $categoriesmain)
                                        @if(count($categoriesmain->submenu) > 0)
                                        <li>
                                            <a href="{{ url( 'MainCatergoryproductshow/'.$categoriesmain->id ) }}">{{ $categoriesmain->category_main_name }}</a>
@@ -212,7 +212,7 @@
                                        @else
                                       <li><a href="{{ url( 'MainCatergoryproductshow/'.$categoriesmain->id ) }}">{{ $categoriesmain->category_main_name }}</a></li> 
                                        @endif
-                                       @endforeach --}}
+                                       @endforeach 
                                 </div>
                             </div>
                             <nav class="main-nav">

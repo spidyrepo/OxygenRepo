@@ -318,7 +318,7 @@
                                             <!-- <a href="#" class="btn-product-icon btn-cart w-icon-cart" onclick="{{ $adcartbtnactinact == 'enable' ? "addqnty('{$newArrivals->productdetails->id}', 'Add')" : "swal('error!', 'Please check your pincode before adding to cart', 'error!')" }}"
                                                 title="Add to cart"></a> -->
 
-                                                <a  href="javascript:void(0)" onclick="addCart('<?= $newArrivals->productdetails->id ?>')" class="btn-product-icon w-icon-cart" 
+                                                <a  href="javascript:void(0)" onclick="addCart('<?= $newArrivals->product_id ?>')" class="btn-product-icon w-icon-cart" 
                                                 title="Add to cart"></a>
                                                
                                             <!--<a href="#" class="btn-product-icon btn-wishlist w-icon-heart"-->

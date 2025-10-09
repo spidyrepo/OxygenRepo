@@ -72,10 +72,13 @@ Route::get('/getCategoryByMainId', [HomeController::class, 'getCategoryByMainId'
 Route::get('/categoryWiseListProduct/{id}', [HomeController::class, 'categoryWiseListProduct'])->name('categoryWiseListProduct');
 
 
-
+/** NEW CODE START */
 Route::post('/customCart', [IndexController::class, 'customCart'])->name('customCart');
+Route::get('/getSideCart', [IndexController::class, 'getSideCart'])->name('getSideCart');
 Route::get('/getProduct/{id}/{name?}', [IndexController::class, 'getProduct'])->name('getProduct');
+Route::get('/removeCart/{id?}', [IndexController::class, 'removeCart'])->name('removeCart');
 
+/** NEW CODE END  */
 
 Route::resource('/', HomeController::class, ['names' => 'home']);
 Route::get('home', [HomeController::class, 'index'])->name('home');

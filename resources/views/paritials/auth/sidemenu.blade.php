@@ -20,7 +20,7 @@
             <p> {{session()->get('log_type')}}</p>
         </div>
         <ul class="sidebar-menu">
-  {{--    @if (session()->get('log_type') == 'Admin') 
+     @if (session()->get('log_type') == 'Admin') 
         <li><a class="sidebar-header" href="{{ url('admin/dashboard') }}"><i data-feather="home"></i><span>Dashboard</span></a></li>
         @php
             $main_menus = App\Models\Mainmenus::where('id', '!=', '1')->get();
@@ -82,7 +82,7 @@
             </li>
 			@endif
         @endforeach
-    @endif --}}
+    @endif 
             
             
 			 <li><a class="sidebar-header" href="{{ url('admin/logout') }}"><i
