@@ -155,7 +155,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function getProduct($productdetail_id)
+    public function getProducts($productdetail_id)
     {
         
        $getSpecificProduct =  ProductsDetails::with('product', 'product.CategoryChild')

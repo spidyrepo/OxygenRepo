@@ -77,6 +77,8 @@ Route::post('/customCart', [IndexController::class, 'customCart'])->name('custom
 Route::get('/getSideCart', [IndexController::class, 'getSideCart'])->name('getSideCart');
 Route::get('/getProduct/{id}/{name?}', [IndexController::class, 'getProduct'])->name('getProduct');
 Route::get('/removeCart/{id?}', [IndexController::class, 'removeCart'])->name('removeCart');
+Route::get('/getProducts/{id?}', [IndexController::class, 'getProducts'])->name('getProducts');
+Route::get('/Shopping-cart', [IndexController::class, 'showCarts'])->name('Shopping-cart');
 
 /** NEW CODE END  */
 
@@ -183,9 +185,7 @@ Route::get('/CusRegister', [CustomerController::class,'register']);
 Route::post('/updateaddress', [CustomerController::class,'updateaddress']);
 
 Route::post('/changepassword', [CustomerController::class,'changepassword']);
-Route::get('/Shopping-cart', function () {
-    return view('front_end.site.view_cart');
-});
+
 Route::get('/Checkout', function () {
     return view('front_end.site.checkout');
 });

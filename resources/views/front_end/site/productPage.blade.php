@@ -186,7 +186,7 @@
                                         )->first();
 
                                         @endphp
-                                        <a title="{{ $colour->attributevalue1 }}" href="#"
+                                        <a onclick="setColor('<?= $colour->attributevalue1 ?>')" title="{{ $colour->attributevalue1 }}" href="#"
                                             class="color {{ $colour->attributevalue1 == $getSpecificProduct->attributevalue1 ? 'active' : '' }}"
                                             style="background-color: {{ $color->color_code }}"></a>
                                         @endif
@@ -207,7 +207,7 @@
                                         @php
                                         $uniqueSize[] = $size->attributevalue2;
                                         @endphp
-                                        <a title="{{ $size->attributevalue2 }}" href="#"
+                                        <a onclick="setSize('<?= $size->attributevalue2 ?>')" title="{{ $size->attributevalue2 }}" href="#"
                                             class="size {{ $size->attributevalue2 == $getSpecificProduct->attributevalue2 ? 'active' : '' }}">
                                             {{ $size->attributevalue2 }} </a>
                                         @endif
@@ -238,7 +238,8 @@
 
                                 </div>
                                 @endif
-
+                                <input type="hidden" id="product-size"  value=""/>
+                                <input type="hidden" id="product-color" value=""/>
                                 <input type="hidden" name="product_size"
                                     id="product_size{{ $getSpecificProduct->id }}"
                                     value="{{ $getSpecificProduct->attributevalue1 }}"
@@ -252,7 +253,7 @@
                                 <input type="hidden" name="product_id"
                                     id="product_id{{ $getSpecificProduct->id }}"
                                     value="{{ $getSpecificProduct->id }}" />
-                                <div class="row" style="display:none;"
+                                <div class="row" style="display:block;"
                                     id="addcart2_{{ $getSpecificProduct->id }}">
                                     <div class="col-md-4">
 
@@ -270,11 +271,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4 ">
+                                    <!-- <div class="col-md-4 ">
                                         <a href="{{ url('/Shopping-cart') }}" class="buttons"><button
                                                 type="button" class="btn add-to-cart-btn">&nbsp; <i
                                                     class="biolife-icon icon-cart"></i> &nbsp; BUY NOW</button></a>
-                                    </div>
+                                    </div> -->
                                 </div>
 
                                 <br>
@@ -300,12 +301,12 @@
                                     id="addcart1_{{ $getSpecificProduct->id }}">
                                     <!-- <button type="button" class="btn btn-primary"
                                             onclick="{{ $adcartbtnactinact == 'enable' ? "addqnty('{$getSpecificProduct->id}', 'Add')" : "swal('Error!', 'Please check your pincode before adding to cart', 'error')" }}">
-                                            <i class="w-icon-cart"></i>&nbsp; Add to cart
+                                            <i class="w-icon-cart"></i>&nbsp; Add to cart handleAddToCart({{ $getSpecificProduct->id }}, '{{ $adcartbtnactinact }}')
                                         </button> -->
                                     <div class="row">
                                         <div class=" col-md-4">
                                             <button type="button" class="btn btn-primary"
-                                                onclick="handleAddToCart({{ $getSpecificProduct->id }}, '{{ $adcartbtnactinact }}')">
+                                                onclick="addCart('<?= $getSpecificProduct->id ?>')">
                                                 <i class="w-icon-cart"></i>&nbsp; Add to cart
                                             </button>
                                         </div>
@@ -982,6 +983,15 @@
         }
     }
 
+    function setSize(size)
+    {
+        $('#product-size').val(size);
+    }
+    function setColor(color)
+    {
+         $('#product-color').val(color);
+    }
+
 
     $(document).ready(function() {
 
@@ -1020,5 +1030,24 @@
             });
         });
     });
+
+
+    function addCart(id) {
+       // var id = '<?=  $getSpecificProduct->id ?>';
+        var qty = $('#quantity'+id).val();
+        var url = '<?= route('customCart') ?>';
+        var size =   $('#product-size').val();
+         var color =  $('#product-color').val();
+        $.post(url, {
+            id: id,
+            qty: qty,
+            size: size,
+            color: color,
+            '_token': '<?= csrf_token() ?>'
+        }, function(data) {
+            $.notify(data.message, "success", "bottom");            
+            $('.cart-count').html(data.count);
+        });
+    }
 </script>
 @endsection
