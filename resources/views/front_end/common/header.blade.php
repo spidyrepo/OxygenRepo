@@ -6,10 +6,12 @@
     use App\Models\Category\CategoryMain;
     use App\Models\Category\Category;
     use App\Models\Category\CategorySub;
+    use Darryldecode\Cart\Facades\CartFacade as Cart;
 
     $categorymain = CategoryMain::get();
     $category = Category::get();
-    $categorysub = CategorySub::get();                                        
+    $categorysub = CategorySub::get();  
+      $count = Cart::getContent()->count();                                  
     ?>
 
         <header class="header">
@@ -71,7 +73,7 @@
                             <div class="cart-overlay"></div>
                             <a href="javascript:void(0)" onclick="showSideCart()" class="cart-toggle label-down link text-white">
                                 <i class="w-icon-cart">
-                                    <span class="cart-count">0</span>
+                                    <span class="cart-count"><?= isset($count) ? $count:0 ?></span>
                                 </i>
                                 <span class="cart-label">Cart</span>
                             </a>

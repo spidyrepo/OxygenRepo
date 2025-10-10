@@ -291,7 +291,7 @@
                             <div class="product-wrap">
                                 <div class="product text-center">
                                     <figure class="product-media">
-                                        <a href="{{ route('getProduct', $newArrivals->productdetails->id) }}">
+                                        <a href="{{ route('getProducts', $newArrivals->productdetails->id) }}">
                                             <img src="{{ asset('assets/images/products') . '/' . $newArrivals->product_image }}"
                                                 alt="Product" width="300" height="308" />
                                         </a>
@@ -316,9 +316,9 @@
                                         @endif
                                         <div class="product-action-vertical">
                                             <!-- <a href="#" class="btn-product-icon btn-cart w-icon-cart" onclick="{{ $adcartbtnactinact == 'enable' ? "addqnty('{$newArrivals->productdetails->id}', 'Add')" : "swal('error!', 'Please check your pincode before adding to cart', 'error!')" }}"
-                                                title="Add to cart"></a> -->
+                                                title="Add to cart"></a> onclick="addCart('<?= $newArrivals->product_id ?>')"-->
 
-                                                <a  href="javascript:void(0)" onclick="addCart('<?= $newArrivals->product_id ?>')" class="btn-product-icon w-icon-cart" 
+                                                <a  href="{{ route('getProducts', $newArrivals->productdetails->id) }}"  class="btn-product-icon w-icon-cart" 
                                                 title="Add to cart"></a>
                                                
                                             <!--<a href="#" class="btn-product-icon btn-wishlist w-icon-heart"-->
@@ -330,7 +330,7 @@
                                     </figure>
                                     <div class="product-details">
                                         <h4 class="product-name"><a
-                                                href="{{ route('getProduct', $newArrivals->productdetails->id) }}">{{ $newArrivals->product_name }}</a>
+                                                href="{{ route('getProducts', $newArrivals->productdetails->id) }}">{{ $newArrivals->product_name }}</a>
                                         </h4>
                                         
                                       
@@ -339,7 +339,7 @@
                                                 <span class="ratings" style="width: 100%;"></span>
                                                 <span class="tooltiptext tooltip-top"></span>
                                             </div>
-                                            <a href="{{ route('getProduct', $newArrivals->productdetails->id) }}"
+                                            <a href="{{ route('getProducts', $newArrivals->productdetails->id) }}"
                                                 class="rating-reviews">(5 reviews)</a>
                                         </div>
                                         <div class="product-price">
@@ -452,12 +452,12 @@
                                     <div class="swiper-slide product-col">
                                         <div class="product-wrap product text-center">
                                             <figure class="product-media">
-                                                <a href="{{ route('getProduct', $menproducts->productdetails->id) }}">
+                                                <a href="{{ route('getProducts', $menproducts->productdetails->id) }}">
                                                     <img src="{{ asset('assets/images/products') . '/' . $menproducts->product_image }}"
                                                         alt="Product" width="216" height="243" />
                                                 </a>
                                                 <div class="product-action-vertical">
-                                                    <a href="javascript:void(0)" onclick="addCart('<?= $menproducts->productdetails->id ?>')" class="btn-product-icon btn-cart w-icon-cart"
+                                                    <a href="{{ route('getProducts', $newArrivals->productdetails->id) }}"  class="btn-product-icon btn-cart w-icon-cart"
                                                         title="Add to cart"></a>
                                                     <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
                                                         title="Add to wishlist"></a>
@@ -476,7 +476,7 @@
                                                         <span class="ratings" style="width: 60%;"></span>
                                                         <span class="tooltiptext tooltip-top"></span>
                                                     </div>
-                                                    <a href="{{ route('getProduct', $menproducts->productdetails->id) }}"
+                                                    <a href="{{ route('getProducts', $menproducts->productdetails->id) }}"
                                                         class="rating-reviews">(3
                                                         reviews)</a>
                                                 </div>
@@ -539,7 +539,7 @@
                                     <div class="swiper-slide product-col">
                                         <div class="product-wrap product text-center">
                                             <figure class="product-media">
-                                                <a href="{{ route('getProduct', $womenproducts->productdetails->id) }}">
+                                                <a href="{{ route('getProducts', $womenproducts->productdetails->id) }}">
                                                     <img src="{{ asset('assets/images/products') . '/' . $womenproducts->product_image }}"
                                                         alt="Product" width="216" height="243" />
                                                 </a>
@@ -563,7 +563,7 @@
                                                         <span class="ratings" style="width: 60%;"></span>
                                                         <span class="tooltiptext tooltip-top"></span>
                                                     </div>
-                                                    <a href="{{ route('getProduct', $womenproducts->productdetails->id) }}"
+                                                    <a href="{{ route('getProducts', $womenproducts->productdetails->id) }}"
                                                         class="rating-reviews">(3
                                                         reviews)</a>
                                                 </div>
@@ -628,7 +628,7 @@
                                     <div class="swiper-slide product-col">
                                         <div class="product-wrap product text-center">
                                             <figure class="product-media">
-                                                <a href="{{ route('getProduct', $kidsproducts->productdetails->id) }}">
+                                                <a href="{{ route('getProducts', $kidsproducts->productdetails->id) }}">
                                                     <img src="{{ asset('assets/images/products') . '/' . $kidsproducts->product_image }}"
                                                         alt="Product" width="216" height="243" />
                                                 </a>
@@ -652,7 +652,7 @@
                                                         <span class="ratings" style="width: 60%;"></span>
                                                         <span class="tooltiptext tooltip-top"></span>
                                                     </div>
-                                                    <a href="{{ route('getProduct', $kidsproducts->productdetails->id) }}"
+                                                    <a href="{{ route('getProducts', $kidsproducts->productdetails->id) }}"
                                                         class="rating-reviews">(3
                                                         reviews)</a>
                                                 </div>
