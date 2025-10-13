@@ -260,7 +260,7 @@
                                         <div class="product-qty-form">
                                             <div class="input-group">
                                                 <input type="text" name="quant[2]"
-                                                    id="quantity{{ $getSpecificProduct->id }}" value="0"
+                                                    id="quantity{{ $getSpecificProduct->id }}" value="1"
                                                     class="form-control input-number" min="1"
                                                     max="100" readonly>
 
@@ -1034,6 +1034,15 @@
 
     function addCart(id) {
        // var id = '<?=  $getSpecificProduct->id ?>';
+
+        var pincode = '<?= session()->get('pincode'); ?>';
+        console.log(pincode);
+        if(pincode === '')
+        {
+             $.notify("Please Check Pincode!", "error");  
+             return false;
+        }
+
         var qty = $('#quantity'+id).val();
         var url = '<?= route('customCart') ?>';
         var size =   $('#product-size').val();

@@ -1,3 +1,7 @@
+<?php
+
+use Illuminate\Support\Facades\Auth;
+?>
 <!-- Start of Footer -->
 <footer class="footer appear-animate" data-animation-options="{
     'name': 'fadeIn'
@@ -1354,16 +1358,23 @@
 
     function addwishlist(pid) {
 
-        var product_id = pid;
-        $.ajax({
+        var user_id = '<?= session()->get('login_id'); ?>';
 
-            url: url + '/Addwishlist',
+        if(user_id == 0 && user_id =='')
+        {
+            $.notify("Please Login", "error");
+            return false;
+        }
+
+        var product_id = pid;
+        var url = '<?= route("Addwishlist") ?>';
+        $.ajax({            
+            url: url,
             type: "GET",
             data: {
                 "_token": "{{ csrf_token() }}",
                 "product_id": product_id
             },
-
             dataType: "json",
             success: function(data) {
                 swal("success!", "Wishlist Added Successfully", "success");

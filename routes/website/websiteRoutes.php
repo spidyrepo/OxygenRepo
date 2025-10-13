@@ -203,7 +203,7 @@ Route::get('/Accounts/myorder/{id}', [CustomerController::class, 'myorder']);
 Route::get('/404', function () {
     return view('front_end.site.404');
 });
-Route::get('/Addwishlist', [wishlistcontroller::class,'store']);
+Route::get('/Addwishlist', [wishlistcontroller::class,'store'])->name('Addwishlist');
 
 Route::get('/View_wishlist', [wishlistcontroller::class,'show']);
 
