@@ -84,7 +84,7 @@
                                         <th class="product-subtotal"><span>Subtotal</span></th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="cartView">
 								<?php
                                     if(isset($records)){
                                        
@@ -116,8 +116,8 @@
                                         <td class="product-quantity">
                                             <div class="input-group">
                                                 <input class="form-control" value="<?= $row['quantity'] ?>" type="number" min="1" max="100" id="quantity{{$row['id']}}" readonly> 
-                                                <button class="w-icon-plus" onclick="addqnty('{{$row['id']}}','Add')"></button>
-                                                <button class=" w-icon-minus" onclick="addqnty('{{$row['id']}}','Minus')"></button>
+                                                <button class="w-icon-plus" onclick="updateQty('{{$row['id']}}','Add')"></button>
+                                                <button class=" w-icon-minus" onclick="updateQty('{{$row['id']}}','Minus')"></button>
                                             </div>
                                         </td>
                                         <td class="product-subtotal">

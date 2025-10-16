@@ -79,13 +79,16 @@ Route::get('/getProduct/{id}/{name?}', [IndexController::class, 'getProduct'])->
 Route::get('/removeCart/{id?}', [IndexController::class, 'removeCart'])->name('removeCart');
 Route::get('/getProducts/{id?}', [IndexController::class, 'getProducts'])->name('getProducts');
 Route::get('/Shopping-cart', [IndexController::class, 'showCarts'])->name('Shopping-cart');
+Route::get('/getItemCart', [IndexController::class, 'getItemCart'])->name('getItemCart');
+Route::post('/updateQty', [IndexController::class, 'updateQty'])->name('updateQty');
 
 /** NEW CODE END  */
 
 Route::resource('/', HomeController::class, ['names' => 'home']);
 Route::get('home', [HomeController::class, 'index'])->name('home');
 Route::get('index', [HomeController::class, 'menu'])->name('homeindex');
-Route::get('productshow', [HomeController::class, 'productshow'])->name('productallshow');
+Route::get('productshow/{id?}', [HomeController::class, 'show'])->name('productallshow');
+// Route::get('productshow/{id?}', [HomeController::class, 'productshow'])->name('productallshow');
 
 
 Route::get('allproductshow', [HomeController::class, 'allproductshow'])->name('allproductshow');

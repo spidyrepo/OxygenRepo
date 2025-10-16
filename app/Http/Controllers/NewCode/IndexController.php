@@ -155,9 +155,9 @@ class IndexController extends Controller
         }
         $currentQty = $item->quantity;
 
-        if ($type === 'plus') {
+        if ($type === 'Add') {
             $newQty = $currentQty + 1;
-        } elseif ($type === 'minus') {
+        } elseif ($type === 'Minus') {
             $newQty = max(1, $currentQty - 1);
         } else {
             return response()->json(['message' => 'Invalid update type'], 400);
@@ -169,6 +169,14 @@ class IndexController extends Controller
         return response()->json([
             'message' => 'Qty Updated successfully.',
         ]);
+    }
+
+    public function getItemCart()
+    {
+         $count   = Cart::getContent()->count();
+        $records = Cart::getContent();
+        $total   = Cart::getTotal();
+         return view('front_end.site.show_cart',compact('count','records','total'));
     }
 
 

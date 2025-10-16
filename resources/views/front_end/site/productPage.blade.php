@@ -1036,7 +1036,7 @@
        // var id = '<?=  $getSpecificProduct->id ?>';
 
         var pincode = '<?= session()->get('pincode'); ?>';
-        console.log(pincode);
+       
         if(pincode === '')
         {
              $.notify("Please Check Pincode!", "error");  
@@ -1046,7 +1046,24 @@
         var qty = $('#quantity'+id).val();
         var url = '<?= route('customCart') ?>';
         var size =   $('#product-size').val();
-         var color =  $('#product-color').val();
+        var color =  $('#product-color').val();
+      
+        if(color === '')
+        {
+             $.notify("Please Choose Color!", "error");  
+             return false;
+        }
+
+        if(size === '')
+        {
+             $.notify("Please Choose Size!", "error");  
+             return false;
+        }
+
+       
+        
+
+
         $.post(url, {
             id: id,
             qty: qty,

@@ -763,7 +763,8 @@ use Illuminate\Support\Facades\Auth;
 <!-- <script src="{{ asset('website_assets/js/cartscript.js')}}"></script>-->
 
 <script>
-    var url = "https://ktonline.in/oxygen_newsite/public";
+    var url = "<?= url("/") ?>";
+    // var url = "https://ktonline.in/oxygen_newsite/public";
 
     
 
@@ -1315,9 +1316,38 @@ use Illuminate\Support\Facades\Auth;
 
 
         return false;
-
-
     }
+
+
+    function getCart() {
+        var url = '<?= route('getItemCart') ?>';
+        $.get(url, function(data) {
+            $('#cartView').html(data);
+        });
+    }
+
+    function updateQty(id, type, view) { 
+          
+            var qty = parseInt($('#quantity'+id).val());
+            (type == 'Add') ? qty += 1: ((type == 'Minus' && qty > 1) ? qty -= 1 : '');
+            $('#quantity'+id).val(qty);
+            if (id > 0) {
+                var url = '<?= route('updateQty') ?>';
+                $.post(url, {
+                    id: id,
+                    'qty': qty,
+                    '_token': '<?= csrf_token() ?>',
+                    'type': type,                   
+                }, function(data) {  
+                     getCart();                 
+                    $.notify(data.message, "success");
+                   
+                    
+                })
+            }
+        }
+
+        
 
     function updatecart(id, val) {
 

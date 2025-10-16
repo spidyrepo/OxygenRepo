@@ -215,10 +215,10 @@
                                 <img src="{{ asset('assets/images/categoryMain/' . $topCategories->category_main_image) }}" alt="Product" width="260" height="291">
                             </a>
                             
-                            <div class="product-action">
+                            <!-- <div class="product-action">
                                 <a href="{{ url('productshow/' . $topCategories->id) }}" class="btn-product btn-quickview" title="Quick View">Quick
                                     View</a>
-                            </div>
+                            </div> -->
                         </figure>
                         <div class="product-details">
                             <h4 class="product-name"><a href="{{ url('productshow/' . $topCategories->id) }}">{{ $topCategories->category_main_name }}</a></h4>
@@ -239,8 +239,8 @@
                                         class="btn btn-dark  btn-rounded btn-sm bg-dark text-white">Shop Now</a>
                                 </div>
                                 <div class="product-action">
-                                    <a href="#" class="btn-product btn-quickview" title="Quick View">Quick
-                                        View</a>
+                                    <!-- <a href="#" class="btn-product btn-quickview" title="Quick View">Quick
+                                        View</a> -->
                                 </div>
                             </div>
                         </div> --}}

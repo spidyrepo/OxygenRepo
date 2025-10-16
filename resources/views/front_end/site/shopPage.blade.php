@@ -344,8 +344,8 @@
                                                         title="Add to cart"></a>
                                                     <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
                                                         title="Wishlist"></a>
-                                                    <a href="#" class="btn-product-icon btn-compare w-icon-compare"
-                                                        title="Compare"></a>
+                                                    <!-- <a href="#" class="btn-product-icon btn-compare w-icon-compare"
+                                                        title="Compare"></a> -->
                                                     <a href="#" class="btn-product-icon btn-quickview w-icon-search"
                                                         title="Quick View"></a>
                                                 </div>
