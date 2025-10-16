@@ -226,7 +226,7 @@
                                         <a href="{{ url ('/View_AuctionProducts') }}"><i class="fas fa-gavel mr-1"></i> Auction Products</a>
                                     </li> 
                                      <li class="">
-                                        <a href="#"><i class="fas fa-store mr-1"></i> Shops </a>
+                                        <a href="{{ url ('/allvendors') }}"><i class="fas fa-store mr-1"></i> Vendors </a>
                                     {{-- </li> 
                                       <li class="">
                                         <a href="{{ url ('/landing') }}">Change Delivery Pincode</a>

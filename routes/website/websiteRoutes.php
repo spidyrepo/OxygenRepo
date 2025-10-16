@@ -90,7 +90,7 @@ Route::get('index', [HomeController::class, 'menu'])->name('homeindex');
 Route::get('productshow/{id?}', [HomeController::class, 'show'])->name('productallshow');
 // Route::get('productshow/{id?}', [HomeController::class, 'productshow'])->name('productallshow');
 
-
+Route::get('vendor-list', [HomeController::class, 'vendorsList'])->name('vendor-list');
 Route::get('allproductshow', [HomeController::class, 'allproductshow'])->name('allproductshow');
 Route::get('allvendors', [HomeController::class, 'allvendors'])->name('allvendors');
 Route::get('alloffers', [HomeController::class, 'alloffers'])->name('alloffers');
@@ -148,10 +148,6 @@ Route::get('Categoryproductshow/{id}', [HomeController::class, 'categoryshow'])-
 Route::get('vendorMainCatergoryproductshow/{id}', [HomeController::class, 'vendormaincategoryshow'])->name('vendorMainCatergoryproductshow');
 Route::get('Subcategoryproductshow/{id}', [HomeController::class, 'subcategoryshow'])->name('vendorSubcategoryproductshow');
 Route::get('VendorSubcategoryproductshow/{cid}/{vid}', [HomeController::class, 'vendorsubcategoryshow'])->name('VendorSubcategoryproductshow');
-
-
-
-
 
 
 Route::get('discountoffere', [AjaxGetProductController::class, 'discountoffere'])->name('discountoffere');

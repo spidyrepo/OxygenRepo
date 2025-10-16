@@ -184,7 +184,8 @@
                                                 
                                                 <li>
                                                     <div class="buttons">
-                                                        <a href="{{ route('viewcart') }}" class="view-cart">view cart</a>
+                                                        {{-- <a href="{{ route('viewcart') }}" class="view-cart">view cart</a> --}}
+                                                        <a href="" class="view-cart">view cart</a>
                                                         <a href="#" class="checkout">checkout</a>
                                                     </div>
                                                 </li>
@@ -254,7 +255,7 @@
 
 
 
-                                <nav id="main-nav navbar">
+                                {{-- <nav id="main-nav navbar">
                                       
                                     <div class="toggle-nav"><i class="fa fa-bars sidebar-bar"></i></div>
                                     <ul id="main-menu" class="sm pixelstrap sm-horizontal" style="background-color: #e6eff7;">
@@ -359,7 +360,7 @@
                                         @endif
                                        @endforeach                                      
                                     </ul>
-                                </nav>
+                                </nav> --}}
             </div>
         </div>
     </div>

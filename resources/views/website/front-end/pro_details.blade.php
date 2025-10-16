@@ -9,10 +9,7 @@
     <meta name="keywords" content="multikart">
     <meta name="author" content="multikart">
     
-    @include('paritials.website.header')
-    @include('website.partials.js.frontendjs')
-    @include('website.partials.css.frontendcss');
-    
+
    
 </head>
 
