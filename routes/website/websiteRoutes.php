@@ -78,6 +78,10 @@ Route::post('/customCart', [IndexController::class, 'customCart'])->name('custom
 Route::get('/getSideCart', [IndexController::class, 'getSideCart'])->name('getSideCart');
 Route::get('/getProduct/{id}/{name?}', [IndexController::class, 'getProduct'])->name('getProduct');
 Route::get('/removeCart/{id?}', [IndexController::class, 'removeCart'])->name('removeCart');
+Route::get('/getProducts/{id?}', [IndexController::class, 'getProducts'])->name('getProducts');
+Route::get('/Shopping-cart', [IndexController::class, 'showCarts'])->name('Shopping-cart');
+Route::get('/getItemCart', [IndexController::class, 'getItemCart'])->name('getItemCart');
+Route::post('/updateQty', [IndexController::class, 'updateQty'])->name('updateQty');
 
 Route::get('vendorDokenGrid',[FrontendController::class,'vendorDokenGrid'])->name('vendorDokenGrid');
 Route::get('vendorDokenStore',[FrontendController::class,'vendorDokenStore'])->name('vendorDokenStore');
@@ -91,9 +95,10 @@ Route::get('productVar',[FrontendController::class,'productVar'])->name('product
 Route::resource('/', HomeController::class, ['names' => 'home']);
 Route::get('home', [HomeController::class, 'index'])->name('home');
 Route::get('index', [HomeController::class, 'menu'])->name('homeindex');
-Route::get('productshow', [HomeController::class, 'productshow'])->name('productallshow');
+Route::get('productshow/{id?}', [HomeController::class, 'show'])->name('productallshow');
+// Route::get('productshow/{id?}', [HomeController::class, 'productshow'])->name('productallshow');
 
-
+Route::get('vendor-list', [HomeController::class, 'vendorsList'])->name('vendor-list');
 Route::get('allproductshow', [HomeController::class, 'allproductshow'])->name('allproductshow');
 Route::get('allvendors', [HomeController::class, 'allvendors'])->name('allvendors');
 Route::get('alloffers', [HomeController::class, 'alloffers'])->name('alloffers');
@@ -153,10 +158,6 @@ Route::get('Subcategoryproductshow/{id}', [HomeController::class, 'subcategorysh
 Route::get('VendorSubcategoryproductshow/{cid}/{vid}', [HomeController::class, 'vendorsubcategoryshow'])->name('VendorSubcategoryproductshow');
 
 
-
-
-
-
 Route::get('discountoffere', [AjaxGetProductController::class, 'discountoffere'])->name('discountoffere');
 
 Route::get('cartdelete', [AjaxGetProductController::class, 'delete'])->name('cartdelete');
@@ -191,9 +192,7 @@ Route::get('/CusRegister', [CustomerController::class,'register']);
 Route::post('/updateaddress', [CustomerController::class,'updateaddress']);
 
 Route::post('/changepassword', [CustomerController::class,'changepassword']);
-Route::get('/Shopping-cart', function () {
-    return view('front_end.site.view_cart');
-});
+
 Route::get('/Checkout', function () {
     return view('front_end.site.checkout');
 });
@@ -211,7 +210,7 @@ Route::get('/Accounts/myorder/{id}', [CustomerController::class, 'myorder']);
 Route::get('/404', function () {
     return view('front_end.site.404');
 });
-Route::get('/Addwishlist', [wishlistcontroller::class,'store']);
+Route::get('/Addwishlist', [wishlistcontroller::class,'store'])->name('Addwishlist');
 
 Route::get('/View_wishlist', [wishlistcontroller::class,'show']);
 

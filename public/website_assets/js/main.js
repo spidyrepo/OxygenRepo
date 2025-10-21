@@ -2687,15 +2687,25 @@ window.Wolmart = {};
         }
 
         // Close magnific popup by mousedown on outside of the content
+        // function closePopupByBgClick(e) {
+        //     if (!$(e.target).closest('.mfp-content').length || $(e.target).hasClass('mfp-content')) {
+        //         $.magnificPopup.instance.close();
+        //     }
+        //     else {
+        //         mpIns.st.closeOnBgClick = false;
+        //         mpIns.st.closeOnBgContentClick = false;
+        //     }
+        // }
         function closePopupByBgClick(e) {
-            if (!$(e.target).closest('.mfp-content').length || $(e.target).hasClass('mfp-content')) {
-                $.magnificPopup.instance.close();
-            }
-            else {
-                mpIns.st.closeOnBgClick = false;
-                mpIns.st.closeOnBgContentClick = false;
-            }
-        }
+    if (!$(e.target).closest('.mfp-content').length || $(e.target).hasClass('mfp-content')) {
+        $.magnificPopup.instance.close();
+    }
+    else {
+        mpIns.st.closeOnBgClick = false;
+        mpIns.st.closeOnBgContentClick = false;
+    }
+}
+
         Wolmart.$body.on('mousedown', '.mfp-wrap', closePopupByBgClick);
         if ('ontouchstart' in document) {
             document.addEventListener('touchstart', closePopupByBgClick, { passive: true });

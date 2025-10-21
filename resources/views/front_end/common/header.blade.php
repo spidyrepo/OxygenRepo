@@ -6,10 +6,12 @@
     use App\Models\Category\CategoryMain;
     use App\Models\Category\Category;
     use App\Models\Category\CategorySub;
+    use Darryldecode\Cart\Facades\CartFacade as Cart;
 
     $categorymain = CategoryMain::get();
     $category = Category::get();
-    $categorysub = CategorySub::get();                                        
+    $categorysub = CategorySub::get();  
+      $count = Cart::getContent()->count();                                  
     ?>
 
         <header class="header">
@@ -71,7 +73,7 @@
                             <div class="cart-overlay"></div>
                             <a href="javascript:void(0)" onclick="showSideCart()" class="cart-toggle label-down link text-white">
                                 <i class="w-icon-cart">
-                                    <span class="cart-count">0</span>
+                                    <span class="cart-count"><?= isset($count) ? $count:0 ?></span>
                                 </i>
                                 <span class="cart-label">Cart</span>
                             </a>
@@ -224,7 +226,7 @@
                                         <a href="{{ url ('/View_AuctionProducts') }}"><i class="fas fa-gavel mr-1"></i> Auction Products</a>
                                     </li> 
                                      <li class="">
-                                        <a href="#"><i class="fas fa-store mr-1"></i> Shops </a>
+                                        <a href="{{ url ('/allvendors') }}"><i class="fas fa-store mr-1"></i> Vendors </a>
                                     {{-- </li> 
                                       <li class="">
                                         <a href="{{ url ('/landing') }}">Change Delivery Pincode</a>

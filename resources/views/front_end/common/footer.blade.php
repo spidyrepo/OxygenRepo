@@ -1,3 +1,7 @@
+<?php
+
+use Illuminate\Support\Facades\Auth;
+?>
 <!-- Start of Footer -->
 <footer class="footer appear-animate" data-animation-options="{
     'name': 'fadeIn'
@@ -759,7 +763,8 @@
 <!-- <script src="{{ asset('website_assets/js/cartscript.js')}}"></script>-->
 
 <script>
-    var url = "https://ktonline.in/oxygen_newsite/public";
+    var url = "<?= url("/") ?>";
+    // var url = "https://ktonline.in/oxygen_newsite/public";
 
     
 
@@ -1153,20 +1158,20 @@
     }
 
 
-    function addCart(id) {
+    // function addCart(id) {
 
-        var qty = 1; // $('.quantity__input').val();
-        var url = '<?= route('customCart') ?>';
-        $.post(url, {
-            id: id,
-            qty: qty,
-            '_token': '<?= csrf_token() ?>'
-        }, function(data) {
-            $.notify(data.message, "success", "bottom");
-            //$('.cart-count').show();
-            $('.cart-count').html(data.count);
-        });
-    }
+    //     var qty = 1; // $('.quantity__input').val();
+    //     var url = '<?= route('customCart') ?>';
+    //     $.post(url, {
+    //         id: id,
+    //         qty: qty,
+    //         '_token': '<?= csrf_token() ?>'
+    //     }, function(data) {
+    //         $.notify(data.message, "success", "bottom");
+    //         //$('.cart-count').show();
+    //         $('.cart-count').html(data.count);
+    //     });
+    // }
 
 
     function addproduct(id) {
@@ -1311,9 +1316,38 @@
 
 
         return false;
-
-
     }
+
+
+    function getCart() {
+        var url = '<?= route('getItemCart') ?>';
+        $.get(url, function(data) {
+            $('#cartView').html(data);
+        });
+    }
+
+    function updateQty(id, type, view) { 
+          
+            var qty = parseInt($('#quantity'+id).val());
+            (type == 'Add') ? qty += 1: ((type == 'Minus' && qty > 1) ? qty -= 1 : '');
+            $('#quantity'+id).val(qty);
+            if (id > 0) {
+                var url = '<?= route('updateQty') ?>';
+                $.post(url, {
+                    id: id,
+                    'qty': qty,
+                    '_token': '<?= csrf_token() ?>',
+                    'type': type,                   
+                }, function(data) {  
+                     getCart();                 
+                    $.notify(data.message, "success");
+                   
+                    
+                })
+            }
+        }
+
+        
 
     function updatecart(id, val) {
 
@@ -1354,16 +1388,23 @@
 
     function addwishlist(pid) {
 
-        var product_id = pid;
-        $.ajax({
+        var user_id = '<?= session()->get('login_id'); ?>';
 
-            url: url + '/Addwishlist',
+        if(user_id == 0 && user_id =='')
+        {
+            $.notify("Please Login", "error");
+            return false;
+        }
+
+        var product_id = pid;
+        var url = '<?= route("Addwishlist") ?>';
+        $.ajax({            
+            url: url,
             type: "GET",
             data: {
                 "_token": "{{ csrf_token() }}",
                 "product_id": product_id
             },
-
             dataType: "json",
             success: function(data) {
                 swal("success!", "Wishlist Added Successfully", "success");

@@ -84,53 +84,51 @@
                                         <th class="product-subtotal"><span>Subtotal</span></th>
                                     </tr>
                                 </thead>
-                                <tbody id="cartView">
-								<?php
-                                    if(isset($records)){
-                                       
-                                    foreach ($records as $row) {
-                                         $image = $row['attributes']['image'];
-                                         //print_r($row);
-                                        
-                                    ?>
-
+                                <tbody>
+								@php $total = 0;$cart=0; @endphp
+                                        @if(session('cart'))
+                                        @foreach(session('cart') as $id => $details)
+                                        @php $total += $details['price'] * $details['qty']; $cart++;
+										$img=substr($details['image'], 2, -1);
+                                        @endphp
                                     <tr>
                                         <td class="product-thumbnail">
                                             <div class="p-relative">
                                                 <a href="product-default.html">
                                                     <figure>
-                                                        <img src="<?= asset('assets/images/products/detail/'.$image) ?>" alt="product"
+                                                        <img src="{{ asset('assets/images/products/detail') . '/' . $img }}" alt="product"
                                                             width="300" height="338">
                                                     </figure>
                                                 </a>
-                                                <button type="button" class="btn btn-close" onclick="removeCart('<?= $row['id'] ?>')"><i
+                                                <button type="button" class="btn btn-close" onclick="deletecart('{{ $details['pid'] }}')"><i
                                                         class="fas fa-times"></i></button>
                                             </div>
                                         </td>
                                         <td class="product-name">
                                             <a href="#">
-                                               {{ $row['name'] }}
+                                               {{ $details['name'] }}
                                             </a>
                                         </td>
-                                        <td class="product-price"><span class="amount">Rs.{{ $row['price'] }}</span></td>
+                                        <td class="product-price"><span class="amount">Rs.{{ $details['price'] }}</span></td>
                                         <td class="product-quantity">
                                             <div class="input-group">
-                                                <input class="form-control" value="<?= $row['quantity'] ?>" type="number" min="1" max="100" id="quantity{{$row['id']}}" readonly> 
-                                                <button class="w-icon-plus" onclick="updateQty('{{$row['id']}}','Add')"></button>
-                                                <button class=" w-icon-minus" onclick="updateQty('{{$row['id']}}','Minus')"></button>
+                                                <input class="quantity form-control" type="number" min="1" max="100" id="quantity{{$details['pid']}}" readonly> 
+                                                <button class="w-icon-plus" onclick="addqnty('{{$details['pid']}}','Add')"></button>
+                                                <button class=" w-icon-minus" onclick="addqnty('{{$details['pid']}}','Minus')"></button>
                                             </div>
                                         </td>
                                         <td class="product-subtotal">
-                                            <span class="amount">Rs.{{ $row['price'] * $row['quantity'] }}</span>
+                                            <span class="amount">Rs.{{ $details['price'] * $details['qty'] }}</span>
                                         </td>
                                     </tr>
-									<?php } }else{ ?>                                       
+									 @endforeach
+                                        @else
                                         <tr data-id="1">
                                             <td colspan="5">
                                                 <center><i class="d-icon-bag"></i> Your Cart is Empty</center>
                                             </td>
                                         </tr>
-                                        <?php } ?>
+                                        @endif
                                 </tbody>
                             </table>
 

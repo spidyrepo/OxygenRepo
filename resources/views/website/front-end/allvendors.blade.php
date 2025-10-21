@@ -36,42 +36,49 @@
 
 
     <!-- Product section -->
-    <section class="pt-0 section-b-space ratio_asos">
+    <section class="section-b-space ratio_asos">
         <div class="container-fuild">
             <div class="row game-product grid-products px-5">
+              <center> <h1>VENDORS</h1></center> 
+
+            
 
                 @foreach($vendorcreate as $vendorcreate )
                     <?php
+
+                     
                     // dd($vendorcreate);
                     // $productdetails = App\Models\Products\ProductsDetails::where('products_id',$products->product_id)->get();
                     //  print_r($productdetails);
                     // print_r($category);
                      ?>
                   
-                        <div class="product-box col-xl-2 col-lg-3 col-sm-4 col-6">
+                        <div class="product-box col-xl-2 col-lg-3 col-sm-4 col-6 mt-5">
                             <div class="img-wrapper">
                                 <div class="front">
                                     <?php   
                                     ?>
                                         
-                                            <a href=""><img
+                                            <a  href=" {{ url('/Vendor_information/'.$vendorcreate->id) }}" ><img
                                             src="{{ asset('assets/images/vendor/profile') . '/' .  $vendorcreate->profile_image }}"
                                             class="img-fluid  lazyload bg-img" style="width:200px;height:200px;" alt=""></a>
                                 </div>
                                 <div class="cart-info cart-wrap">
-                                    <a href="javascript:void(0)" title="Add to Wishlist" tabindex="0"><i
+                                    {{-- <a href="javascript:void(0)" title="Add to Wishlist" tabindex="0"><i
                                             class="ti-heart" aria-hidden="true"></i></a>
                                     <a href="#" data-bs-toggle="modal" data-bs-target="#quick-view" title="Quick View"
                                         tabindex="0"><i class="ti-search" aria-hidden="true"></i></a>
                                     <a href="compare.html" title="Compare" tabindex="0"><i class="ti-reload"
-                                            aria-hidden="true"></i></a>
+                                            aria-hidden="true"></i></a> --}}
                                 </div>
-                                <div class="add-button" data-bs-toggle="modal" data-bs-target="#addtocart">add to
-                                    cart</div>
+                                {{-- <div class="add-button" data-bs-toggle="modal" data-bs-target="#addtocart">add to
+                                    cart</div> --}}
                             </div>
                             <div class="product-detail">
-                                <h6>{{ $vendorcreate->username }}</h6>
-                                <a href="">
+                               <a  href=" {{ url('/Vendor_information/'.$vendorcreate->id) }} ">
+                            <h6>{{ $vendorcreate->username }}</h6>
+                            </a> 
+                                <a href=" {{ url('/Vendor_information/'.$vendorcreate->id) }}">
                                     <h6>{{ $vendorcreate->business_category }}</h6>
                                 </a>
 
