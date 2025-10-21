@@ -10,6 +10,7 @@ use App\Http\Controllers\user\buynow\buynowController;
 use App\Http\Controllers\user\PhonePecontroller;
 use App\Http\Controllers\Website\CartController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\NewCode\FrontendController;
 use App\Http\Controllers\NewCode\IndexController;
 use App\Http\Controllers\wishlistcontroller;
 use Laravel\Telescope\Http\Controllers\HomeController as ControllersHomeController;
@@ -77,6 +78,13 @@ Route::post('/customCart', [IndexController::class, 'customCart'])->name('custom
 Route::get('/getSideCart', [IndexController::class, 'getSideCart'])->name('getSideCart');
 Route::get('/getProduct/{id}/{name?}', [IndexController::class, 'getProduct'])->name('getProduct');
 Route::get('/removeCart/{id?}', [IndexController::class, 'removeCart'])->name('removeCart');
+
+Route::get('vendorDokenGrid',[FrontendController::class,'vendorDokenGrid'])->name('vendorDokenGrid');
+Route::get('vendorDokenStore',[FrontendController::class,'vendorDokenStore'])->name('vendorDokenStore');
+Route::get('demoEight',[FrontendController::class,'demoEight'])->name('demoEight');
+Route::get('productVar',[FrontendController::class,'productVar'])->name('productVar');
+
+
 
 /** NEW CODE END  */
 
