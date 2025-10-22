@@ -90,7 +90,7 @@
                     <div class="header-left mr-md-4">
                         <a href="#" class="mobile-menu-toggle  w-icon-hamburger" aria-label="menu-toggle">
                         </a>
-                        <a href="demo1.html" class="logo ml-lg-0">
+                        <a href="{{ url('demoEight') }}" class="logo ml-lg-0">
                             <img src="<?= asset('frontend') ?>/images/header-logo.png" alt="logo" width="144" height="45" />
                         </a>
                         <form method="get" action="#" class="header-search hs-expanded hs-round d-none d-md-flex input-wrapper">
@@ -609,7 +609,7 @@
                             <nav class="main-nav">
                                 <ul class="menu active-underline">
                                     <li>
-                                        <a href="">Home</a>
+                                        <a href="{{ url('demoEight') }}">Home</a>
                                     </li>
                                     <li>
                                         <a href="shop-banner-sidebar.html">Shop</a>
