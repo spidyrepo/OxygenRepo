@@ -212,31 +212,33 @@
                         <div class="main-content">
                             <div class="store store-banner mb-4">
                                 <figure class="store-media">
-                                    <img src="assets/images/vendor/dokan/1.jpg" alt="Vendor" width="930" height="446"
+                                    <img src="{{ asset('assets/images/vendor/profile/' . $vendordetails->profile_image) }}" alt="Vendor" width="930" height="446"
                                         style="background-color: #414960;" />
                                 </figure>
                                 <div class="store-content">
                                     <figure class="seller-brand">
-                                        <img src="assets/images/vendor/brand/1.jpg" alt="Brand" width="80"
+                                        <img src="{{ asset('assets/images/vendor/profile/' . $vendordetails->profile_image) }}" alt="Brand" width="80"
                                             height="80" />
                                     </figure>
-                                    <h4 class="store-title">Vendor 1</h4>
+                                    <h4 class="store-title"> {{ $vendordetails->shop_name }}</h4>
                                     <ul class="seller-info-list list-style-none mb-6">
                                         <li class="store-address">
                                             <i class="w-icon-map-marker"></i>
-                                            Steven Street, El Carjon
-                                            California, United States (US)
+                                            {{ $vendordetails->address }} , <br>
+                                        {{-- {{ $vendordetails->address }} , <br> --}}
+                                        {{ $vendordetails->city }}  - {{ $vendordetails->pincode }} ,  <br>
+                                        {{ $vendordetails->state }} . <br>
                                         </li>
                                         <li class="store-phone">
-                                            <a href="tel:1234567890">
+                                            <a href="tel:{{ $vendordetails->mobile_number1 }}">
                                                 <i class="w-icon-phone"></i>
-                                                1234567890
+                                                {{ $vendordetails->mobile_number1 }}
                                             </a>
                                         </li>
-                                        <li class="store-rating">
+                                        {{-- <li class="store-rating">
                                             <i class="w-icon-star-full"></i>
                                             4.33 rating from 3 reviews
-                                        </li>
+                                        </li> --}}
                                         <li class="store-open">
                                             <i class="w-icon-cart"></i>
                                             Store Open

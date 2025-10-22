@@ -85,6 +85,7 @@ Route::post('/updateQty', [IndexController::class, 'updateQty'])->name('updateQt
 
 Route::get('vendorDokenGrid',[FrontendController::class,'vendorDokenGrid'])->name('vendorDokenGrid');
 Route::get('vendorDokenStore',[FrontendController::class,'vendorDokenStore'])->name('vendorDokenStore');
+Route::get('vendorDetails/{id}', [FrontendController::class, 'vendorDetails'])->name('vendorDetails');
 Route::get('demoEight',[FrontendController::class,'demoEight'])->name('demoEight');
 Route::get('productVar',[FrontendController::class,'productVar'])->name('productVar');
 

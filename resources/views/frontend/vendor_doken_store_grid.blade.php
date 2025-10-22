@@ -73,8 +73,8 @@
                                 <!-- End of Store Header -->
                                 <div class="store-content">
                                     <h4 class="store-title">
-                                        <a href=" {{ url('/Vendor_information/'.$vendorcreate->id) }}">{{ $vendorcreate->username }}</a>
-                                        <label class="featured-label">Featured</label>
+                                        <a href=" {{ url('/Vendor_information/'.$vendorcreate->id) }}">{{ $vendorcreate->shop_name }}</a>
+                                        {{-- <label class="featured-label">Featured</label> --}}
                                     </h4>
                                     {{-- <div class="ratings-container">
                                         <div class="ratings-full">

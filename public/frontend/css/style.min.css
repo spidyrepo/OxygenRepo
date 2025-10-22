@@ -14029,7 +14029,8 @@ body .product-popup {
 }
 
 .store.store-banner .store-media img {
-  min-height: 44rem;
+  /* min-height: 44rem; */
+  max-height: 44rem;
   width: 100%;
 }
 .store.store-banner .store-content {

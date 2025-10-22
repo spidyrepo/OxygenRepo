@@ -7,7 +7,7 @@ use App\Models\Banners\mainslider;
 use App\Models\Category\CategoryMain;
 use Illuminate\Http\Request;
 use App\Models\vendor\vendorcreate;
-
+use App\Models\Category\CategorySub;
 use Illuminate\Support\Facades\DB;
 
 class FrontendController extends Controller
@@ -17,7 +17,54 @@ class FrontendController extends Controller
 
           $vendorcreate = vendorcreate::get();
           // dd($vendorcreate);
-          return view('frontend/vendor_doken_store_grid',compact('vendorcreate'));
+          return view('frontend/vendor_doken_store_grid', compact('vendorcreate'));
+     }
+
+
+
+
+
+     public function vendorDetails($id)
+     {
+
+
+          //  dd($product);
+
+          $products = DB::table('products')
+               ->leftJoin('products_details', 'products.id', '=', 'products_details.products_id')
+               ->leftJoin('category_sub', 'products.category_sub', '=', 'category_sub.id')
+               ->select(
+                    DB::raw('MIN(products_details.id) as id'),  // Get the minimum (first) products_details.id
+                    'products_details.products_id',
+                    'category_sub.category_sub_name',
+                    'products.product_name',
+                    'products.product_image',
+                    'products_details.retail_price',
+                    'products_details.selling_price'
+               )
+               ->where('products.login_id', $id)
+
+               ->where('products.status', 1)
+               ->groupBy(
+                    'products_details.products_id', // Group by the product to avoid duplicate product rows
+                    'category_sub.category_sub_name',
+                    'products.product_name',
+                    'products.product_image',
+                    'products_details.retail_price',
+                    'products_details.selling_price'
+               )->get();
+
+          $vendorcreate = vendorcreate::where('user_id', $id)->first();
+          $subid = explode(',', $vendorcreate->sub_category_ids); // This converts to an array
+
+          // Fetch categories that match any of the sub_category_ids
+          $Categorysub = CategorySub::whereIn('id', $subid)->get();
+          return view('frontend/vendor_doken_store')
+               ->with([
+                    "products" => $products,
+                    "Categorysub" => $Categorysub,
+                    "vendordetails" => $vendorcreate
+               ]);
      }
 
      public function vendorDokenStore()
