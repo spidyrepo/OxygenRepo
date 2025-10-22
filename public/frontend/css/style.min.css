@@ -13933,6 +13933,7 @@ body .product-popup {
 }
 .store-grid .store-banner img {
   min-height: 19.4rem;
+  max-height: 19.4rem;
 }
 .store-grid .store-content {
   top: 2.5rem;
