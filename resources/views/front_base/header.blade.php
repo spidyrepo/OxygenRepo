@@ -27,6 +27,10 @@
         } )( document );
     </script>
 
+     <!-- Default CSS -->
+     <link rel="stylesheet" type="text/css" href="<?= asset('frontend') ?>/css/style.min.css">
+
+
     <link rel="preload" href="<?= asset('frontend') ?>/vendor/fontawesome-free/webfonts/fa-regular-400.woff2" as="font" type="font/woff2"
         crossorigin="anonymous">
     <link rel="preload" href="<?= asset('frontend') ?>/vendor/fontawesome-free/webfonts/fa-solid-900.woff2" as="font" type="font/woff2"
@@ -45,9 +49,9 @@
     <link rel="stylesheet" type="text/css" href="<?= asset('frontend') ?>/vendor/magnific-popup/magnific-popup.min.css">
      <link rel="stylesheet" href="<?= asset('frontend') ?>/vendor/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" type="text/css" href="<?= asset('frontend') ?>/css/demo8.min.css">
-    <!-- Default CSS -->
-    <!-- <link rel="stylesheet" type="text/css" href="<?= asset('frontend') ?>/css/style.min.css"> -->
-
+   
+   
+   
 </head>
 
 <body>
@@ -206,7 +210,7 @@
                 <div class="container">
                     <div class="inner-wrap">
                         <div class="header-left">
-                            <div class="dropdown category-dropdown has-border  show-dropdown" data-visible="true">
+                            <div class="dropdown category-dropdown has-border   @if(request()->is('demoEight')) show-dropdown @endif" data-visible="true">
                                 <a href="#" class="category-toggle" role="button" data-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="true" data-display="static"
                                     title="Browse Categories">
@@ -674,8 +678,8 @@
                                         <!-- End of Megamenu -->
                                     </li>
                                     <li >
-                                        <a href="vendor-dokan-store.html">Vendor</a>
-                                        <ul>
+                                        <a href="vendorDokenGrid">Vendors</a>
+                                        {{-- <ul>
                                             <li>
                                                 <a href="vendor-dokan-store-list.html">Store Listing</a>
                                                 <ul>
@@ -699,7 +703,7 @@
                                             </li>
 
                                             
-                                        </ul>
+                                        </ul> --}}
                                     </li>
 
                                         {{-- <li >

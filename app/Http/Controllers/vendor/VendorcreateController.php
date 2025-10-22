@@ -65,7 +65,7 @@ class VendorcreateController extends Controller
      public function list()
      {
         $vendorlist = vendorcreate::All();
-       // return view('layout.admin.vendor.list')->with("vendorlist");
+    //    return view('layout.admin.vendor.list')->with("vendorlist");
         return view('layout.admin.vendor.vendor-list')->with("vendorlist",$vendorlist);
 
 
