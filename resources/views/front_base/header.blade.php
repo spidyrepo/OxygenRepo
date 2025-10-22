@@ -12,7 +12,7 @@
     <meta name="author" content="D-THEMES">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="<?= asset('frontend') ?>/images/icons/favicon.png">
+    <link rel="icon" type="image/png" href="<?= asset('frontend') ?>/images/favicon.png">
         <script src="<?= asset('frontend') ?>/vendor/jquery/jquery.min.js"></script>
     <!-- WebFont.js -->
     <script>
@@ -61,34 +61,12 @@
             <div class="header-top">
                 <div class="container">
                     <div class="header-left">
-                        <p class="welcome-msg">Welcome to Wolmart Store message or remove it!</p>
+                        <p class="welcome-msg">Welcome to Oxygen ! </p>
                     </div>
                     <div class="header-right">
-                        <div class="dropdown">
-                            <a href="#currency">USD</a>
-                            <div class="dropdown-box">
-                                <a href="#USD">USD</a>
-                                <a href="#EUR">EUR</a>
-                            </div>
-                        </div>
-                        <!-- End of DropDown Menu -->
+                       
 
-                        <div class="dropdown">
-                            <a href="#language"><img src="<?= asset('frontend') ?>/images/flags/eng.png" alt="ENG Flag" width="14"
-                                    height="8" class="dropdown-image" /> ENG</a>
-                            <div class="dropdown-box">
-                                <a href="#ENG">
-                                    <img src="<?= asset('frontend') ?>/images/flags/eng.png" alt="ENG Flag" width="14" height="8"
-                                        class="dropdown-image" />
-                                    ENG
-                                </a>
-                                <a href="#FRA">
-                                    <img src="<?= asset('frontend') ?>/images/flags/fra.png" alt="FRA Flag" width="14" height="8"
-                                        class="dropdown-image" />
-                                    FRA
-                                </a>
-                            </div>
-                        </div>
+                        
                         <!-- End of Dropdown Menu -->
                         <span class="divider d-lg-show"></span>
                         <a href="blog.html" class="d-lg-show">Blog</a>
@@ -109,7 +87,7 @@
                         <a href="#" class="mobile-menu-toggle  w-icon-hamburger" aria-label="menu-toggle">
                         </a>
                         <a href="demo1.html" class="logo ml-lg-0">
-                            <img src="<?= asset('frontend') ?>/images/logo.png" alt="logo" width="144" height="45" />
+                            <img src="<?= asset('frontend') ?>/images/header-logo.png" alt="logo" width="144" height="45" />
                         </a>
                         <form method="get" action="#" class="header-search hs-expanded hs-round d-none d-md-flex input-wrapper">
                             <div class="select-box">
@@ -137,18 +115,18 @@
                             <a href="tel:#" class="w-icon-call"></a>
                             <div class="call-info d-lg-show">
                                 <h4 class="chat font-weight-normal font-size-md text-normal ls-normal text-light mb-0">
-                                    <a href="mailto:#" class="text-capitalize">Live Chat</a> or :</h4>
-                                <a href="tel:#" class="phone-number font-weight-bolder ls-50">0(800)123-456</a>
+                                    <a href="mailto:#" class="text-capitalize">Call</a></h4>
+                                <a href="tel:#" class="phone-number font-weight-bolder ls-50">+91 98845 88797</a>
                             </div>
                         </div>
                         <a class="wishlist label-down link d-xs-show" href="wishlist.html">
                             <i class="w-icon-heart"></i>
                             <span class="wishlist-label d-lg-show">Wishlist</span>
                         </a>
-                        <a class="compare label-down link d-xs-show" href="compare.html">
+                        {{-- <a class="compare label-down link d-xs-show" href="compare.html">
                             <i class="w-icon-compare"></i>
                             <span class="compare-label d-lg-show">Compare</span>
-                        </a>
+                        </a> --}}
                         <div class="dropdown cart-dropdown cart-offcanvas mr-0 mr-lg-2">
                             <div class="cart-overlay"></div>
                             <a href="#" class="cart-toggle label-down link">
@@ -627,7 +605,7 @@
                             <nav class="main-nav">
                                 <ul class="menu active-underline">
                                     <li>
-                                        <a href="demo1.html">Home</a>
+                                        <a href="">Home</a>
                                     </li>
                                     <li>
                                         <a href="shop-banner-sidebar.html">Shop</a>
@@ -695,7 +673,7 @@
                                         </ul>
                                         <!-- End of Megamenu -->
                                     </li>
-                                    <li class="active">
+                                    <li >
                                         <a href="vendor-dokan-store.html">Vendor</a>
                                         <ul>
                                             <li>
@@ -719,9 +697,16 @@
                                                     </li>
                                                 </ul>
                                             </li>
+
+                                            
                                         </ul>
                                     </li>
-                                    <li>
+
+                                        {{-- <li >
+                                        <a href="vendor-dokan-store.html">Offers</a>
+                                        
+                                    </li> --}}
+                                    {{-- <li>
                                         <a href="blog.html">Blog</a>
                                         <ul>
                                             <li><a href="blog.html">Classic</a></li>
@@ -755,8 +740,8 @@
                                                 <a href="post-single.html">Single Post</a>
                                             </li>
                                         </ul>
-                                    </li>
-                                    <li>
+                                    </li> --}}
+                                    {{-- <li>
                                         <a href="about-us.html">Pages</a>
                                         <ul>
 
@@ -772,8 +757,8 @@
                                             <li><a href="my-account.html">My Account</a></li>
                                             <li><a href="compare.html">Compare</a></li>
                                         </ul>
-                                    </li>
-                                    <li>
+                                    </li> --}}
+                                    {{-- <li>
                                         <a href="elements.html">Elements</a>
                                         <ul>
                                             <li><a href="element-accordions.html">Accordions</a></li>
@@ -793,13 +778,13 @@
 
                                             <li><a href="element-vendors.html">Vendors</a></li>
                                         </ul>
-                                    </li>
+                                    </li> --}}
                                 </ul>
                             </nav>
                         </div>
                         <div class="header-right">
+                            <a href="#"><i class="w-icon-sale"></i>Offer Products</a>
                             <a href="#" class="d-xl-show"><i class="w-icon-map-marker mr-1"></i>Track Order</a>
-                            <a href="#"><i class="w-icon-sale"></i>Daily Deals</a>
                         </div>
                     </div>
                 </div>
