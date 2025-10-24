@@ -811,7 +811,7 @@
          </div>
          <!-- End of Swiper Container -->
 
-         <div class="title-link-wrapper mb-3">
+         {{-- <div class="title-link-wrapper mb-3">
              <h2 class="title mb-0 pt-2 pb-2">From Our Blog</h2>
              <a href="blog-listing.html" class="mb-0">View All Articles<i
                      class="w-icon-long-arrow-right"></i></a>
@@ -907,7 +907,7 @@
                  </div>
              </div>
              <div class="swiper-pagination"></div>
-         </div>
+         </div> --}}
          <!-- Post Wrapper -->
 
          <h2 class="title text-left mb-5 appear-animate">Our Vendors</h2>

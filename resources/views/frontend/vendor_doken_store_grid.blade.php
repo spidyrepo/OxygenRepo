@@ -73,7 +73,7 @@
                                 <!-- End of Store Header -->
                                 <div class="store-content">
                                     <h4 class="store-title">
-                                        <a href=" {{ url('/Vendor_information/'.$vendorcreate->id) }}">{{ $vendorcreate->shop_name }}</a>
+                                        <a href=" {{ url('/vendorDetails/'.$vendorcreate->id) }}">{{ $vendorcreate->shop_name }}</a>
                                         {{-- <label class="featured-label">Featured</label> --}}
                                     </h4>
                                     {{-- <div class="ratings-container">
@@ -100,7 +100,7 @@
                                     <figure class="seller-brand">
                                         <img src="{{ asset('assets/images/vendor/profile/' . $vendorcreate->profile_image) }}" alt="Brand" width="80" height="80" />
                                     </figure>
-                                    <a href=" {{ url('/Vendor_information/'.$vendorcreate->id) }}" class="btn btn-dark btn-link btn-underline btn-icon-right btn-visit">
+                                    <a href=" {{ url('/vendorDetails/'.$vendorcreate->id) }}" class="btn btn-dark btn-link btn-underline btn-icon-right btn-visit">
                                         Visit Store<i class="w-icon-long-arrow-right"></i></a>
                                 </div>
                                 <!-- End of Store Footer -->

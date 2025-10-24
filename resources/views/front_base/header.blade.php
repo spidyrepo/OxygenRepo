@@ -615,7 +615,7 @@
                                         <a href="shop-banner-sidebar.html">Shop</a>
 
                                         <!-- Start of Megamenu -->
-                                        <ul class="megamenu">
+                                        {{-- <ul class="megamenu">
                                             <li>
                                                 <h4 class="menu-title">Shop Pages</h4>
                                                 <ul>
@@ -674,11 +674,11 @@
                                                     <li><a href="product-sticky-both.html">Sticky Both</a></li>
                                                 </ul>
                                             </li>
-                                        </ul>
+                                        </ul> --}}
                                         <!-- End of Megamenu -->
                                     </li>
                                     <li >
-                                        <a href="vendorDokenGrid">Vendors</a>
+                                        <a href="{{ url('vendorDokenGrid') }}">Vendors</a>
                                         {{-- <ul>
                                             <li>
                                                 <a href="vendor-dokan-store-list.html">Store Listing</a>
