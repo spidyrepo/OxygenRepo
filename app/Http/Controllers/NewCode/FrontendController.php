@@ -73,6 +73,49 @@ class FrontendController extends Controller
           return view('frontend/vendor_doken_store');
      }
 
+     public function getSpecificProduct($id='')
+     {
+          $productsData = Products::from('products as p')
+               ->leftJoin('category as c', 'c.id', '=', 'p.category')
+               ->leftJoin('category_sub as cs', 'cs.id', '=', 'p.category_sub')
+               ->leftJoin('category_main as cm', 'cm.id', '=', 'p.category_main')
+               ->leftJoin('products_details as pd', 'pd.products_id', '=', 'p.id')
+               ->leftJoin('vendor_details as vp', 'vp.id', '=', 'p.vendor_id');
+          if($id != '')
+          {
+              $productsData =$productsData->where('p.id', $id);
+          }               
+               $productsData =$productsData->select(
+                    'p.id',
+                    'p.product_name',
+                    'p.product_image',
+                    'pd.selling_price',
+                    'c.category_name',
+                    'cs.category_sub_name',
+                    'cm.category_main_name',
+                    'vp.shop_name',
+                    'pd.attributevalue2 as size',
+                    'pd.attributevalue1 as color',
+                    'pd.product_detail_image'
+               )->get();
+               $resultArr = [];
+          foreach ($productsData as $val) {
+               $productId = $val->id;
+               if (!isset($resultArr[$productId])) {
+                    $resultArr[$productId] = [
+                         'id'                => $val->id,
+                         'product_name'      => $val->product_name,
+                         'product_image'     => $val->product_image,
+                         'selling_price'     => $val->selling_price,
+                         'category_name'     => $val->category_name,
+                         'category_sub_name' => $val->category_sub_name,
+                         'category_main_name'=> $val->category_main_name,
+                         'shop_name'         => $val->shop_name,                        
+                    ];
+               }
+          }
+     }
+
      public function getProduct($id = '')
      {
 
@@ -132,9 +175,7 @@ class FrontendController extends Controller
           }
           if($id != '')
           {
-              $data[] = json_decode($resultArr[$id]['images'][0]);
-              return $data[0];
-
+               return $resultArr[$id];
           }else{
                return $resultArr;
           }

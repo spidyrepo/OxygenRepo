@@ -266,24 +266,7 @@
                      class="w-icon-long-arrow-right"></i></a>
          </div>
          <div class="row grid banner-product-wrapper mb-6">
-             <div class="grid-item col-xl-5col3 col-lg-3 col-sm-8 col-12">
-                 <div class="banner banner-fixed br-sm">
-                     <figure>
-                         <img src="<?= asset('frontend') ?>/images/demos/demo8/banner/1.jpg" alt="Banner" width="820" height="364"
-                             style="background-color: #EBEBEB;" />
-                     </figure>
-                     <div class="banner-content y-50">
-                         <h5 class="banner-subtitle text-capitalize font-weight-normal">Special Offers</h5>
-                         <h3 class="banner-title text-uppercase">Fashion Sale</h3>
-                         <div class="banner-price-info text-dark lh-1 ls-25">Up to <strong
-                                 class="text-secondary text-uppercase">40% Off</strong></div>
-                         <hr class="banner-divider bg-dark">
-                         <a href="demo8-shop.html" class="btn btn-dark btn-link btn-slide-right btn-icon-right">
-                             Start Shopping<i class="w-icon-long-arrow-right mb-1"></i>
-                         </a>
-                     </div>
-                 </div>
-             </div>
+             
              <div class="grid-item col-xl-5col col-lg-3 col-sm-4 col-6">
                  <div class="product product-simple text-center">
                      <figure class="product-media">
@@ -810,105 +793,6 @@
              <div class="swiper-pagination"></div>
          </div>
          <!-- End of Swiper Container -->
-
-         <div class="title-link-wrapper mb-3">
-             <h2 class="title mb-0 pt-2 pb-2">From Our Blog</h2>
-             <a href="blog-listing.html" class="mb-0">View All Articles<i
-                     class="w-icon-long-arrow-right"></i></a>
-         </div>
-         <div class="swiper-container swiper-theme post-wrapper mb-10 mb-lg-5 appear-animate"
-             data-swiper-options="{
-                    'spaceBetween': 20,
-                    'slidesPerView': 1,
-                    'breakpoints': {
-                        '576': {
-                            'slidesPerView': 2
-                        },
-                        '768': {
-                            'slidesPerView': 3
-                        },
-                        '992': {
-                            'slidesPerView': 4
-                        }
-                    }
-                }">
-             <div class="swiper-wrapper row cols-lg-4 cols-md-3 cols-sm-2 cols-1">
-                 <div class="swiper-slide post text-center">
-                     <figure class="post-media br-sm">
-                         <a href="post-single.html">
-                             <img src="<?= asset('frontend') ?>/images/demos/demo8/blog/1.jpg" alt="Post" width="620" height="398"
-                                 style="background-color: #898078;">
-                         </a>
-                         <div class="post-calendar">
-                             <span class="post-day">05</span>
-                             <span class="post-month">Mar</span>
-                         </div>
-                     </figure>
-                     <div class="post-details">
-                         <h4 class="post-title"><a href="post-single.html">We want to be different and
-                                 fashion gives to me that outlet to do</a></h4>
-                         <a href="post-single.html" class="btn btn-link btn-dark btn-underline">Read More<i
-                                 class="w-icon-long-arrow-right"></i></a>
-                     </div>
-                 </div>
-                 <div class="swiper-slide post text-center">
-                     <figure class="post-media br-sm">
-                         <a href="post-single.html">
-                             <img src="<?= asset('frontend') ?>/images/demos/demo8/blog/2.jpg" alt="Post" width="620" height="398"
-                                 style="background-color: #EDEFEE;">
-                         </a>
-                         <div class="post-calendar">
-                             <span class="post-day">14</span>
-                             <span class="post-month">Mar</span>
-                         </div>
-                     </figure>
-                     <div class="post-details">
-                         <h4 class="post-title"><a href="post-single.html">Fashion tells about who you are
-                                 from external point of view for desgin</a></h4>
-                         <a href="post-single.html" class="btn btn-link btn-dark btn-underline">Read More<i
-                                 class="w-icon-long-arrow-right"></i></a>
-                     </div>
-                 </div>
-                 <div class="swiper-slide post text-center">
-                     <figure class="post-media br-sm">
-                         <a href="post-single.html">
-                             <img src="<?= asset('frontend') ?>/images/demos/demo8/blog/3.jpg" alt="Post" width="620" height="398"
-                                 style="background-color: #A1A09E;">
-                         </a>
-                         <div class="post-calendar">
-                             <span class="post-day">25</span>
-                             <span class="post-month">Mar</span>
-                         </div>
-                     </figure>
-                     <div class="post-details">
-                         <h4 class="post-title"><a href="post-single.html">Recognizing the needs
-                                 is the primary condition for desgin</a></h4>
-                         <a href="post-single.html" class="btn btn-link btn-dark btn-underline">Read More<i
-                                 class="w-icon-long-arrow-right"></i></a>
-                     </div>
-                 </div>
-                 <div class="swiper-slide post text-center">
-                     <figure class="post-media br-sm">
-                         <a href="post-single.html">
-                             <img src="<?= asset('frontend') ?>/images/demos/demo8/blog/4.jpg" alt="Post" width="620" height="398"
-                                 style="background-color: #EDF1F2;">
-                         </a>
-                         <div class="post-calendar">
-                             <span class="post-day">16</span>
-                             <span class="post-month">Mar</span>
-                         </div>
-                     </figure>
-                     <div class="post-details">
-                         <h4 class="post-title"><a href="post-single.html">Just found the denim sportswear
-                                 and Ski appliance for new collection</a></h4>
-                         <a href="post-single.html" class="btn btn-link btn-dark btn-underline">Read More<i
-                                 class="w-icon-long-arrow-right"></i></a>
-                     </div>
-                 </div>
-             </div>
-             <div class="swiper-pagination"></div>
-         </div>
-         <!-- Post Wrapper -->
 
          <h2 class="title text-left mb-5 appear-animate">Our Vendors</h2>
          <div class="swiper-container swiper-theme  brands-wrapper br-sm mb-9 appear-animate"
