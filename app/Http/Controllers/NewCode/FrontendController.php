@@ -114,6 +114,8 @@ class FrontendController extends Controller
                     ];
                }
           }
+
+          return $resultArr;
      }
 
      public function getProduct($id = '')
@@ -194,17 +196,8 @@ class FrontendController extends Controller
                ->limit(7)
                ->get();
 
-
-
-          // SELECT p.product_name,p.product_image as image,pd.selling_price,c.category_name,cs.category_sub_name,cm.category_main_name,vp.shop_name,pd.attributevalue2 as size,pd.attributevalue1 as color,pd.product_detail_image FROM `products` as p 
-          // LEFT JOIN category as c ON c.id = p.category
-          // LEFT JOIN category_sub as cs ON c.id = p.category_sub
-          // LEFT JOIN category_main as cm  ON cm.id = p.category_main
-          // LEFT JOIN products_details as pd ON pd.products_id = p.id
-          // LEFT JOIN vendor_details as vp ON vp.id = p.vendor_id
-          // WHERE p.id = 8;
-
-          return view('frontend/demo_eight', compact('mainslider', 'topCategories'));
+          $prouctsList = $this->getSpecificProduct('');       
+          return view('frontend/demo_eight', compact('mainslider', 'topCategories','prouctsList'));
      }
 
      public function productVar()
