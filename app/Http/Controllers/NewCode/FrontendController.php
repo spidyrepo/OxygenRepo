@@ -8,6 +8,7 @@ use App\Models\Category\CategoryMain;
 use Illuminate\Http\Request;
 use App\Models\vendor\vendorcreate;
 use App\Models\Category\CategorySub;
+use App\Models\Products\Products;
 use Illuminate\Support\Facades\DB;
 
 class FrontendController extends Controller
@@ -100,6 +101,74 @@ class FrontendController extends Controller
           return view('frontend/vendor_doken_store');
      }
 
+     public function getProduct($id = '')
+     {
+
+          $productsData = Products::from('products as p')
+               ->leftJoin('category as c', 'c.id', '=', 'p.category')
+               ->leftJoin('category_sub as cs', 'cs.id', '=', 'p.category_sub')
+               ->leftJoin('category_main as cm', 'cm.id', '=', 'p.category_main')
+               ->leftJoin('products_details as pd', 'pd.products_id', '=', 'p.id')
+               ->leftJoin('vendor_details as vp', 'vp.id', '=', 'p.vendor_id');
+          if($id != '')
+          {
+              $productsData =$productsData->where('p.id', $id);
+          }               
+               $productsData =$productsData->select(
+                    'p.id',
+                    'p.product_name',
+                    'p.product_image',
+                    'pd.selling_price',
+                    'c.category_name',
+                    'cs.category_sub_name',
+                    'cm.category_main_name',
+                    'vp.shop_name',
+                    'pd.attributevalue2 as size',
+                    'pd.attributevalue1 as color',
+                    'pd.product_detail_image'
+               )->get();
+          $resultArr = [];
+          foreach ($productsData as $val) {
+               $productId = $val->id;
+
+               if (!isset($resultArr[$productId])) {
+                    $resultArr[$productId] = [
+                         'product_name'  => $val->product_name,
+                         'product_image' => $val->product_image,
+                         'selling_price' => $val->selling_price,
+                         'category_name' => $val->category_name,
+                         'category_sub_name' => $val->category_sub_name,
+                         'category_main_name' => $val->category_main_name,
+                         'shop_name'     => $val->shop_name,
+                         'colors'        => [],
+                         'size'          => [],
+                         'images'        => [],
+                    ];
+               }
+
+               if (!in_array($val->color, $resultArr[$productId]['colors'])) {
+                    $resultArr[$productId]['colors'][] = $val->color;
+               }
+
+               if (!in_array($val->size, $resultArr[$productId]['size'])) {
+                    $resultArr[$productId]['size'][] = $val->size;
+               }
+
+               if (!in_array($val->product_detail_image, $resultArr[$productId]['images'])) {
+                    $resultArr[$productId]['images'][] = $val->product_detail_image;
+               }
+          }
+          if($id != '')
+          {
+              $data[] = json_decode($resultArr[$id]['images'][0]);
+              return $data[0];
+
+          }else{
+               return $resultArr;
+          }
+         
+     }
+
      public function demoEight()
      {
           $mainslider = mainslider::where('status', 1)->get();
@@ -111,6 +180,16 @@ class FrontendController extends Controller
                ->orderByDesc('product_count')
                ->limit(7)
                ->get();
+
+
+
+          // SELECT p.product_name,p.product_image as image,pd.selling_price,c.category_name,cs.category_sub_name,cm.category_main_name,vp.shop_name,pd.attributevalue2 as size,pd.attributevalue1 as color,pd.product_detail_image FROM `products` as p 
+          // LEFT JOIN category as c ON c.id = p.category
+          // LEFT JOIN category_sub as cs ON c.id = p.category_sub
+          // LEFT JOIN category_main as cm  ON cm.id = p.category_main
+          // LEFT JOIN products_details as pd ON pd.products_id = p.id
+          // LEFT JOIN vendor_details as vp ON vp.id = p.vendor_id
+          // WHERE p.id = 8;
 
           return view('frontend/demo_eight', compact('mainslider', 'topCategories'));
      }
