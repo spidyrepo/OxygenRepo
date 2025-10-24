@@ -611,11 +611,10 @@
                                     <li>
                                         <a href="{{ url('demoEight') }}">Home</a>
                                     </li>
-                                    <li>
+                                    {{-- <li>
                                         <a href="shop-banner-sidebar.html">Shop</a>
 
-                                        <!-- Start of Megamenu -->
-                                        {{-- <ul class="megamenu">
+                                        <ul class="megamenu">
                                             <li>
                                                 <h4 class="menu-title">Shop Pages</h4>
                                                 <ul>
@@ -674,9 +673,8 @@
                                                     <li><a href="product-sticky-both.html">Sticky Both</a></li>
                                                 </ul>
                                             </li>
-                                        </ul> --}}
-                                        <!-- End of Megamenu -->
-                                    </li>
+                                        </ul>
+                                    </li> --}}
                                     <li >
                                         <a href="{{ url('vendorDokenGrid') }}">Vendors</a>
                                         {{-- <ul>
