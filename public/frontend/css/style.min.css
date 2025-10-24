@@ -21398,3 +21398,23 @@ aside .sp-sidebar-banner span {
             justify-content: center;
   }
 }
+
+
+
+ .product-price-discount{
+        margin-top:3px;
+        margin-left:5px;
+        font-size:13px;
+        text-decoration: line-through;
+         color: #888;
+
+    }
+
+
+    .product-offer-percentage {
+        margin-top:3px;
+        font-size: 13px;
+        color: #28a745; /* light green */
+        font-weight: bold;
+        margin-left: 8px;
+    }

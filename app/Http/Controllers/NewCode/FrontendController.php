@@ -31,29 +31,57 @@ class FrontendController extends Controller
 
           //  dd($product);
 
+          // $products = DB::table('products')
+          //      ->leftJoin('products_details', 'products.id', '=', 'products_details.products_id')
+          //      ->leftJoin('category_sub', 'products.category_sub', '=', 'category_sub.id')
+          //      ->select(
+          //           DB::raw('MIN(products_details.id) as id'),  // Get the minimum (first) products_details.id
+          //           'products_details.products_id',
+          //           'category_sub.category_sub_name',
+          //           'products.product_name',
+          //           'products.product_image',
+          //           'products_details.retail_price',
+          //           'products_details.selling_price'
+          //      )
+          //      // ->where('products.login_id', $id)
+          //      ->where('products.vendor_id', $id)
+
+          //      ->where('products.status', 1)
+          //      ->groupBy(
+          //           'products_details.id', 
+          //           // 'products.id', 
+          //           'products_details.products_id', 
+          //           'category_sub.category_sub_name',
+          //           'products.product_name',
+          //           'products.product_image',
+          //           'products_details.retail_price',
+          //           'products_details.selling_price'
+          //      )->get();
+
+
+
           $products = DB::table('products')
                ->leftJoin('products_details', 'products.id', '=', 'products_details.products_id')
                ->leftJoin('category_sub', 'products.category_sub', '=', 'category_sub.id')
                ->select(
-                    DB::raw('MIN(products_details.id) as id'),  // Get the minimum (first) products_details.id
-                    'products_details.products_id',
-                    'category_sub.category_sub_name',
+                    'products.id',
                     'products.product_name',
                     'products.product_image',
-                    'products_details.retail_price',
-                    'products_details.selling_price'
+                    'category_sub.category_sub_name',
+                    DB::raw('MIN(products_details.retail_price) as retail_price'),
+                    DB::raw('MIN(products_details.selling_price) as selling_price')
                )
-               ->where('products.login_id', $id)
-
+               ->where('products.vendor_id', $id)
                ->where('products.status', 1)
                ->groupBy(
-                    'products_details.products_id', // Group by the product to avoid duplicate product rows
-                    'category_sub.category_sub_name',
+                    'products.id',
                     'products.product_name',
                     'products.product_image',
-                    'products_details.retail_price',
-                    'products_details.selling_price'
-               )->get();
+                    'category_sub.category_sub_name'
+               )
+               ->get();
+
+               // dd( $products);
 
           $vendorcreate = vendorcreate::where('user_id', $id)->first();
           $subid = explode(',', $vendorcreate->sub_category_ids); // This converts to an array
