@@ -224,7 +224,8 @@ class FrontendController extends Controller
                ->limit(7)
                ->get();
 
-          $prouctsList = $this->getSpecificProduct('');       
+          $prouctsList = $this->getSpecificProduct('');   
+        
           return view('frontend/demo_eight', compact('mainslider', 'topCategories','prouctsList'));
      }
 

@@ -15,14 +15,14 @@
                      <?php if (isset($mainslider)) {
                             foreach ($mainslider as $val) { ?>
                              <div class="swiper-slide banner banner-fixed intro-slide intro-slide1 br-sm"
-                                 style="background-image: url(<?= asset('assets/images/banners/mainslider/' . $val->image) ?>); background-color: #E8EAEF;">
+                                 style="background-image: url(<?php echo asset('assets/images/banners/mainslider/' . $val->image) ?>); background-color: #E8EAEF;">
                                  <div class="banner-content y-50 text-right">
                                      <div class="slide-animate" data-animation-options="{
                                         'name': 'fadeInUpShorter', 'duration': '1s'
                                     }">
-                                         <h5 class="banner-subtitle text-uppercase font-weight-bold mb-2"><?= $val->title ?></h5>
+                                         <h5 class="banner-subtitle text-uppercase font-weight-bold mb-2"><?php echo $val->title ?></h5>
                                          <h3 class="banner-title text-capitalize ls-25">
-                                             <span class="text-primary"><?= $val->sub_title ?></span><br>
+                                             <span class="text-primary"><?php echo $val->sub_title ?></span><br>
                                              Fashion Lifestyle<br>Collection
                                          </h3>
                                          <a href="demo8-shop.html"
@@ -122,7 +122,7 @@
              <div class="swiper-wrapper row cols-lg-3 cols-sm-2 cols-1">
                  <div class="swiper-slide banner banner-fixed category-banner br-sm">
                      <figure>
-                         <img src="<?= asset('frontend') ?>/images/demos/demo8/category/1-1.jpg" alt="Category Banner" width="447"
+                         <img src="<?php echo asset('frontend') ?>/images/demos/demo8/category/1-1.jpg" alt="Category Banner" width="447"
                              height="230" style="background-color: #cfd1cf;" />
                      </figure>
                      <div class="banner-content y-50">
@@ -139,7 +139,7 @@
                  <!-- End of Category Banner -->
                  <div class="swiper-slide banner banner-fixed category-banner br-sm">
                      <figure>
-                         <img src="<?= asset('frontend') ?>/images/demos/demo8/category/1-2.jpg" alt="Category Banner" width="447"
+                         <img src="<?php echo asset('frontend') ?>/images/demos/demo8/category/1-2.jpg" alt="Category Banner" width="447"
                              height="230" style="background-color: #333" />
                      </figure>
                      <div class="banner-content text-center x-50 y-50 w-100 pl-2 pr-2">
@@ -156,7 +156,7 @@
                  <!-- End of Category Banner -->
                  <div class="swiper-slide banner banner-fixed category-banner br-sm">
                      <figure>
-                         <img src="<?= asset('frontend') ?>/images/demos/demo8/category/1-3.jpg" alt="Category Banner" width="447"
+                         <img src="<?php echo asset('frontend') ?>/images/demos/demo8/category/1-3.jpg" alt="Category Banner" width="447"
                              height="230" style="background-color: #e0dddd;" />
                      </figure>
                      <div class="banner-content y-50">
@@ -205,13 +205,13 @@
                              <div class="category category-classic category-absolute overlay-zoom br-sm">
                                  <a href="demo8-shop.html">
                                      <figure class="category-media">
-                                         <img src="<?= asset('assets/images/categoryMain/' . $val->category_main_image) ?>" alt="Category" width="213"
+                                         <img src="<?php echo asset('assets/images/categoryMain/' . $val->category_main_image) ?>" alt="Category" width="213"
                                              height="213" />
                                      </figure>
                                  </a>
                                  <div class="category-content">
-                                     <h4 class="category-name ls-normal"><?= $val->category_main_name ?></h4>
-                                     <a href="<?= $val->id ?>" class="btn btn-primary btn-link btn-underline">Shop Now</a>
+                                     <h4 class="category-name ls-normal"><?php echo $val->category_main_name ?></h4>
+                                     <a href="<?php echo $val->id ?>" class="btn btn-primary btn-link btn-underline">Shop Now</a>
                                  </div>
                              </div>
                          </div>
@@ -222,7 +222,7 @@
          </div>
          <!-- End of Swiper -->
 
-         
+
      </div>
      <!-- End of Container -->
 
@@ -233,7 +233,7 @@
          <div class="row cols-md-2 category-banner-2cols mb-5">
              <div class="banner banner-fixed mb-4">
                  <figure class="br-sm">
-                     <img src="<?= asset('frontend') ?>/images/demos/demo8/category/2-1.jpg" alt="Category Banner" width="680"
+                     <img src="<?php echo asset('frontend') ?>/images/demos/demo8/category/2-1.jpg" alt="Category Banner" width="680"
                          height="220" style="background-color: #384744;" />
                  </figure>
                  <div class="banner-content y-50">
@@ -246,7 +246,7 @@
              <!-- End of Banner -->
              <div class="banner banner-fixed mb-4">
                  <figure class="br-sm">
-                     <img src="<?= asset('frontend') ?>/images/demos/demo8/category/2-2.jpg" alt="Category Banner" width="680"
+                     <img src="<?php echo asset('frontend') ?>/images/demos/demo8/category/2-2.jpg" alt="Category Banner" width="680"
                          height="220" style="background-color: #e7e7e7;" />
                  </figure>
                  <div class="banner-content y-50">
@@ -266,265 +266,46 @@
                      class="w-icon-long-arrow-right"></i></a>
          </div>
          <div class="row grid banner-product-wrapper mb-6">
-             
-             <div class="grid-item col-xl-5col col-lg-3 col-sm-4 col-6">
-                 <div class="product product-simple text-center">
-                     <figure class="product-media">
-                         <a href="product-default.html">
-                             <img src="<?= asset('frontend') ?>/images/demos/demo8/product/3-1.jpg" alt="Product" width="260"
-                                 height="291" />
-                         </a>
-                         <div class="product-action-vertical">
-                             <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
-                                 title="Add to wishlist"></a>
-                             <a href="#" class="btn-product-icon btn-compare w-icon-compare"
-                                 title="Add to Compare"></a>
-                         </div>
-                         <div class="product-action">
-                             <a href="#" class="btn-product btn-quickview" title="Quick View">Quick
-                                 View</a>
-                         </div>
-                     </figure>
-                     <div class="product-details">
-                         <h4 class="product-name"><a href="product-default.html">Comfortable Blanket</a></h4>
-                         <div class="product-pa-wrapper">
-                             <div class="product-price">
-                                 <ins class="new-price">$30.00 - $36.00</ins>
+             <?php if (isset($prouctsList)) {
+                    foreach ($prouctsList as $row) { ?>
+                     <div class="grid-item col-xl-6col col-lg-2 col-sm-4 col-6">
+                         <div class="product product-simple text-center">
+                             <figure class="product-media">
+                                 <a href="product-default.html">
+                                     <img src="<?php echo asset('assets') ?>/images/products/<?= $row['product_image'] ?>" alt="Product" width="260"
+                                         height="291" />
+                                 </a>
+                                 <div class="product-action-vertical">
+                                     <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                         title="Add to wishlist"></a>                                    
+                                 </div>
+                                 <div class="product-action">
+                                     <a href="javascript:void(0)" onclick="showQuickView('<?= $row['id'] ?>')" class="btn-product" title="Quick View">Quick
+                                         View</a>
+                                 </div>
+                             </figure>
+                             <div class="product-details">
+                                 <div class="sold-by">
+                                    <b><a href="#"><?= $row['shop_name'] ?? 'N/A' ?></a></b>
+                                 </div>
+                                 <h4 class="product-name"><a href="product-default.html"><?= ucwords($row['product_name']) ?></a></h4>
+                                 <div class="product-pa-wrapper">
+                                     <div class="product-price">
+                                         <ins class="new-price"><i class="fa fa-inr"></i><?= $row['selling_price'] ?></ins>
+                                     </div>                                     
+                                 </div>
+                                
                              </div>
-                             <div class="product-action">
-                                 <a href="#"
-                                     class="btn-cart btn-product btn btn-icon-right btn-link btn-underline">Add
-                                     To Cart</a>
-                             </div>
-                         </div>
-                         <div class="sold-by">
-                             Sold By: <a href="#">Vendor 1</a>
                          </div>
                      </div>
-                 </div>
-             </div>
-             <div class="grid-item col-xl-5col col-lg-3 col-sm-4 col-6">
-                 <div class="product product-simple text-center">
-                     <figure class="product-media">
-                         <a href="product-default.html">
-                             <img src="<?= asset('frontend') ?>/images/demos/demo8/product/3-2.jpg" alt="Product" width="260"
-                                 height="291" />
-                         </a>
-                         <div class="product-action-vertical">
-                             <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
-                                 title="Add to wishlist"></a>
-                             <a href="#" class="btn-product-icon btn-compare w-icon-compare"
-                                 title="Add to Compare"></a>
-                         </div>
-                         <div class="product-action">
-                             <a href="#" class="btn-product btn-quickview" title="Quick View">Quick
-                                 View</a>
-                         </div>
-                     </figure>
-                     <div class="product-details">
-                         <h4 class="product-name"><a href="product-default.html">Men's T-Shirt</a></h4>
-                         <div class="product-pa-wrapper">
-                             <div class="product-price">
-                                 <ins class="new-price">$25.00 - $26.00</ins>
-                             </div>
-                             <div class="product-action">
-                                 <a href="#"
-                                     class="btn-cart btn-product btn btn-icon-right btn-link btn-underline">Add
-                                     To Cart</a>
-                             </div>
-                         </div>
-                         <div class="sold-by">
-                             Sold By: <a href="#">Vendor 4</a>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-             <div class="grid-item col-xl-5col col-lg-3 col-sm-4 col-6">
-                 <div class="product product-simple text-center">
-                     <figure class="product-media">
-                         <a href="product-default.html">
-                             <img src="<?= asset('frontend') ?>/images/demos/demo8/product/3-3.jpg" alt="Product" width="260"
-                                 height="291" />
-                         </a>
-                         <div class="product-action-vertical">
-                             <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
-                                 title="Add to wishlist"></a>
-                             <a href="#" class="btn-product-icon btn-compare w-icon-compare"
-                                 title="Add to Compare"></a>
-                         </div>
-                         <div class="product-action">
-                             <a href="#" class="btn-product btn-quickview" title="Quick View">Quick
-                                 View</a>
-                         </div>
-                     </figure>
-                     <div class="product-details">
-                         <h4 class="product-name"><a href="product-default.html">White Schoolbag</a></h4>
-                         <div class="product-pa-wrapper">
-                             <div class="product-price">
-                                 <ins class="new-price">$56.48</ins>
-                             </div>
-                             <div class="product-action">
-                                 <a href="#"
-                                     class="btn-cart btn-product btn btn-icon-right btn-link btn-underline">Add
-                                     To Cart</a>
-                             </div>
-                         </div>
-                         <div class="sold-by">
-                             Sold By: <a href="#">Vendor 3</a>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-             <div class="grid-item col-xl-5col col-lg-3 col-sm-4 col-6">
-                 <div class="product product-simple text-center">
-                     <figure class="product-media">
-                         <a href="product-default.html">
-                             <img src="<?= asset('frontend') ?>/images/demos/demo8/product/3-4.jpg" alt="Product" width="260"
-                                 height="291" />
-                         </a>
-                         <div class="product-action-vertical">
-                             <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
-                                 title="Add to wishlist"></a>
-                             <a href="#" class="btn-product-icon btn-compare w-icon-compare"
-                                 title="Add to Compare"></a>
-                         </div>
-                         <div class="product-action">
-                             <a href="#" class="btn-product btn-quickview" title="Quick View">Quick
-                                 View</a>
-                         </div>
-                     </figure>
-                     <div class="product-details">
-                         <h4 class="product-name"><a href="product-default.html">Chain Handle Umbrella</a></h4>
-                         <div class="product-pa-wrapper">
-                             <div class="product-price">
-                                 <ins class="new-price">$28.98</ins><del class="old-price">$32.62</del>
-                             </div>
-                             <div class="product-action">
-                                 <a href="#"
-                                     class="btn-cart btn-product btn btn-icon-right btn-link btn-underline">Add
-                                     To Cart</a>
-                             </div>
-                         </div>
-                         <div class="sold-by">
-                             Sold By: <a href="#">Vendor 3</a>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-             <div class="grid-item col-xl-5col col-lg-3 col-sm-4 col-6">
-                 <div class="product product-simple text-center">
-                     <figure class="product-media">
-                         <a href="product-default.html">
-                             <img src="<?= asset('frontend') ?>/images/demos/demo8/product/3-5.jpg" alt="Product" width="260"
-                                 height="291" />
-                         </a>
-                         <div class="product-action-vertical">
-                             <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
-                                 title="Add to wishlist"></a>
-                             <a href="#" class="btn-product-icon btn-compare w-icon-compare"
-                                 title="Add to Compare"></a>
-                         </div>
-                         <div class="product-action">
-                             <a href="#" class="btn-product btn-quickview" title="Quick View">Quick
-                                 View</a>
-                         </div>
-                     </figure>
-                     <div class="product-details">
-                         <h4 class="product-name"><a href="product-default.html">Men's Suede Belt</a></h4>
-                         <div class="product-pa-wrapper">
-                             <div class="product-price">
-                                 <ins class="new-price">$73.71</ins><del class="old-price">$78.04</del>
-                             </div>
-                             <div class="product-action">
-                                 <a href="#"
-                                     class="btn-cart btn-product btn btn-icon-right btn-link btn-underline">Add
-                                     To Cart</a>
-                             </div>
-                         </div>
-                         <div class="sold-by">
-                             Sold By: <a href="#">Vendor 2</a>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-             <div class="grid-item col-xl-5col col-lg-3 col-sm-4 col-6">
-                 <div class="product product-simple text-center">
-                     <figure class="product-media">
-                         <a href="product-default.html">
-                             <img src="<?= asset('frontend') ?>/images/demos/demo8/product/3-6.jpg" alt="Product" width="260"
-                                 height="291" />
-                         </a>
-                         <div class="product-action-vertical">
-                             <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
-                                 title="Add to wishlist"></a>
-                             <a href="#" class="btn-product-icon btn-compare w-icon-compare"
-                                 title="Add to Compare"></a>
-                         </div>
-                         <div class="product-action">
-                             <a href="#" class="btn-product btn-quickview" title="Quick View">Quick
-                                 View</a>
-                         </div>
-                     </figure>
-                     <div class="product-details">
-                         <h4 class="product-name"><a href="product-default.html">Men's Travel Bag</a></h4>
-                         <div class="product-pa-wrapper">
-                             <div class="product-price">
-                                 <ins class="new-price">$23.99</ins><del class="old-price">$25.68</del>
-                             </div>
-                             <div class="product-action">
-                                 <a href="#"
-                                     class="btn-cart btn-product btn btn-icon-right btn-link btn-underline">Add
-                                     To Cart</a>
-                             </div>
-                         </div>
-                         <div class="sold-by">
-                             Sold By: <a href="#">Vendor 3</a>
-                         </div>
-                     </div>
-                 </div>
-             </div>
-             <div class="grid-item col-xl-5col col-lg-3 col-sm-4 col-6">
-                 <div class="product product-simple text-center">
-                     <figure class="product-media">
-                         <a href="product-default.html">
-                             <img src="<?= asset('frontend') ?>/images/demos/demo8/product/3-7.jpg" alt="Product" width="260"
-                                 height="291" />
-                         </a>
-                         <div class="product-action-vertical">
-                             <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
-                                 title="Add to wishlist"></a>
-                             <a href="#" class="btn-product-icon btn-compare w-icon-compare"
-                                 title="Add to Compare"></a>
-                         </div>
-                         <div class="product-action">
-                             <a href="#" class="btn-product btn-quickview" title="Quick View">Quick
-                                 View</a>
-                         </div>
-                     </figure>
-                     <div class="product-details">
-                         <h4 class="product-name"><a href="product-default.html">Grey Calotte</a></h4>
-                         <div class="product-pa-wrapper">
-                             <div class="product-price">
-                                 <ins class="new-price">$173.84</ins>
-                             </div>
-                             <div class="product-action">
-                                 <a href="#"
-                                     class="btn-cart btn-product btn btn-icon-right btn-link btn-underline">Add
-                                     To Cart</a>
-                             </div>
-                         </div>
-                         <div class="sold-by">
-                             Sold By: <a href="#">Vendor 5</a>
-                         </div>
-                     </div>
-                 </div>
-             </div>
+             <?php }
+                } ?>
          </div>
          <!-- End of Banner Product Wrapper -->
 
-        
 
-         <div class="banner banner-shoes br-sm mb-9" style="background-image: url(<?= asset('frontend') ?>/images/demos/demo8/banner/3.jpg);
+
+         <div class="banner banner-shoes br-sm mb-9" style="background-image: url(<?php echo asset('frontend') ?>/images/demos/demo8/banner/3.jpg);
                     background-color: #36332C;">
              <div class="banner-content d-block d-lg-flex align-items-center">
                  <div class="content-left mr-auto mb-6 mb-lg-0 align-items-center">
@@ -542,7 +323,7 @@
                  </a>
              </div>
              <figure class="image-shoes skrollable">
-                 <img src="<?= asset('frontend') ?>/images/demos/demo8/banner/shoes.png" alt="Shoes"
+                 <img src="<?php echo asset('frontend') ?>/images/demos/demo8/banner/shoes.png" alt="Shoes"
                      data-bottom-top="transform: translateY(2vh);"
                      data-top-bottom="transform: translateY(-2vh);">
              </figure>
@@ -577,7 +358,7 @@
                  <div class="swiper-slide product product-simple text-center">
                      <figure class="product-media">
                          <a href="product-default.html">
-                             <img src="<?= asset('frontend') ?>/images/demos/demo8/product/5-1.jpg" alt="Product" width="260"
+                             <img src="<?php echo asset('frontend') ?>/images/demos/demo8/product/5-1.jpg" alt="Product" width="260"
                                  height="291" />
                          </a>
                          <div class="product-action-vertical">
@@ -617,7 +398,7 @@
                  <div class="swiper-slide product product-simple text-center">
                      <figure class="product-media">
                          <a href="product-default.html">
-                             <img src="<?= asset('frontend') ?>/images/demos/demo8/product/5-2.jpg" alt="Product" width="260"
+                             <img src="<?php echo asset('frontend') ?>/images/demos/demo8/product/5-2.jpg" alt="Product" width="260"
                                  height="291" />
                          </a>
                          <div class="product-action-vertical">
@@ -652,7 +433,7 @@
                  <div class="swiper-slide product product-simple text-center">
                      <figure class="product-media">
                          <a href="product-default.html">
-                             <img src="<?= asset('frontend') ?>/images/demos/demo8/product/5-3.jpg" alt="Product" width="260"
+                             <img src="<?php echo asset('frontend') ?>/images/demos/demo8/product/5-3.jpg" alt="Product" width="260"
                                  height="291" />
                          </a>
                          <div class="product-action-vertical">
@@ -687,7 +468,7 @@
                  <div class="swiper-slide product product-simple text-center">
                      <figure class="product-media">
                          <a href="product-default.html">
-                             <img src="<?= asset('frontend') ?>/images/demos/demo8/product/5-4.jpg" alt="Product" width="260"
+                             <img src="<?php echo asset('frontend') ?>/images/demos/demo8/product/5-4.jpg" alt="Product" width="260"
                                  height="291" />
                          </a>
                          <div class="product-action-vertical">
@@ -722,7 +503,7 @@
                  <div class="swiper-slide product product-simple text-center">
                      <figure class="product-media">
                          <a href="product-default.html">
-                             <img src="<?= asset('frontend') ?>/images/demos/demo8/product/5-5.jpg" alt="Product" width="260"
+                             <img src="<?php echo asset('frontend') ?>/images/demos/demo8/product/5-5.jpg" alt="Product" width="260"
                                  height="291" />
                          </a>
                          <div class="product-action-vertical">
@@ -757,7 +538,7 @@
                  <div class="swiper-slide product product-simple text-center">
                      <figure class="product-media">
                          <a href="product-default.html">
-                             <img src="<?= asset('frontend') ?>/images/demos/demo8/product/5-6.jpg" alt="Product" width="260"
+                             <img src="<?php echo asset('frontend') ?>/images/demos/demo8/product/5-6.jpg" alt="Product" width="260"
                                  height="291" />
                          </a>
                          <div class="product-action-vertical">
@@ -822,49 +603,49 @@
              <div class="swiper-wrapper row cols-xl-8 cols-lg-6 cols-md-4 cols-sm-3 cols-2">
                  <div class="swiper-slide">
                      <figure>
-                         <img src="<?= asset('frontend') ?>/images/demos/demo8/brand/1.png" alt="Brand" width="310" height="180" />
+                         <img src="<?php echo asset('frontend') ?>/images/demos/demo8/brand/1.png" alt="Brand" width="310" height="180" />
                      </figure>
                  </div>
                  <div class="swiper-slide">
                      <figure>
-                         <img src="<?= asset('frontend') ?>/images/demos/demo8/brand/2.png" alt="Brand" width="310" height="180" />
+                         <img src="<?php echo asset('frontend') ?>/images/demos/demo8/brand/2.png" alt="Brand" width="310" height="180" />
                      </figure>
                  </div>
                  <div class="swiper-slide">
                      <figure>
-                         <img src="<?= asset('frontend') ?>/images/demos/demo8/brand/3.png" alt="Brand" width="310" height="180" />
+                         <img src="<?php echo asset('frontend') ?>/images/demos/demo8/brand/3.png" alt="Brand" width="310" height="180" />
                      </figure>
                  </div>
                  <div class="swiper-slide">
                      <figure>
-                         <img src="<?= asset('frontend') ?>/images/demos/demo8/brand/4.png" alt="Brand" width="310" height="180" />
+                         <img src="<?php echo asset('frontend') ?>/images/demos/demo8/brand/4.png" alt="Brand" width="310" height="180" />
                      </figure>
                  </div>
                  <div class="swiper-slide">
                      <figure>
-                         <img src="<?= asset('frontend') ?>/images/demos/demo8/brand/5.png" alt="Brand" width="310" height="180" />
+                         <img src="<?php echo asset('frontend') ?>/images/demos/demo8/brand/5.png" alt="Brand" width="310" height="180" />
                      </figure>
                  </div>
                  <div class="swiper-slide">
                      <figure>
-                         <img src="<?= asset('frontend') ?>/images/demos/demo8/brand/6.png" alt="Brand" width="310" height="180" />
+                         <img src="<?php echo asset('frontend') ?>/images/demos/demo8/brand/6.png" alt="Brand" width="310" height="180" />
                      </figure>
                  </div>
                  <div class="swiper-slide">
                      <figure>
-                         <img src="<?= asset('frontend') ?>/images/demos/demo8/brand/7.png" alt="Brand" width="310" height="180" />
+                         <img src="<?php echo asset('frontend') ?>/images/demos/demo8/brand/7.png" alt="Brand" width="310" height="180" />
                      </figure>
                  </div>
                  <div class="swiper-slide">
                      <figure>
-                         <img src="<?= asset('frontend') ?>/images/demos/demo8/brand/8.png" alt="Brand" width="310" height="180" />
+                         <img src="<?php echo asset('frontend') ?>/images/demos/demo8/brand/8.png" alt="Brand" width="310" height="180" />
                      </figure>
                  </div>
              </div>
          </div>
          <!-- End of Brands Wrapper -->
 
-        
+
      </div>
      <!-- End of Container -->
  </main>
