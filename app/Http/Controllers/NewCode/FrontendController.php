@@ -199,4 +199,11 @@ class FrontendController extends Controller
      {
           return view('frontend/product');
      }
+
+      public function quickView($id)
+     {
+          return view('frontend/quick_view',compact('id'));
+     }
+
+     
 }

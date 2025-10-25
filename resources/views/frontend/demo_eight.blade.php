@@ -279,8 +279,8 @@
                                      <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
                                          title="Add to wishlist"></a>                                    
                                  </div>
-                                 <div class="product-action">
-                                     <a href="javascript:void(0)" onclick="showQuickView('<?= $row['id'] ?>')" class="btn-product" title="Quick View">Quick
+                                 <div class="product-action"> <!--  -->
+                                     <a href="javascript:void(0)" onclick="showQuickView('<?= $row['id'] ?>')" data-id='<?= $row['id'] ?>'  class="btn-product btnquickview" title="Quick View">Quick
                                          View</a>
                                  </div>
                              </figure>
