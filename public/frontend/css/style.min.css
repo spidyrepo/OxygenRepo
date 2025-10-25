@@ -13846,7 +13846,8 @@ body .product-popup {
   opacity: 0.8;
 }
 .seller-info-list > * a {
-  color: inherit;
+  color: #fff;
+ 
 }
 .seller-info-list > * i {
   margin-left: -2.2rem;
@@ -13857,6 +13858,13 @@ body .product-popup {
 }
 .seller-info-list .store-phone:hover, .seller-info-list .store-email:hover {
   color: #f93;
+}
+
+.store-address-grid{
+  font-size: 1.3rem;
+  color: #000;
+  opacity: 0.8;
+  line-height: 1.8;
 }
 
 .store-address {

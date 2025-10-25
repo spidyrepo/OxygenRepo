@@ -286,13 +286,13 @@
                                                 <h3 class="product-name">
                                                     <a href="product-default.html">{{ $product->product_name }}</a>
                                                 </h3>
-                                                {{-- <div class="ratings-container">
+                                                <div class="ratings-container">
                                                     <div class="ratings-full">
                                                         <span class="ratings" style="width: 100%;"></span>
                                                         <span class="tooltiptext tooltip-top"></span>
                                                     </div>
                                                     <a href="product-default.html" class="rating-reviews">(3 reviews)</a>
-                                                </div> --}}
+                                                </div>
                                                 <div class="product-pa-wrapper">
                                                     <div class="product-price">
                                                        ₹{{ $product->selling_price }} 

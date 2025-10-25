@@ -1,6 +1,42 @@
  @extends('app_template')
  @section('title','Vendor Store Grid')
  @section('content')
+
+ <style>
+  
+     .store-header {
+    position: relative;
+    overflow: hidden;
+}
+
+.store-header .store-banner img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+
+   .banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.0) 20%,   
+        rgba(255, 255, 255, 0.85) 100%  
+    );
+    backdrop-filter: blur(4px); 
+    pointer-events: none;
+}
+
+
+
+
+
+
+ </style>
  <!-- Start of Main -->
         <main class="main">
             <!-- Start of Breadcrumb -->
@@ -25,7 +61,7 @@
                         <div class="toolbox-left mb-4 mb-md-0">
                             {{-- <a href="#" class="btn btn-primary btn-outline btn-rounded btn-icon-left "><i class="w-icon-category"></i>VENDORS</a> --}}
                             {{-- <label class="d-block">Total Store Showing 6</label> --}}
-                            <label class="d-block">VENDORS</label>
+                            <h3><label class="d-block">VENDORS</label></h3>
                         </div>
                         <div class="toolbox-right">
                             <div class="toolbox-item toolbox-sort select-box mb-0">
@@ -61,14 +97,14 @@
 
                         <div class="store-wrap mb-4">
                             <div class="store store-grid">
-                                <div class="store-header">
-                                    <figure class="store-banner">
+                                <div class="store-header" style="position: relative; overflow: hidden;">
+                                    <figure class="store-banner" style="margin: 0;">
                                         <img 
                                             src="{{ asset('assets/images/vendor/profile/' . $vendorcreate->profile_image) }}"
                                             alt="Vendor"
-                                            style="background-color: #40475E;" />
+                                            style="width: 100%; height: auto; object-fit: cover; display: block;" />
                                     </figure>
-
+                                    <div class="banner-overlay"></div>
                                 </div>
                                 <!-- End of Store Header -->
                                 <div class="store-content">
@@ -76,24 +112,26 @@
                                         <a href=" {{ url('/vendorDetails/'.$vendorcreate->id) }}">{{ $vendorcreate->shop_name }}</a>
                                         {{-- <label class="featured-label">Featured</label> --}}
                                     </h4>
-                                    {{-- <div class="ratings-container">
+                                    <div class="ratings-container">
                                         <div class="ratings-full">
                                             <span class="ratings" style="width: 100%;"></span>
                                             <span class="tooltiptext tooltip-top"></span>
                                         </div>
-                                    </div> --}}
-                                    <div class="store-address">
+                                    </div>
+                                    <div class="store-address-grid">
+                                        <b>
                                         {{ $vendorcreate->address }} , <br>
-                                        {{ $vendorcreate->address }} , <br>
+                                        {{-- {{ $vendorcreate->address }} , <br> --}}
                                         {{ $vendorcreate->city }}  - {{ $vendorcreate->pincode }} ,  <br>
                                         {{ $vendorcreate->state }} . <br>
+                                        <i class="w-icon-phone"></i> {{ $vendorcreate->mobile_number1 }}
+
+                                        </b>
+                                        
+                                       
 
                                     </div>
-                                    <ul class="seller-info-list list-style-none">
-                                        <li class="store-phone">
-                                            <a href="tel:{{ $vendorcreate->mobile_number1 }} "><i class="w-icon-phone"></i>{{ $vendorcreate->mobile_number1 }} </a>
-                                        </li>
-                                    </ul>
+                                  
                                 </div>
                                 <!-- End of Store Content -->
                                 <div class="store-footer">
@@ -101,7 +139,7 @@
                                         <img src="{{ asset('assets/images/vendor/profile/' . $vendorcreate->profile_image) }}" alt="Brand" width="80" height="80" />
                                     </figure>
                                     <a href=" {{ url('/vendorDetails/'.$vendorcreate->id) }}" class="btn btn-dark btn-link btn-underline btn-icon-right btn-visit">
-                                        Visit Store<i class="w-icon-long-arrow-right"></i></a>
+                                       <b>Visit Store</b> <i class="w-icon-long-arrow-right"></i></a>
                                 </div>
                                 <!-- End of Store Footer -->
                             </div>
