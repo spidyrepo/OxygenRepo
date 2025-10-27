@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\vendor\vendorcreate;
 use App\Models\Category\CategorySub;
 use App\Models\Products\Products;
+use App\Models\Products\ProductsDetails;
 use Illuminate\Support\Facades\DB;
 
 class FrontendController extends Controller
@@ -21,6 +22,28 @@ class FrontendController extends Controller
           return view('frontend/vendor_doken_store_grid', compact('vendorcreate'));
      }
 
+
+     public function getProductImageList($id)
+     {
+          $imageList = ProductsDetails::from('products_details as pd')
+                         ->Where('products_id',$id)
+                         ->get(['product_detail_image']);
+          $imageArr = $img = [];
+          $images= '';
+          foreach($imageList as $val)
+          {
+               $imageArr[] = json_decode($val->product_detail_image);
+          }
+         
+          if(isset($imageArr) && count($imageArr) > 0)
+          {
+               foreach($imageArr as $key=>$val)          
+                         {   
+                              $img[] = isset($val[$key]) ? $val[$key]:'';              
+                         }
+          }       
+          return $img;          
+     }
 
 
 
@@ -89,6 +112,7 @@ class FrontendController extends Controller
                     'cs.category_sub_name',
                     'cm.category_main_name',
                     'vp.shop_name',
+                    'vp.profile_image',
                     'pd.attributevalue2 as size',
                     'pd.attributevalue1 as color',
                     'pd.product_detail_image'
@@ -106,7 +130,8 @@ class FrontendController extends Controller
                          'category_name'     => $val->category_name,
                          'category_sub_name' => $val->category_sub_name,
                          'category_main_name'=> $val->category_main_name,
-                         'shop_name'         => $val->shop_name,                        
+                         'shop_name'         => $val->shop_name,    
+                         'profile_image'     => $val->profile_image
                     ];
                }
           }
@@ -204,7 +229,9 @@ class FrontendController extends Controller
 
       public function quickView($id)
      {
-          return view('frontend/quick_view',compact('id'));
+          $prouctsList = $this->getSpecificProduct($id);      
+          $imageList = $this->getProductImageList($id);          
+          return view('frontend/quick_view',compact('id','prouctsList','imageList'));
      }
 
      

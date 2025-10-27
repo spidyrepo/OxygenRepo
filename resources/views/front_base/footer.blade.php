@@ -692,16 +692,7 @@
                         // $(".mfp-product .swiper-container")
                         //   .data("slider")
                         //   .destroy();
-                         $('.mfp-product .swiper-container').each(function () {
-                        var slider = $(this).data('slider');
-                        if (slider && typeof slider.destroy === 'function') {
-                            slider.destroy();
-                            $(this).removeData('slider');
-                        }
-                    });
-
-                    // Remove popup DOM if necessary
-                    $('.mfp-product').remove();
+                   
                       },
                     },
                   },
