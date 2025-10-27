@@ -301,11 +301,12 @@
                                                          ₹{{ $product->retail_price }} 
                                                     </div>
                                                     <?php 
-                                                     $discount_percentage = round((($product->retail_price - $product->selling_price) / $product->retail_price) * 100, 2);
+                                                        $discount_percentage = (($product->retail_price - $product->selling_price) / $product->retail_price) * 100;
+                                                        $discount_formatted = number_format($discount_percentage, 0);
                                                     ?>
 
                                                     <div  class="product-offer-percentage" >
-                                                            {{ $discount_percentage }}% Off
+                                                            {{ $discount_formatted }}% Off
                                                     </div>
                                                 </div>
                                             </div>

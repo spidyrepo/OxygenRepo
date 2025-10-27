@@ -676,7 +676,7 @@
                                         </ul>
                                     </li> --}}
                                     <li >
-                                        <a href="{{ url('vendorDokenGrid') }}">Vendors</a>
+                                        <a href="{{ url('vendorDokenGrid') }}">Shops</a>
                                         {{-- <ul>
                                             <li>
                                                 <a href="vendor-dokan-store-list.html">Store Listing</a>

@@ -261,43 +261,55 @@
          <!-- End of Category Banner 2Cols -->
 
          <div class="title-link-wrapper mb-3">
-             <h2 class="title mb-0 pt-2 pb-2">Apparels &amp; Clothings</h2>
+             <h2 class="title mb-0 pt-2 pb-2">Top Rated Products</h2>
              <a href="shop-boxed-banner.html" class="mb-0">More Products<i
                      class="w-icon-long-arrow-right"></i></a>
          </div>
          <div class="row grid banner-product-wrapper mb-6">
              <?php if (isset($prouctsList)) {
                     foreach ($prouctsList as $row) { ?>
-                     <div class="grid-item col-xl-6col col-lg-2 col-sm-4 col-6">
-                         <div class="product product-simple text-center">
-                             <figure class="product-media">
-                                 <a href="product-default.html">
-                                     <img src="<?php echo asset('assets') ?>/images/products/<?= $row['product_image'] ?>" alt="Product" width="260"
-                                         height="291" />
-                                 </a>
-                                 <div class="product-action-vertical">
-                                     <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
-                                         title="Add to wishlist"></a>                                    
-                                 </div>
-                                 <div class="product-action"> <!--  -->
-                                     <a href="javascript:void(0)" onclick="showQuickView('<?= $row['id'] ?>')" data-id='<?= $row['id'] ?>'  class="btn-product btnquickview" title="Quick View">Quick
-                                         View</a>
-                                 </div>
-                             </figure>
-                             <div class="product-details">
-                                 <div class="sold-by">
-                                    <b><a href="#"><?= $row['shop_name'] ?? 'N/A' ?></a></b>
-                                 </div>
-                                 <h4 class="product-name"><a href="product-default.html"><?= ucwords($row['product_name']) ?></a></h4>
-                                 <div class="product-pa-wrapper">
-                                     <div class="product-price">
-                                         <ins class="new-price"><i class="fa fa-inr"></i><?= $row['selling_price'] ?></ins>
-                                     </div>                                     
-                                 </div>
-                                
-                             </div>
-                         </div>
-                     </div>
+                        <div class="grid-item col-xl-6col col-lg-2 col-sm-4 col-6">
+                            <div class="product product-simple text-center">
+                                <figure class="product-media">
+                                    <a href="product-default.html">
+                                        <img src="<?php echo asset('assets') ?>/images/products/<?= $row['product_image'] ?>" alt="Product" width="260"
+                                            height="291" />
+                                    </a>
+                                    <div class="product-action-vertical">
+                                        <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                            title="Add to wishlist"></a>                                    
+                                    </div>
+                                    <div class="product-action"> <!--  -->
+                                        <a href="javascript:void(0)" onclick="showQuickView('<?= $row['id'] ?>')" data-id='<?= $row['id'] ?>'  class="btn-product btnquickview" title="Quick View">Quick
+                                            View</a>
+                                    </div>
+                                </figure>
+                                <div class="product-details">
+                                    <div class="sold-by">
+                                        <b><a href="#"><?= $row['shop_name'] ?? 'N/A' ?></a></b>
+                                    </div>
+                                    <h4 class="product-name"><a href="product-default.html"><?= ucwords($row['product_name']) ?></a></h4>
+
+                                </div>
+                                <div class="product-pa-wrapper">
+                                    <div class="product-price">
+                                        ₹{{ $row['selling_price'] }} 
+                                    </div>
+                                    <div  class="product-price-discount" >
+                                            ₹{{ $row['retail_price'] }} 
+                                    </div>
+                                    <?php 
+                                      $discount_percentage = (($row['retail_price'] - $row['selling_price']) / $row['retail_price']) * 100;
+                                        $discount_rounded = round($discount_percentage / 10) * 10;
+                                    ?>
+
+                                    <div  class="product-offer-percentage" >
+                                            {{ $discount_rounded }}% Off
+                                    </div>
+                                </div>
+                                    
+                            </div>
+                        </div>
              <?php }
                 } ?>
          </div>
@@ -331,7 +343,7 @@
          <!-- End of Banner Shoes -->
 
          <div class="title-link-wrapper mb-3">
-             <h2 class="title mb-0 pt-2 pb-2">Top Rated Products</h2>
+             <h2 class="title mb-0 pt-2 pb-2">Auction Products</h2>
              <a href="shop-boxed-banner.html" class="mb-0">More Products<i
                      class="w-icon-long-arrow-right"></i></a>
          </div>

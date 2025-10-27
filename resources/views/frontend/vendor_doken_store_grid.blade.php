@@ -2,41 +2,7 @@
  @section('title','Vendor Store Grid')
  @section('content')
 
- <style>
-  
-     .store-header {
-    position: relative;
-    overflow: hidden;
-}
 
-.store-header .store-banner img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-}
-
-
-   .banner-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        to bottom,
-        rgba(255, 255, 255, 0.0) 20%,   
-        rgba(255, 255, 255, 0.85) 100%  
-    );
-    backdrop-filter: blur(4px); 
-    pointer-events: none;
-}
-
-
-
-
-
-
- </style>
  <!-- Start of Main -->
         <main class="main">
             <!-- Start of Breadcrumb -->
@@ -44,18 +10,14 @@
                 <div class="container">
                     <ul class="breadcrumb mb-6">
                         <li><a href="demo1.html">Home</a></li>
-                        <li><a href="#">Vendor</a></li>
-                        {{-- <li><a href="#">Dokan</a></li>
-                        <li>Store Grid</li> --}}
+                        <li><a href="{{ route('vendorDokenGrid') }}">Vendor</a></li>
+                       
                     </ul>
                 </div>
             </nav>
-            <!-- End of Breadcrumb -->
 
-            <!-- Start of Pgae Contetn -->
             <div class="page-content mb-8">
                 <div class="container">
-                    <!-- Start of Vendor Toolbox -->
                     <div class="toolbox vendor-toolbox pb-0">
                     
                         <div class="toolbox-left mb-4 mb-md-0">
@@ -72,24 +34,15 @@
                                     <option value="popular">Most Popular</option>
                                 </select>
                             </div>
-                            <div class="toolbox-item toolbox-layout mb-0 d-flex">
-                                <a href="vendor-dokan-store-grid.html" class="icon-mode-grid btn-layout active">
-                                    <i class="w-icon-grid"></i>
-                                </a>
-                                <a href="vendor-dokan-store-list.html" class="icon-mode-list btn-layout">
-                                    <i class="w-icon-list"></i>
-                                </a>
-                            </div>
+                   
                         </div>
                     </div>
-                    <!-- End of Vendor Toolbox -->
                     <div class="vendor-search-wrapper">
                         <form class="vendor-search-form">
                             <input type="email" class="form-control mr-4 bg-white" name="vendor" id="vendor"
                                 placeholder="Search Vendors" />
                             <button class="btn btn-primary btn-rounded" type="submit">Apply</button>
                         </form>
-                        <!-- End of Vendor Search Form -->
                     </div>
                     <div class="row cols-lg-3 cols-md-2 cols-sm-2 cols-1 mt-4">
 
@@ -106,11 +59,9 @@
                                     </figure>
                                     <div class="banner-overlay"></div>
                                 </div>
-                                <!-- End of Store Header -->
                                 <div class="store-content">
                                     <h4 class="store-title">
                                         <a href=" {{ url('/vendorDetails/'.$vendorcreate->id) }}">{{ $vendorcreate->shop_name }}</a>
-                                        {{-- <label class="featured-label">Featured</label> --}}
                                     </h4>
                                     <div class="ratings-container">
                                         <div class="ratings-full">
@@ -125,15 +76,10 @@
                                         {{ $vendorcreate->city }}  - {{ $vendorcreate->pincode }} ,  <br>
                                         {{ $vendorcreate->state }} . <br>
                                         <i class="w-icon-phone"></i> {{ $vendorcreate->mobile_number1 }}
-
                                         </b>
-                                        
-                                       
-
                                     </div>
                                   
                                 </div>
-                                <!-- End of Store Content -->
                                 <div class="store-footer">
                                     <figure class="seller-brand">
                                         <img src="{{ asset('assets/images/vendor/profile/' . $vendorcreate->profile_image) }}" alt="Brand" width="80" height="80" />
@@ -141,16 +87,12 @@
                                     <a href=" {{ url('/vendorDetails/'.$vendorcreate->id) }}" class="btn btn-dark btn-link btn-underline btn-icon-right btn-visit">
                                        <b>Visit Store</b> <i class="w-icon-long-arrow-right"></i></a>
                                 </div>
-                                <!-- End of Store Footer -->
                             </div>
-                            <!-- End of Store -->
                         </div>
                 @endforeach
                     
                     </div>
                 </div>
             </div>
-            <!-- End of Page Content -->
         </main>
-        <!-- End of Main -->
 @endsection
