@@ -8,6 +8,7 @@ use App\Models\Category\CategoryMain;
 use Illuminate\Http\Request;
 use App\Models\vendor\vendorcreate;
 use App\Models\Category\CategorySub;
+use App\Models\Master\Colors\ProductColor;
 use App\Models\Products\Products;
 use App\Models\Products\ProductsDetails;
 use Illuminate\Support\Facades\DB;
@@ -157,10 +158,12 @@ class FrontendController extends Controller
                     'p.product_name',
                     'p.product_image',
                     'pd.selling_price',
+                    'pd.retail_price',
                     'c.category_name',
                     'cs.category_sub_name',
                     'cm.category_main_name',
                     'vp.shop_name',
+                    'vp.profile_image',
                     'pd.attributevalue2 as size',
                     'pd.attributevalue1 as color',
                     'pd.product_detail_image'
@@ -178,6 +181,8 @@ class FrontendController extends Controller
                          'category_sub_name' => $val->category_sub_name,
                          'category_main_name' => $val->category_main_name,
                          'shop_name'     => $val->shop_name,
+                         'profile_image'     => $val->profile_image,
+                         'retail_price'    => $val->retail_price,
                          'colors'        => [],
                          'size'          => [],
                          'images'        => [],
@@ -185,7 +190,8 @@ class FrontendController extends Controller
                }
 
                if (!in_array($val->color, $resultArr[$productId]['colors'])) {
-                    $resultArr[$productId]['colors'][] = $val->color;
+                    $color = ProductColor::Where('color_name',$val->color)->value('color_code');
+                    $resultArr[$productId]['colors'][] = isset($color) ? $color:'';
                }
 
                if (!in_array($val->size, $resultArr[$productId]['size'])) {
@@ -222,9 +228,11 @@ class FrontendController extends Controller
           return view('frontend/demo_eight', compact('mainslider', 'topCategories','prouctsList'));
      }
 
-     public function productVar()
+     public function productVar($id='')
      {
-          return view('frontend/product');
+          $prouctsList  = $this->getProduct($id);
+          $imageList = $this->getProductImageList($id);                  
+          return view('frontend/product',compact('id','prouctsList','imageList'));
      }
 
       public function quickView($id)
