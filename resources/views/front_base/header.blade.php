@@ -210,7 +210,7 @@
                 <div class="container">
                     <div class="inner-wrap">
                         <div class="header-left">
-                            <div class="dropdown category-dropdown has-border   @if(request()->is('demoEight')) show-dropdown @endif" data-visible="true">
+                            <div class="dropdown category-dropdown has-border  " data-visible="true">
                                 <a href="#" class="category-toggle" role="button" data-toggle="dropdown"
                                     aria-haspopup="true" aria-expanded="true" data-display="static"
                                     title="Browse Categories">
