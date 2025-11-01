@@ -74,7 +74,7 @@ Route::get('/categoryWiseListProduct/{id}', [HomeController::class, 'categoryWis
 
 
 /** NEW CODE START */
-Route::post('/customCart', [IndexController::class, 'customCart'])->name('customCart');
+
 Route::get('/getSideCart', [IndexController::class, 'getSideCart'])->name('getSideCart');
 Route::get('/getProduct/{id}/{name?}', [IndexController::class, 'getProduct'])->name('getProduct');
 Route::get('/removeCart/{id?}', [IndexController::class, 'removeCart'])->name('removeCart');
@@ -82,7 +82,7 @@ Route::get('/getProducts/{id?}', [IndexController::class, 'getProducts'])->name(
 Route::get('/Shopping-cart', [IndexController::class, 'showCarts'])->name('Shopping-cart');
 Route::get('/getItemCart', [IndexController::class, 'getItemCart'])->name('getItemCart');
 Route::post('/updateQty', [IndexController::class, 'updateQty'])->name('updateQty');
-
+Route::post('/customCart', [FrontendController::class, 'customCart'])->name('customCart');
 Route::get('vendorDokenGrid',[FrontendController::class,'vendorDokenGrid'])->name('vendorDokenGrid');
 Route::get('vendorDokenStore',[FrontendController::class,'vendorDokenStore'])->name('vendorDokenStore');
 Route::get('vendorDetails/{id}', [FrontendController::class, 'vendorDetails'])->name('vendorDetails');

@@ -168,19 +168,19 @@
                                      <div class="product-form container">
                                          <div class="product-qty-form">
                                              <div class="input-group">
-                                                 <input class="quantity form-control" type="number" min="1"
-                                                     max="10000000">
+                                                 <input class="quantity form-control" id="quantity" type="number" min="1"
+                                                     max="100">
                                                  <button class="quantity-plus w-icon-plus"></button>
                                                  <button class="quantity-minus w-icon-minus"></button>
                                              </div>
                                          </div>
-                                         <button class="btn btn-primary btn-cart">
+                                         <button class="btn btn-primary" onclick="addCart('<?= $prouctsList['id'] ?>')">
                                              <i class="w-icon-cart"></i>
                                              <span>Add to Cart</span>
                                          </button>
                                      </div>
                                  </div>
-
+                                         
                                  <div class="social-links-wrapper">
                                      <div class="social-links">
                                          <div class="social-icons social-no-color border-thin">
@@ -1512,7 +1512,7 @@
     }
 
     function addCart(id) {
-       // var id = '<?=  $getSpecificProduct->id ?>';
+       
 
         var pincode = '<?= session()->get('pincode'); ?>';
        
@@ -1522,7 +1522,7 @@
              return false;
         }
 
-        var qty = $('#quantity'+id).val();
+        var qty = $('#quantity').val();
         var url = '<?= route('customCart') ?>';
         var size =   $('#product-size').val();
         var color =  $('#product-color').val();
@@ -1538,11 +1538,6 @@
              $.notify("Please Choose Size!", "error");  
              return false;
         }
-
-       
-        
-
-
         $.post(url, {
             id: id,
             qty: qty,
