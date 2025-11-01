@@ -87,7 +87,7 @@ Route::get('vendorDokenGrid',[FrontendController::class,'vendorDokenGrid'])->nam
 Route::get('vendorDokenStore',[FrontendController::class,'vendorDokenStore'])->name('vendorDokenStore');
 Route::get('vendorDetails/{id}', [FrontendController::class, 'vendorDetails'])->name('vendorDetails');
 Route::get('demoEight',[FrontendController::class,'demoEight'])->name('demoEight');
-Route::get('productVar',[FrontendController::class,'productVar'])->name('productVar');
+Route::get('productVar/{id?}',[FrontendController::class,'productVar'])->name('productVar');
 Route::get('getSpecificProduct/{id?}',[FrontendController::class,'getProduct'])->name('getSpecificProduct');
 Route::get('getAllProduct/{id?}',[FrontendController::class,'getSpecificProduct'])->name('getAllProduct');
 Route::get('quickView/{id?}',[FrontendController::class,'quickView'])->name('quickView');
