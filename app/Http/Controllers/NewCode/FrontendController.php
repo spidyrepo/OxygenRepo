@@ -223,9 +223,11 @@ class FrontendController extends Controller
                ->limit(7)
                ->get();
 
+
+          $vendorcreate = vendorcreate::get();
           $prouctsList = $this->getSpecificProduct('');   
         
-          return view('frontend/demo_eight', compact('mainslider', 'topCategories','prouctsList'));
+          return view('frontend/demo_eight', compact('mainslider', 'topCategories','prouctsList','vendorcreate'));
      }
 
      public function productVar($id='')

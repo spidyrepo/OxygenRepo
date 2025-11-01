@@ -613,7 +613,20 @@
                     }
                 }">
              <div class="swiper-wrapper row cols-xl-8 cols-lg-6 cols-md-4 cols-sm-3 cols-2">
-                 <div class="swiper-slide">
+                 
+                <?php if (isset($vendorcreate)) {
+                    foreach ($vendorcreate as $row) { ?>
+                
+                <div class="swiper-slide">
+                     <figure>
+                         <img src="{{ asset('assets/images/vendor/profile/' . $row->profile_image) }}" alt="Brand" width="310" height="180" />
+                     </figure>
+                 </div>
+
+                 <?php }
+                } ?>
+                
+                <div class="swiper-slide">
                      <figure>
                          <img src="<?php echo asset('frontend') ?>/images/demos/demo8/brand/1.png" alt="Brand" width="310" height="180" />
                      </figure>
@@ -638,21 +651,7 @@
                          <img src="<?php echo asset('frontend') ?>/images/demos/demo8/brand/5.png" alt="Brand" width="310" height="180" />
                      </figure>
                  </div>
-                 <div class="swiper-slide">
-                     <figure>
-                         <img src="<?php echo asset('frontend') ?>/images/demos/demo8/brand/6.png" alt="Brand" width="310" height="180" />
-                     </figure>
-                 </div>
-                 <div class="swiper-slide">
-                     <figure>
-                         <img src="<?php echo asset('frontend') ?>/images/demos/demo8/brand/7.png" alt="Brand" width="310" height="180" />
-                     </figure>
-                 </div>
-                 <div class="swiper-slide">
-                     <figure>
-                         <img src="<?php echo asset('frontend') ?>/images/demos/demo8/brand/8.png" alt="Brand" width="310" height="180" />
-                     </figure>
-                 </div>
+               
              </div>
          </div>
          <!-- End of Brands Wrapper -->
