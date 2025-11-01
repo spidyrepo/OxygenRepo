@@ -648,13 +648,40 @@
        </div>
    </div>
 
-  
 
-   
+
+
    <!-- Start of Quick View -->
 
    <!-- End of Quick view -->
    <!-- End of Mobile Menu -->
+
+   <div class="newsletter-popup mfp-hide">
+       <div class="newsletter-content">
+           <h2 class="ls-20">Please Check Pincode</h2>
+           <form id="pincodeForm" class="">
+               <div class="row mt-3">
+                   <div class="col-md-10">
+                       <div class="form-group mt-1">
+                           <h6> <label for="pincode">Enter Pincode</label></h6>
+                           <input type="text" class="form-control" id="pincode"
+                               name="pincode"
+                               placeholder="Enter pincode" value="{{ session('pincode') }}"
+                               required pattern="^\d{6}$" maxlength="6">
+                           <h6 id="pincodeHelp" class="form-text mt-2">Please enter a 6-digit
+                               pincode.</h6>
+                       </div>
+                   </div>
+                   <div class="col-md-2 mt-5"><br>
+                       <button type="submit" class="btn btn-primary btn-check">Check
+                           Delivery Area</button>
+                   </div>
+               </div>
+               <div id="pincodeResponse" class="mt-3"></div>
+           </form>
+
+       </div>
+   </div>
 
    <!-- Plugin JS File -->
 
@@ -665,7 +692,6 @@
 
    <script src="<?= asset('frontend') ?>/vendor/photoswipe/photoswipe.min.js"></script>
    <script src="<?= asset('frontend') ?>/vendor/photoswipe/photoswipe-ui-default.min.js"></script>
-
    <script src="<?= asset('frontend') ?>/vendor/parallax/parallax.min.js"></script>
    <script src="<?= asset('frontend') ?>/vendor/jquery.plugin/jquery.plugin.min.js"></script>
    <script src="<?= asset('frontend') ?>/vendor/swiper/swiper-bundle.min.js"></script>
@@ -677,43 +703,94 @@
 
    <!-- Main JS -->
    <script src="<?= asset('frontend') ?>/js/main.min.js"></script>
+   <script src="<?= asset('frontend') ?>/js/notify.min.js"></script>
    <script>
-    function showQuickView(id)
-    {
 
-         var url = '<?= url('quickView') ?>/'+id;
-        $.get(url,function(html){
-            Wolmart.popup(
-                  {
-                    items: { src:html },
-                    callbacks: {
-                      open: function () {},
-                      close: function () {
-                        // $(".mfp-product .swiper-container")
-                        //   .data("slider")
-                        //   .destroy();
-                   
-                      },
-                    },
-                  },
-                  "quickview"
-                );
-        }) 
-         
-      
-    }
+        $('#pincodeForm').on('submit', function(e) {
+            e.preventDefault(); 
+            var siteurl = "{{ url('/') }}";
+            var pincode = $('#pincode').val(); 
+            $.ajax({
+                url: "{{ route('checkPincode')}}", 
+                type: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    pincode: pincode
+                },
+                success: function(response) {                   
+                    if (response.status === 'success') {
+                        $('#pincodeResponse').html('<p style="color: success;">' + response
+                            .message + '</p>');
+                        location.reload();
+                    } else {
+                        $('#pincodeResponse').html('<p style="color: red;">' + response
+                            .message + '</p>');
+                    }
+                },
+                error: function(xhr, status, error) {                    
+                    $('#pincodeResponse').html(
+                        '<p style="color: red;">An error occurred. Please try again.</p>'
+                    );
+                }
+            });
+        });
 
-    // function getproduct(id)
-    // {
-    //     var url = '<?= url('quickView') ?>/'+id;
-    //     $.get(url,function(html){
-    //         return html;
-    //     })        
-    // }
 
- 
+
+
+       function showQuickView(id) {
+
+           var url = '<?= url('quickView') ?>/' + id;
+           $.get(url, function(html) {
+               Wolmart.popup({
+                       items: {
+                           src: html
+                       },
+                       callbacks: {
+                           open: function() {},
+                           close: function() {
+                               // $(".mfp-product .swiper-container")
+                               //   .data("slider")
+                               //   .destroy();
+
+                           },
+                       },
+                   },
+                   "quickview"
+               );
+           })
+       }
+var pincode = '<?= session()->get('pincode'); ?>';
+if(pincode == '' && pincode == null)
+{
+ showPicodePopup();
+}
+       function showPicodePopup() {
+           Wolmart.popup({
+               items: {
+                   src: ".newsletter-popup"
+               },
+               type: "inline",
+               tLoading: "",
+               mainClass: "mfp-newsletter mfp-fadein-popup",
+               callbacks: {
+                   close: function() {},
+               },
+           })
+       }
    
-console.log("WOLMART = "+Wolmart);
+
+       // function getproduct(id)
+       // {
+       //     var url = '<?= url('quickView') ?>/'+id;
+       //     $.get(url,function(html){
+       //         return html;
+       //     })        
+       // }
+
+
+
+       console.log("WOLMART = " + Wolmart);
    </script>
    </body>
 

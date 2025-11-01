@@ -271,7 +271,7 @@
                         <div class="grid-item col-xl-6col col-lg-2 col-sm-4 col-6">
                             <div class="product product-simple text-center">
                                 <figure class="product-media">
-                                    <a href="product-default.html">
+                                    <a href="<?= url('/productVar/'.$row['id']) ?>">
                                         <img src="<?php echo asset('assets') ?>/images/products/<?= $row['product_image'] ?>" alt="Product" width="260"
                                             height="291" />
                                     </a>
