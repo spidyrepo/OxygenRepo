@@ -4,10 +4,10 @@
  <!-- Start of Main -->
  <main class="main">
      <div class="container pb-2">
-         <div class="intro-wrapper mt-4">
+         <div class=" mt-4">
              <div class="swiper-container swiper-theme pg-inner animation-slider row cols-1 gutter-no" data-swiper-options="{
                         'autoplay': {
-                            'delay': 8000,
+                            'delay':3000,
                             'disableOnInteraction': false
                         }
                     }">
@@ -177,7 +177,7 @@
          </div>
          <!-- End of Swiper Container -->
 
-         <h2 class="title title-center mb-5">Top Categories Of The Month</h2>
+         <h2 class="title title-center mb-5">Top Offers Of The Month</h2>
          <div class="swiper-container swiper-theme shadow-swiper pb-10"
              data-swiper-options="{
                     'spaceBetween': 20,
