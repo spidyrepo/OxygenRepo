@@ -75,7 +75,7 @@ Route::get('/categoryWiseListProduct/{id}', [HomeController::class, 'categoryWis
 
 /** NEW CODE START */
 
-Route::get('/getSideCart', [IndexController::class, 'getSideCart'])->name('getSideCart');
+Route::get('/getSideCart', [FrontendController::class, 'getSideCart'])->name('getSideCart');
 Route::get('/getProduct/{id}/{name?}', [IndexController::class, 'getProduct'])->name('getProduct');
 Route::get('/removeCart/{id?}', [IndexController::class, 'removeCart'])->name('removeCart');
 Route::get('/getProducts/{id?}', [IndexController::class, 'getProducts'])->name('getProducts');
@@ -91,7 +91,7 @@ Route::get('productVar/{id?}',[FrontendController::class,'productVar'])->name('p
 Route::get('getSpecificProduct/{id?}',[FrontendController::class,'getProduct'])->name('getSpecificProduct');
 Route::get('getAllProduct/{id?}',[FrontendController::class,'getSpecificProduct'])->name('getAllProduct');
 Route::get('quickView/{id?}',[FrontendController::class,'quickView'])->name('quickView');
-
+Route::get('/categoryShop', [FrontendController::class, 'categoryShop'])->name('categoryShop');
 
 
 

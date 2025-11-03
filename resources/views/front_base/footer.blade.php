@@ -760,11 +760,14 @@
                );
            })
        }
-var pincode = '<?= session()->get('pincode'); ?>';
-if(pincode == '' && pincode == null)
-{
- showPicodePopup();
-}
+
+    var pincode = '<?= session()->get('pincode') ?? 0; ?>';
+    console.log(pincode);
+    if(pincode == 0)
+    {
+         showPicodePopup();
+    }
+   
        function showPicodePopup() {
            Wolmart.popup({
                items: {
@@ -787,6 +790,43 @@ if(pincode == '' && pincode == null)
        //         return html;
        //     })        
        // }
+
+
+        function removeCart(id) {
+         var url = '<?= route('removeCart') ?>/' + id;
+       
+
+        swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this remove cart!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                   $.get(url, function(data) {
+                    if (data.removed == 1) {                        
+                        $.notify(data.message, "success");
+                        showSideCart();
+                    }
+                });
+
+                } else {
+                    swal("Your Cart is safe!");
+                }
+            });
+    }
+
+
+
+
+    function showSideCart() {
+        var url = '<?= route('getSideCart') ?>';
+        $.get(url, function(data) {
+            $('.sideCart').html(data);
+        });
+    }
 
 
 

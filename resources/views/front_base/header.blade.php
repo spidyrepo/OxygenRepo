@@ -147,13 +147,13 @@
                         </a> --}}
                         <div class="dropdown cart-dropdown cart-offcanvas mr-0 mr-lg-2">
                             <div class="cart-overlay"></div>
-                            <a href="#" class="cart-toggle label-down link">
+                            <a href="javascript:void(0)" onclick="showSideCart()" class="cart-toggle label-down link">
                                 <i class="w-icon-cart">
                                     <span class="cart-count">0</span>
                                 </i>
                                 <span class="cart-label">Cart</span>
                             </a>
-                            <div class="dropdown-box">
+                            <div class="dropdown-box sideCart">
                                 <div class="cart-header">
                                     <span>Shopping Cart</span>
                                     <a href="#" class="btn-close">Close<i class="w-icon-long-arrow-right"></i></a>
