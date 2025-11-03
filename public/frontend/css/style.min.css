@@ -3246,8 +3246,8 @@ blockquote {
 }
 
 .swiper-slide img {
-  display: block;
-  width: 100%;
+  display: block !important;
+  width: 100% !important;
 }
 
 .swiper-container:not(.swiper-container-initialized) .swiper-wrapper.row {
@@ -10343,6 +10343,11 @@ body .product-popup {
 .product .product-pa-wrapper .product-price {
   margin-bottom: 0;
 }
+.product .product-pa-wrapper .product-price:hover {
+  color: black;
+  cursor: pointer;
+}
+
 .product .product-pa-wrapper .product-action {
   bottom: -1rem;
 }

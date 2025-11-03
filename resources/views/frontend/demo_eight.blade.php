@@ -286,9 +286,9 @@
                                 </figure>
                                 <div class="product-details">
                                     <div class="sold-by">
-                                        <b><a href="#"><?= $row['shop_name'] ?? 'N/A' ?></a></b>
+                                        <b><a href="<?= url('/vendorDetails/'.$row['vendor_id']) ?>"><?= $row['shop_name'] ?? 'N/A' ?></a></b>
                                     </div>
-                                    <h4 class="product-name"><a href="product-default.html"><?= ucwords($row['product_name']) ?></a></h4>
+                                    <h4 class="product-name"><a href="<?= url('/productVar/'.$row['id']) ?>"><?= ucwords($row['product_name']) ?></a></h4>
 
                                 </div>
                                 <div class="product-pa-wrapper">
@@ -617,44 +617,69 @@
                 <?php if (isset($vendorcreate)) {
                     foreach ($vendorcreate as $row) { ?>
                 
-                <div class="swiper-slide">
+                <div class="swiper-slide swiper-slide-vendor">
                      <figure>
-                         <img src="{{ asset('assets/images/vendor/profile/' . $row->profile_image) }}" alt="Brand" width="310" height="180" />
+                        <a href="<?= url('/vendorDetails/'.$row['id']) ?>" >
+                            <img src="{{ asset('assets/images/vendor/profile/' . $row->profile_image) }}" alt="Brand" />
+                        </a>
+                      
                      </figure>
                  </div>
 
                  <?php }
                 } ?>
-                
-                <div class="swiper-slide">
-                     <figure>
-                         <img src="<?php echo asset('frontend') ?>/images/demos/demo8/brand/1.png" alt="Brand" width="310" height="180" />
-                     </figure>
-                 </div>
-                 <div class="swiper-slide">
-                     <figure>
-                         <img src="<?php echo asset('frontend') ?>/images/demos/demo8/brand/2.png" alt="Brand" width="310" height="180" />
-                     </figure>
-                 </div>
-                 <div class="swiper-slide">
-                     <figure>
-                         <img src="<?php echo asset('frontend') ?>/images/demos/demo8/brand/3.png" alt="Brand" width="310" height="180" />
-                     </figure>
-                 </div>
-                 <div class="swiper-slide">
-                     <figure>
-                         <img src="<?php echo asset('frontend') ?>/images/demos/demo8/brand/4.png" alt="Brand" width="310" height="180" />
-                     </figure>
-                 </div>
-                 <div class="swiper-slide">
-                     <figure>
-                         <img src="<?php echo asset('frontend') ?>/images/demos/demo8/brand/5.png" alt="Brand" width="310" height="180" />
-                     </figure>
-                 </div>
                
              </div>
          </div>
          <!-- End of Brands Wrapper -->
+
+
+
+           <h2 class="title text-left mb-5 appear-animate">Our Locations</h2>
+         <div class="swiper-container swiper-theme  brands-wrapper br-sm mb-9 appear-animate"
+             data-swiper-options="{
+                    'autoplay': {
+                        'delay': 4000,
+                        'disableOnInteraction': false
+                    },
+                    'loop': true,
+                    'spaceBetween': 20,
+                    'slidesPerView': 2,
+                    'breakpoints': {
+                        '576': {
+                            'slidesPerView': 3
+                        },
+                        '768': {
+                            'slidesPerView': 4
+                        },
+                        '992': {
+                            'slidesPerView': 6
+                        },
+                        '1200': {
+                            'slidesPerView': 8
+                        }
+                    }
+                }">
+             <div class="swiper-wrapper row cols-xl-8 cols-lg-6 cols-md-4 cols-sm-3 cols-2">
+                 
+                @isset($cities)
+                    @foreach($cities as $row)
+                        <div class="swiper-slide swiper-slide-vendor text-center">
+                            <figure>
+                                <img src="{{ asset('frontend/images/city.png') }}" 
+                                    alt="{{ $row->city_name }}" 
+                                    style="width:100px;height:100px;object-fit:cover;border-radius:50%;">
+                                
+                                <figcaption style="margin-top: 8px; font-weight: 600;">
+                                    {{ $row->city_name }}
+                                </figcaption>
+                            </figure>
+                        </div>
+                    @endforeach
+                @endisset
+               
+             </div>
+         </div>
 
 
      </div>

@@ -12,7 +12,7 @@ use App\Models\vendor\vendorcreate;
 use Darryldecode\Cart\Facades\CartFacade as Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use App\Models\City;
 class FrontendController extends Controller
 {
     public function vendorDokenGrid()
@@ -96,6 +96,7 @@ class FrontendController extends Controller
         }
         $productsData = $productsData->select(
             'p.id',
+            'p.vendor_id',
             'p.product_name',
             'p.product_image',
             'pd.selling_price',
@@ -115,6 +116,7 @@ class FrontendController extends Controller
             if (! isset($resultArr[$productId])) {
                 $resultArr[$productId] = [
                     'id'                 => $val->id,
+                    'vendor_id'          => $val->vendor_id,
                     'product_name'       => $val->product_name,
                     'product_image'      => $val->product_image,
                     'selling_price'      => $val->selling_price,
@@ -210,12 +212,15 @@ class FrontendController extends Controller
             ->where('category_main.status', 1)
             ->groupBy('category_main.id', 'category_main.category_main_name', 'category_main.category_main_image') // Include the columns needed for grouping
             ->orderByDesc('product_count')
-            ->limit(7)
+            ->limit(12)
             ->get();
 
         $prouctsList = $this->getSpecificProduct('');
+        $vendorcreate = vendorcreate::get();
+        $cities = City::get();
+       
 
-        return view('frontend/demo_eight', compact('mainslider', 'topCategories', 'prouctsList'));
+        return view('frontend/demo_eight', compact('mainslider', 'topCategories', 'prouctsList','vendorcreate','cities'));
     }
 
     public function productVar($id = '')
