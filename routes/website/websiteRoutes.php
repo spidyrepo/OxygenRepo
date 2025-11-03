@@ -75,7 +75,7 @@ Route::get('/categoryWiseListProduct/{id}', [HomeController::class, 'categoryWis
 
 /** NEW CODE START */
 
-Route::get('/getSideCart', [IndexController::class, 'getSideCart'])->name('getSideCart');
+Route::get('/getSideCart', [FrontendController::class, 'getSideCart'])->name('getSideCart');
 Route::get('/getProduct/{id}/{name?}', [IndexController::class, 'getProduct'])->name('getProduct');
 Route::get('/removeCart/{id?}', [IndexController::class, 'removeCart'])->name('removeCart');
 Route::get('/getProducts/{id?}', [IndexController::class, 'getProducts'])->name('getProducts');
