@@ -260,4 +260,8 @@ class FrontendController extends Controller
         ]);
     }
 
+    public function categoryShop()
+    {
+        return view('frontend/category');
+    }
 }
