@@ -32,6 +32,6 @@
     <span class="price">$<?= $total ?? 0 ?></span>
 </div>
 <div class="cart-action">
-    <a href="cart.html" class="btn btn-dark btn-outline btn-rounded">View Cart</a>
-    <a href="checkout.html" class="btn btn-primary  btn-rounded">Checkout</a>
+    <a href="<?= route('shopping-cart') ?>" class="btn btn-dark btn-outline btn-rounded">View Cart</a>
+    <a href="<?= route('checkoutPage') ?>" class="btn btn-primary  btn-rounded">Checkout</a>
 </div>

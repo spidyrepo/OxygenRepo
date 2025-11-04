@@ -319,4 +319,24 @@ class FrontendController extends Controller
         $total   = Cart::getTotal();
         return view('frontend.side_cart', compact('count', 'records', 'total'));
     }
+
+
+     public function showCarts(Request $request)
+    {
+
+         $count   = Cart::getContent()->count();
+        $records = Cart::getContent();
+        $total   = Cart::getTotal();
+         return view('frontend.view_cart',compact('count','records','total'));
+    }
+
+
+     public function checkoutPage(Request $request)
+    {
+
+         $count   = Cart::getContent()->count();
+        $records = Cart::getContent();
+        $total   = Cart::getTotal();
+         return view('frontend.checkout',compact('count','records','total'));
+    }
 }

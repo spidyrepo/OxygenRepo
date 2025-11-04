@@ -700,7 +700,7 @@
    <script src="<?= asset('frontend') ?>/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
    <script src="<?= asset('frontend') ?>/vendor/zoom/jquery.zoom.js"></script>
    <script src="<?= asset('frontend') ?>/vendor/jquery.countdown/jquery.countdown.min.js"></script>
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
    <!-- Main JS -->
    <script src="<?= asset('frontend') ?>/js/main.min.js"></script>
    <script src="<?= asset('frontend') ?>/js/notify.min.js"></script>
@@ -828,6 +828,34 @@
         });
     }
 
+
+    function updateQty(id, type, view) { 
+          
+            var qty = parseInt($('#quantity'+id).val());
+            (type == 'Add') ? qty += 1: ((type == 'Minus' && qty > 1) ? qty -= 1 : '');
+            $('#quantity'+id).val(qty);
+            if (id > 0) {
+                var url = '<?= route('updateQty') ?>';
+                $.post(url, {
+                    id: id,
+                    'qty': qty,
+                    '_token': '<?= csrf_token() ?>',
+                    'type': type,                   
+                }, function(data) {  
+                     getCart();                 
+                    $.notify(data.message, "success");
+                   
+                    
+                })
+            }
+        }
+
+         function getCart() {
+        var url = '<?= route('getItemCart') ?>';
+        $.get(url, function(data) {
+            $('#cartView').html(data);
+        });
+    }
 
 
        console.log("WOLMART = " + Wolmart);
