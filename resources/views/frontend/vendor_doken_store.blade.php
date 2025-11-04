@@ -268,23 +268,23 @@
                                     <div class="product-wrap">
                                         <div class="product text-center">
                                             <figure class="product-media">
-                                                <a href="product-default.html">
+                                                <a href="<?= url('/productVar/'.$product->id) ?>">
                                                     <img src="{{ asset('assets/images/products') . '/' . $product->product_image }}" alt="Product" 
                                                          />
                                                 </a>
                                                 <div class="product-action-vertical">
-                                                    <a href="#" class="btn-product-icon btn-cart w-icon-cart"
+                                                    <a href="<?= url('/productVar/'.$product->id) ?>" class="btn-product-icon btn-cart w-icon-cart"
                                                         title="Add to cart"></a>
                                                     <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
                                                         title="Wishlist"></a>
                                                    
-                                                    <a href="#" class="btn-product-icon btn-quickview w-icon-search"
+                                                    <a href="#" onclick="showQuickView('<?= $product->id ?>')" data-id='<?= $product->id ?>'   class="btn-product-icon btn-quickview w-icon-search"
                                                         title="Quick View"></a>
                                                 </div>
                                             </figure>
                                             <div class="product-details">
                                                 <h3 class="product-name">
-                                                    <a href="product-default.html">{{ $product->product_name }}</a>
+                                                    <a href="<?= url('/productVar/'.$product->id) ?>">{{ $product->product_name }}</a>
                                                 </h3>
                                                 <div class="ratings-container">
                                                     <div class="ratings-full">

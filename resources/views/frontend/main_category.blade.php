@@ -49,24 +49,22 @@
                         }">
                             <div class="swiper-wrapper row gutter-lg cols-xl-8 cols-lg-7 cols-md-6 cols-sm-4 cols-xs-3 cols-2">
                               
-                              	@foreach($sub_categories as $sc )
-
-                                    <div class="swiper-slide category-wrap">
-                                        <div class="category category-ellipse">
-                                            <figure class="category-media">
-                                                <a href="{{ url( 'categoryShop/'.$sc->category_id.'/'.$sc->id ) }}">
-                                                    <img src="{{  $sc->category_sub_image ? asset('assets/images/category').'/'.$sc->category_sub_image  : ''}}" alt="Categroy"
-                                                    style="background-color: #5C92C0;" />
-                                                </a>
-                                            </figure>
-                                            <div class="category-content">
-                                                <h4 class="category-name">
-                                                    <a href="{{ url( 'categoryShop/'.$sc->category_id.'/'.$sc->id ) }}">{{$sc->category_sub_name}}</a>
-                                                </h4>
-                                            </div>
+                              	@foreach($categories as $category )
+                                <div class="swiper-slide category-wrap">
+                                    <div class="category category-ellipse">
+                                        <figure class="category-media">
+                                            <a href="{{ url( 'categoryShop/'.$category->id ) }}">
+                                                <img src="{{ asset('assets/images/category').'/'.$category->category_image }}" alt="Categroy"
+                                                   style="background-color: #5C92C0;" />
+                                            </a>
+                                        </figure>
+                                        <div class="category-content">
+                                            <h4 class="category-name">
+                                                <a href="{{ url( 'categoryShop/'.$category->id ) }}">{{$category->category_name}}</a>
+                                            </h4>
                                         </div>
                                     </div>
-
+                                </div>
                                 @endforeach
                               
                             </div>

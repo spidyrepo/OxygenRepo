@@ -620,7 +620,7 @@
                 <div class="swiper-slide swiper-slide-vendor">
                      <figure>
                         <a href="<?= url('/vendorDetails/'.$row['id']) ?>" >
-                            <img src="{{ asset('assets/images/vendor/profile/' . $row->profile_image) }}" alt="Brand" />
+                            <img style="border-radius: 50%" src="{{ asset('assets/images/vendor/profile/' . $row->profile_image) }}" alt="Brand" />
                         </a>
                       
                      </figure>

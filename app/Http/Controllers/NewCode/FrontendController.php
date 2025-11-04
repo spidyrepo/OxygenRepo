@@ -1,9 +1,11 @@
 <?php
+
 namespace App\Http\Controllers\NewCode;
 
 use App\Http\Controllers\Controller;
 use App\Models\Banners\mainslider;
 use App\Models\Category\CategoryMain;
+use App\Models\Category\Category;
 use App\Models\Category\CategorySub;
 use App\Models\Master\Colors\ProductColor;
 use App\Models\Products\Products;
@@ -13,6 +15,7 @@ use Darryldecode\Cart\Facades\CartFacade as Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\City;
+
 class FrontendController extends Controller
 {
     public function vendorDokenGrid()
@@ -200,7 +203,6 @@ class FrontendController extends Controller
         } else {
             return $resultArr;
         }
-
     }
 
     public function demoEight()
@@ -218,9 +220,9 @@ class FrontendController extends Controller
         $prouctsList = $this->getSpecificProduct('');
         $vendorcreate = vendorcreate::get();
         $cities = City::get();
-       
 
-        return view('frontend/demo_eight', compact('mainslider', 'topCategories', 'prouctsList','vendorcreate','cities'));
+
+        return view('frontend/demo_eight', compact('mainslider', 'topCategories', 'prouctsList', 'vendorcreate', 'cities'));
     }
 
     public function productVar($id = '')
@@ -244,14 +246,14 @@ class FrontendController extends Controller
         $color = $input['color'];
         $id    = $input['id'];
         $qty   = $input['qty'];
-        $prouctsList = $this->getSpecificProduct($id)[$id];       
+        $prouctsList = $this->getSpecificProduct($id)[$id];
         $cartArray = array(
             'id'        => $prouctsList['id'],
             'name'      => $prouctsList['product_name'],
             'price'     => $prouctsList['selling_price'],
             'quantity'  => $qty,
             'attributes' => array(
-                'image'     => isset($prouctsList['product_image']) ? $prouctsList['product_image']:'',
+                'image'     => isset($prouctsList['product_image']) ? $prouctsList['product_image'] : '',
                 'size'      => $size,
                 'color'      => $color,
             )
@@ -265,16 +267,56 @@ class FrontendController extends Controller
         ]);
     }
 
-    public function categoryShop()
+    public function mainCategoryShop($main_category_id)
     {
-        return view('frontend/category');
+
+        $product = Products::where('status', 1)->where('category_main', $main_category_id)->get();
+        $categories = Category::where('main_category_id', $main_category_id)->get();
+
+        return view('frontend/main_category', compact('product', 'categories'));
     }
 
-      public function getSideCart()
+
+    public function categoryShop($category_id, $sub_category_id = '')
+    {
+
+        $product = Products::where('status', 1)
+            ->where('category_main', $category_id);
+
+        if ($sub_category_id > 0) {
+            $product->where('category_sub', $sub_category_id);
+        }
+        $product->get();
+        
+        $sub_categories = CategorySub::where('category_id', $category_id)->where('status', 1)->get();
+
+
+        return view('frontend/category', compact('product', 'sub_categories'));
+    }
+
+
+
+
+    // public function subCategoryShop($sub_category_id)
+    // {
+
+    //     $product = Products::where('status', 1)->where('category_sub', $sub_category_id)->get();
+    //     $category_id = Category::where('id', $sub_category_id)->value('id');
+    //     $sub_categories = CategorySub::where('category_id',$category_id)->where('status', 1)->get();
+
+
+    //     return view('frontend/sub_category',compact('product','sub_categories'));
+
+    // }
+
+
+
+
+    public function getSideCart()
     {
         $count   = Cart::getContent()->count();
         $records = Cart::getContent();
-        $total   = Cart::getTotal();           
+        $total   = Cart::getTotal();
         return view('frontend.side_cart', compact('count', 'records', 'total'));
     }
 }

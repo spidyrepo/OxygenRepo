@@ -91,9 +91,11 @@ Route::get('productVar/{id?}',[FrontendController::class,'productVar'])->name('p
 Route::get('getSpecificProduct/{id?}',[FrontendController::class,'getProduct'])->name('getSpecificProduct');
 Route::get('getAllProduct/{id?}',[FrontendController::class,'getSpecificProduct'])->name('getAllProduct');
 Route::get('quickView/{id?}',[FrontendController::class,'quickView'])->name('quickView');
-Route::get('/categoryShop', [FrontendController::class, 'categoryShop'])->name('categoryShop');
 
 
+
+Route::get('/mainCategoryShop/{id}', [FrontendController::class, 'mainCategoryShop'])->name('mainCategoryShop');
+Route::get('categoryShop/{category_id}/{sub_category_id?}', [FrontendController::class, 'categoryShop']);
 
 
 /** NEW CODE END  */
@@ -124,7 +126,7 @@ Route::get('UserSettings', [UserloginController::class, 'show'])->name('UserSett
 
 Route::post('UpdateUserProfile', [UserloginController::class, 'update'])->name('UpdateUserProfile');
 Route::get('userlogout', [AuthController::class, 'userlogout'])->name('userlogout');
-//Route::post('ajaxAdd', [AjaxGetProductController::class, 'ajaxAdd'])->name('ajaxAdd');
+// Route::post('ajaxAdd', [AjaxGetProductController::class, 'ajaxAdd'])->name('ajaxAdd');
 
 Route::post('buynow', [buynowController::class, 'buynow'])->name('buynow');
 

@@ -236,7 +236,7 @@
                                     @foreach ($categorymain as $categoriesmain)
                                        @if(count($categoriesmain->submenu) > 0)                                       
                                         <li>
-                                            <a href="{{ url( 'MainCatergoryproductshow/'.$categoriesmain->id ) }}">
+                                            <a href="{{ url( 'mainCategoryShop/'.$categoriesmain->id ) }}">
                                                
                                                 {{ $categoriesmain->category_main_name }}
                                             </a>
@@ -244,11 +244,11 @@
                                                 @foreach($categoriesmain->submenu as $submenus)                                                
                                                 @if(count($submenus->childmenu) > 0)
                                                 <li>
-                                                    <h4 class="menu-title">{{ $submenus->category_name }}</h4>
+                                                    <a href="{{ url( 'categoryShop/'.$submenus->id ) }}"><h4 class="menu-title">{{ $submenus->category_name }}</h4></a>
                                                     <hr class="divider">
                                                     <ul>
                                                         @foreach($submenus->childmenu as $childmenus)                                                        
-                                                            <li><a href="{{ url( 'Subcategoryproductshow/'.$childmenus->id ) }}">{{ $childmenus->category_sub_name }} </a></li>                                                
+                                                            <li><a href="{{ url( 'categoryShop/'.$submenus->id.'/'.$childmenus->id ) }}">{{ $childmenus->category_sub_name }} </a></li>                                                
                                                          @endforeach
                                                     </ul>
                                                   
