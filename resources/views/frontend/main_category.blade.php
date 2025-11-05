@@ -98,13 +98,7 @@
                                     <div class="widget widget-collapsible">
                                         <h3 class="widget-title"><label>Price</label></h3>
                                         <div class="widget-body">
-                                            <ul class="filter-items search-ul">
-                                                <li><a href="#">$0.00 - $100.00</a></li>
-                                                <li><a href="#">$100.00 - $200.00</a></li>
-                                                <li><a href="#">$200.00 - $300.00</a></li>
-                                                <li><a href="#">$300.00 - $500.00</a></li>
-                                                <li><a href="#">$500.00+</a></li>
-                                            </ul>
+                                           
                                             <form class="price-range">
                                                 <input type="number" name="min_price" class="min_price text-center"
                                                     placeholder="$min"><span class="delimiter">-</span><input
