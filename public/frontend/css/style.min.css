@@ -21433,3 +21433,44 @@ aside .sp-sidebar-banner span {
         font-weight: bold;
         margin-left: 8px;
     }
+
+
+
+    .range-container {
+  margin: 20px 0;
+}
+
+.range-label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.range-value {
+  display: inline-block;
+  background: white;
+  color: black;
+  padding: 4px 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+input[type="range"] {
+  width: 100%;
+  appearance: none;
+  height: 10px;
+  border-radius: 5px;
+  background: #ddd;
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: orange;
+  cursor: pointer;
+}

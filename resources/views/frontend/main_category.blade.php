@@ -1,6 +1,8 @@
    @extends('app_template')
  @section('title','Vendor Products')
  @section('content')
+
+
   <!-- Start of Main -->
         <main class="main">
             <!-- Start of Breadcrumb -->
@@ -90,7 +92,7 @@
                                 <div class="sticky-sidebar">
                                     <div class="filter-actions">
                                         <label>Filter :</label>
-                                        <a href="#" class="btn btn-dark btn-link filter-clean">Clean All</a>
+                                        <a href="#" class="btn btn-dark btn-link filter-clean"></a>
                                     </div>
                                   
 
@@ -98,61 +100,15 @@
                                     <div class="widget widget-collapsible">
                                         <h3 class="widget-title"><label>Price</label></h3>
                                         <div class="widget-body">
-                                           
-                                            <form class="price-range">
-                                                <input type="number" name="min_price" class="min_price text-center"
-                                                    placeholder="$min"><span class="delimiter">-</span><input
-                                                    type="number" name="max_price" class="max_price text-center"
-                                                    placeholder="$max"><a href="#"
-                                                    class="btn btn-primary btn-rounded">Go</a>
-                                            </form>
+                                            <div class="range-container">
+                                                <label class="range-label">Price Range 
+                                                    <span class="range-value" id="priceValue">Rs. 0</span>
+                                                </label>
+                                                <input type="range" id="priceRange" min="0" max="5000" step="10" value="0">
+                                            </div>
                                         </div>
                                     </div>
                                     <!-- End of Collapsible Widget -->
-
-                                    <!-- Start of Collapsible Widget -->
-                                    <div class="widget widget-collapsible">
-                                        <h3 class="widget-title"><label>Size</label></h3>
-                                        <ul class="widget-body filter-items item-check mt-1">
-                                            <li><a href="#">Extra Large</a></li>
-                                            <li><a href="#">Large</a></li>
-                                            <li><a href="#">Medium</a></li>
-                                            <li><a href="#">Small</a></li>
-                                        </ul>
-                                    </div>
-                                    <!-- End of Collapsible Widget -->
-
-                                    <!-- Start of Collapsible Widget -->
-                                    <div class="widget widget-collapsible">
-                                        <h3 class="widget-title"><label>Brand</label></h3>
-                                        <ul class="widget-body filter-items item-check mt-1">
-                                            <li><a href="#">Elegant Auto Group</a></li>
-                                            <li><a href="#">Green Grass</a></li>
-                                            <li><a href="#">Node Js</a></li>
-                                            <li><a href="#">NS8</a></li>
-                                            <li><a href="#">Red</a></li>
-                                            <li><a href="#">Skysuite Tech</a></li>
-                                            <li><a href="#">Sterling</a></li>
-                                        </ul>
-                                    </div>
-                                    <!-- End of Collapsible Widget -->
-
-                                    <!-- Start of Collapsible Widget -->
-                                    <div class="widget widget-collapsible">
-                                        <h3 class="widget-title"><label>Color</label></h3>
-                                        <ul class="widget-body filter-items item-check mt-1">
-                                            <li><a href="#">Black</a></li>
-                                            <li><a href="#">Blue</a></li>
-                                            <li><a href="#">Brown</a></li>
-                                            <li><a href="#">Green</a></li>
-                                            <li><a href="#">Grey</a></li>
-                                            <li><a href="#">Orange</a></li>
-                                            <li><a href="#">Yellow</a></li>
-                                        </ul>
-                                    </div>
-                                    <!-- End of Collapsible Widget -->
-                                </div>
-                                <!-- End of Sidebar Content -->
                             </div>
                             <!-- End of Sidebar Content -->
                         </aside>
@@ -169,8 +125,6 @@
                                         <label>Sort By :</label>
                                         <select name="orderby" class="form-control">
                                             <option value="default" selected="selected">Default sorting</option>
-                                            <option value="popularity">Sort by popularity</option>
-                                            <option value="rating">Sort by average rating</option>
                                             <option value="date">Sort by latest</option>
                                             <option value="price-low">Sort by pric: low to high</option>
                                             <option value="price-high">Sort by price: high to low</option>
@@ -295,4 +249,14 @@
             <!-- End of Page Content -->
         </main>
         <!-- End of Main -->
+
+
+        <script>
+const priceRange = document.getElementById('priceRange');
+const priceValue = document.getElementById('priceValue');
+
+priceRange.addEventListener('input', () => {
+  priceValue.textContent = 'Rs. ' + priceRange.value;
+});
+</script>
  @endsection
