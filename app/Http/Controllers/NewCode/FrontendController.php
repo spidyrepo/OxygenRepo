@@ -139,7 +139,7 @@ class FrontendController extends Controller
 
 
 
-    
+
 
     public function getProduct($id = '')
     {
@@ -274,7 +274,7 @@ class FrontendController extends Controller
 
 
 
-     public function getProductByCategory($main_category_id = '' )
+    public function getProductByCategory( $category_id  = '', $sub_category_id = '')
     {
         $productsData = Products::from('products as p')
             ->leftJoin('category as c', 'c.id', '=', 'p.category')
@@ -282,9 +282,15 @@ class FrontendController extends Controller
             ->leftJoin('category_main as cm', 'cm.id', '=', 'p.category_main')
             ->leftJoin('products_details as pd', 'pd.products_id', '=', 'p.id')
             ->leftJoin('vendor_details as vp', 'vp.id', '=', 'p.vendor_id');
-        if ($main_category_id != '') {
-            $productsData = $productsData->where('p.category_main', $main_category_id);
+        
+        if ($category_id != '') {
+            $productsData = $productsData->where('p.category', $category_id);
         }
+
+        if ($sub_category_id != '') {
+            $productsData = $productsData->where('p.category_sub', $sub_category_id);
+        }
+
         $productsData = $productsData->select(
             'p.id',
             'p.vendor_id',
@@ -324,10 +330,65 @@ class FrontendController extends Controller
         return $resultArr;
     }
 
+
+
+
+    public function getProductByMainCategory($main_category_id = '' )
+    {
+        $productsData = Products::from('products as p')
+            ->leftJoin('category as c', 'c.id', '=', 'p.category')
+            ->leftJoin('category_sub as cs', 'cs.id', '=', 'p.category_sub')
+            ->leftJoin('category_main as cm', 'cm.id', '=', 'p.category_main')
+            ->leftJoin('products_details as pd', 'pd.products_id', '=', 'p.id')
+            ->leftJoin('vendor_details as vp', 'vp.id', '=', 'p.vendor_id');
+        if ($main_category_id != '') {
+            $productsData = $productsData->where('p.category_main', $main_category_id);
+        }
+
+        $productsData = $productsData->select(
+            'p.id',
+            'p.vendor_id',
+            'p.product_name',
+            'p.product_image',
+            'pd.selling_price',
+            'pd.retail_price',
+            'c.category_name',
+            'cs.category_sub_name',
+            'cm.category_main_name',
+            'vp.shop_name',
+            'vp.profile_image',
+            'pd.attributevalue2 as size',
+            'pd.attributevalue1 as color',
+            'pd.product_detail_image'
+        )->get();
+        $resultArr = [];
+        foreach ($productsData as $val) {
+            $productId = $val->id;
+            if (! isset($resultArr[$productId])) {
+                $resultArr[$productId] = [
+                    'id'                 => $val->id,
+                    'vendor_id'          => $val->vendor_id,
+                    'product_name'       => $val->product_name,
+                    'product_image'      => $val->product_image,
+                    'selling_price'      => $val->selling_price,
+                    'retail_price'       => $val->retail_price,
+                    'category_name'      => $val->category_name,
+                    'category_sub_name'  => $val->category_sub_name,
+                    'category_main_name' => $val->category_main_name,
+                    'shop_name'          => $val->shop_name,
+                    'profile_image'      => $val->profile_image,
+                ];
+            }
+        }
+
+        return $resultArr;
+    }
+
+
     public function mainCategoryShop($main_category_id)
     {
 
-        $prouctsList = $this->getProductByCategory($main_category_id);
+        $prouctsList = $this->getProductByMainCategory($main_category_id);
 
         $categories = Category::where('main_category_id', $main_category_id)->get();
 
@@ -349,7 +410,9 @@ class FrontendController extends Controller
         $sub_categories = CategorySub::where('category_id', $category_id)->where('status', 1)->get();
 
 
-        return view('frontend/category', compact('product', 'sub_categories'));
+        $prouctsList = $this->getProductByCategory($category_id, $sub_category_id);
+
+        return view('frontend/category', compact('product', 'sub_categories', 'prouctsList'));
     }
 
 
@@ -379,22 +442,22 @@ class FrontendController extends Controller
     }
 
 
-     public function showCarts(Request $request)
+    public function showCarts(Request $request)
     {
 
-         $count   = Cart::getContent()->count();
+        $count   = Cart::getContent()->count();
         $records = Cart::getContent();
         $total   = Cart::getTotal();
-         return view('frontend.view_cart',compact('count','records','total'));
+        return view('frontend.view_cart', compact('count', 'records', 'total'));
     }
 
 
-     public function checkoutPage(Request $request)
+    public function checkoutPage(Request $request)
     {
 
-         $count   = Cart::getContent()->count();
+        $count   = Cart::getContent()->count();
         $records = Cart::getContent();
         $total   = Cart::getTotal();
-         return view('frontend.checkout',compact('count','records','total'));
+        return view('frontend.checkout', compact('count', 'records', 'total'));
     }
 }
