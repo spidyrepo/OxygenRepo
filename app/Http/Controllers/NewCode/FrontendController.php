@@ -10,6 +10,8 @@ use App\Models\Category\CategorySub;
 use App\Models\Master\Colors\ProductColor;
 use App\Models\Products\Products;
 use App\Models\Products\ProductsDetails;
+use App\Models\Products\ProductSpecs;
+use App\Models\Vendor;
 use App\Models\vendor\vendorcreate;
 use Darryldecode\Cart\Facades\CartFacade as Cart;
 use Illuminate\Http\Request;
@@ -102,6 +104,8 @@ class FrontendController extends Controller
             'p.vendor_id',
             'p.product_name',
             'p.product_image',
+            'p.description',
+            'p.specification',
             'pd.selling_price',
             'pd.retail_price',
             'c.category_name',
@@ -122,6 +126,8 @@ class FrontendController extends Controller
                     'vendor_id'          => $val->vendor_id,
                     'product_name'       => $val->product_name,
                     'product_image'      => $val->product_image,
+                    'description'        => $val->description,
+                    'specification'      => $val->specification,
                     'selling_price'      => $val->selling_price,
                     'retail_price'       => $val->retail_price,
                     'category_name'      => $val->category_name,
@@ -156,6 +162,8 @@ class FrontendController extends Controller
         $productsData = $productsData->select(
             'p.id',
             'p.product_name',
+            'p.description',
+            'p.specification',
             'p.product_image',
             'pd.selling_price',
             'pd.retail_price',
@@ -166,6 +174,8 @@ class FrontendController extends Controller
             'vp.profile_image',
             'pd.attributevalue2 as size',
             'pd.attributevalue1 as color',
+            'pd.retail_price as retail_amount',
+            'pd.selling_price as selling_amount',
             'pd.product_detail_image'
         )->get();
         $resultArr = [];
@@ -176,6 +186,8 @@ class FrontendController extends Controller
                 $resultArr[$productId] = [
                     'id'                 => $val->id,
                     'product_name'       => $val->product_name,
+                    'description'        => $val->description,
+                    'specification'      => $val->specification,
                     'product_image'      => $val->product_image,
                     'selling_price'      => $val->selling_price,
                     'category_name'      => $val->category_name,
@@ -187,6 +199,9 @@ class FrontendController extends Controller
                     'colors'             => [],
                     'size'               => [],
                     'images'             => [],
+                    'retail_amount'      => [],
+                    'selling_amount'     => [],
+                    'images'             => [],
                 ];
             }
 
@@ -195,7 +210,15 @@ class FrontendController extends Controller
                 $resultArr[$productId]['colors'][] = isset($color) ? $color : '';
             }
 
-            if (! in_array($val->size, $resultArr[$productId]['size'])) {
+            if (! in_array($val->retail_amount, $resultArr[$productId]['retail_amount'])) {
+                $resultArr[$productId]['retail_amount'][] = $val->retail_amount;
+            }
+
+             if (! in_array($val->selling_amount, $resultArr[$productId]['selling_amount'])) {
+                $resultArr[$productId]['selling_amount'][] = $val->selling_amount;
+            }
+
+             if (! in_array($val->size, $resultArr[$productId]['size'])) {
                 $resultArr[$productId]['size'][] = $val->size;
             }
 
@@ -234,7 +257,17 @@ class FrontendController extends Controller
     {
         $prouctsList = $this->getProduct($id);
         $imageList   = $this->getProductImageList($id);
-        return view('frontend/product', compact('id', 'prouctsList', 'imageList'));
+         $getSpecificProduct =  ProductsDetails::with('product', 'product.CategoryChild')
+            ->where('id', $id)->first();
+        $getProduct = Products::where('product_id', $getSpecificProduct->products_id)->first();
+        
+        $ProductSpecs = ProductSpecs::where('products_id', $getSpecificProduct->products_id)->get();
+
+         $vendor_name = Vendor::where('id', $getProduct->vendor_id)->value('shop_name');
+
+        // print_r($getProduct->vendor_id);exit;
+        $vendor_details = vendorcreate::where('id', $getProduct->created_by)->first();
+        return view('frontend/product', compact('id','vendor_details', 'prouctsList', 'imageList','getSpecificProduct','ProductSpecs'));
     }
 
     public function quickView($id)

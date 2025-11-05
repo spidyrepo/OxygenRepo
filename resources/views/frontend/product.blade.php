@@ -15,7 +15,7 @@
                      <i class="w-icon-angle-left"></i>
                  </a>
                  <span class="product-nav-popup">
-                     <img src="<?php echo asset('assets')?>/images/products/product-nav-prev.jpg" alt="Product" width="110"
+                     <img src="<?php echo asset('assets') ?>/images/products/product-nav-prev.jpg" alt="Product" width="110"
                          height="110" />
                      <span class="product-name">Soft Sound Maker</span>
                  </span>
@@ -25,7 +25,7 @@
                      <i class="w-icon-angle-right"></i>
                  </a>
                  <span class="product-nav-popup">
-                     <img src="<?php echo asset('assets')?>/images/products/product-nav-next.jpg" alt="Product" width="110"
+                     <img src="<?php echo asset('assets') ?>/images/products/product-nav-next.jpg" alt="Product" width="110"
                          height="110" />
                      <span class="product-name">Fabulous Sound Speaker</span>
                  </span>
@@ -50,17 +50,17 @@
                                         }">
                                      <div class="swiper-wrapper row cols-1 gutter-no">
                                          <?php
-                                             if (isset($imageList)) {
-                                             foreach ($imageList as $row) {?>
-                                         <div class="swiper-slide">
-                                             <figure class="product-image">
-                                                 <img src="<?php echo asset('assets') ?>/images/products/detail/<?php echo $row?>"
-                                                     data-zoom-image="<?php echo asset('assets') ?>/images/products/detail/<?php echo $row?>"
-                                                     alt="Electronics Black Wrist Watch" width="800" height="900">
-                                             </figure>
-                                         </div>
-                                          <?php }
-                                          }?>
+                                            if (isset($imageList)) {
+                                                foreach ($imageList as $row) { ?>
+                                                 <div class="swiper-slide">
+                                                     <figure class="product-image">
+                                                         <img src="<?php echo asset('assets') ?>/images/products/detail/<?php echo $row ?>"
+                                                             data-zoom-image="<?php echo asset('assets') ?>/images/products/detail/<?php echo $row ?>"
+                                                             alt="Electronics Black Wrist Watch" width="800" height="900">
+                                                     </figure>
+                                                 </div>
+                                         <?php }
+                                            } ?>
 
                                      </div>
                                      <button class="swiper-button-next"></button>
@@ -74,15 +74,16 @@
                                             }
                                         }">
                                      <div class="product-thumbs swiper-wrapper row cols-4 gutter-sm">
-                                      <?php
-                                             if (isset($imageList)) {
-                                             foreach ($imageList as $row) {?>   
-                                     <div class="product-thumb swiper-slide">
-                                             <img src="<?php echo asset('assets') ?>/images/products/detail/<?php echo $row ?>"
-                                                 alt="Product Thumb" width="800" height="900">
-                                         </div>
-                                         <?php } } ?>
-                                         
+                                         <?php
+                                            if (isset($imageList)) {
+                                                foreach ($imageList as $row) { ?>
+                                                 <div class="product-thumb swiper-slide">
+                                                     <img src="<?php echo asset('assets') ?>/images/products/detail/<?php echo $row ?>"
+                                                         alt="Product Thumb" width="800" height="900">
+                                                 </div>
+                                         <?php }
+                                            } ?>
+
                                      </div>
                                      <button class="swiper-button-next"></button>
                                      <button class="swiper-button-prev"></button>
@@ -91,24 +92,24 @@
                          </div>
                          <div class="col-md-6 mb-6 mb-md-8">
                              <div class="product-details" data-sticky-options="{'minWidth': 767}">
-                                 <h1 class="product-title"><?php echo $prouctsList['product_name']?></h1>
+                                 <h1 class="product-title"><?php echo $prouctsList['product_name'] ?></h1>
                                  <div class="product-bm-wrapper">
                                      <figure class="brand">
-                                         <img src="<?php echo asset('assets/images/vendor/profile/' . $prouctsList['profile_image'])?>" alt="Brand"
+                                         <img src="<?php echo asset('assets/images/vendor/profile/' . $prouctsList['profile_image']) ?>" alt="Brand"
                                              width="60" height="50" />
                                      </figure>
                                      <div class="product-meta">
                                          <div class="product-categories">
                                              Shop Name:
-                                             <span class="product-category"><a href="#"><?php echo $prouctsList['shop_name']?></a></span>
+                                             <span class="product-category"><a href="#"><?php echo $prouctsList['shop_name'] ?></a></span>
                                          </div>
                                          <div class="product-categories">
                                              Category:
-                                             <span class="product-category"><a href="#"><?php echo $prouctsList['category_name']?></a></span>
+                                             <span class="product-category"><a href="#"><?php echo $prouctsList['category_name'] ?></a></span>
                                          </div>
                                          <div class="product-categories">
                                              Sub Category:
-                                             <span class="product-category"><a href="#"><?php echo $prouctsList['category_main_name']?></a></span>
+                                             <span class="product-category"><a href="#"><?php echo $prouctsList['category_main_name'] ?></a></span>
                                          </div>
                                      </div>
                                  </div>
@@ -116,7 +117,7 @@
                                  <hr class="product-divider">
 
                                  <div class="product-price">
-                                     <ins class="new-price"> ₹<?php echo $prouctsList['selling_price']?>  ₹<strike><?php echo $prouctsList['retail_price']?></strike></ins>
+                                     <ins class="new-price"> ₹<?php echo $prouctsList['selling_price'] ?> ₹<strike id="strikeamt"><?php echo $prouctsList['retail_price'] ?></strike></ins>
                                  </div>
 
                                  <div class="ratings-container">
@@ -136,33 +137,32 @@
                                  </div>
 
                                  <hr class="product-divider">
-                                <input type="hidden" id="product-size"  value=""/>
-                                <input type="hidden" id="product-color" value=""/>
+                                 <input type="hidden" id="product-size" value="" />
+                                 <input type="hidden" id="product-color" value="" />
                                  <div class="product-form product-variation-form product-color-swatch">
                                      <label>Color:</label>
                                      <div class="d-flex align-items-center product-variations">
-                                        <?php if (isset($prouctsList['colors'])) {
-                                            foreach ($prouctsList['colors'] as $col) {?>
-                                                        <a onclick="setColor('<?= $col ?>')" href="#" class="color" style="background-color: <?php echo $col?>"></a>
-                                          <?php }
-                                          }?>
+                                         <?php if (isset($prouctsList['colors'])) {
+                                                foreach ($prouctsList['colors'] as $col) { ?>
+                                                 <a onclick="setColor('<?= $col ?>')" href="#" class="color" style="background-color: <?php echo $col ?>"></a>
+                                         <?php }
+                                            } ?>
                                      </div>
                                  </div>
                                  <div class="product-form product-variation-form product-size-swatch">
                                      <label class="mb-1">Size:</label>
                                      <div class="flex-wrap d-flex align-items-center product-variations">
                                          <?php if (isset($prouctsList['size'])) {
-                                             foreach ($prouctsList['size'] as $col) {?>
-                                               <a onclick="setSize('<?= $col ?>')" href="#" class="size"><?php echo $col?></a>
-                                          <?php }
-                                          }?>
+                                                foreach ($prouctsList['size'] as $key=>$col) { ?>
+                                                 <a data-amount1="<?= isset($prouctsList['retail_amount'][$key]) ? $prouctsList['retail_amount'][$key]:'' ?>" data-amount="<?= isset($prouctsList['selling_amount'][$key]) ? $prouctsList['selling_amount'][$key]:'' ?>" onclick="setSize('<?= $col ?>',this)" href="#" class="size"><?php echo $col ?></a>
+                                         <?php }
+                                            } ?>
                                      </div>
-                                     <a href="#" class="product-variation-clean">Clean All</a>
+                                     <a href="#" class="product-variation-clean">Clean All </a>
                                  </div>
-
-                                 <div class="product-variation-price">
-                                     <span></span>
-                                 </div>
+                                    <div class="product-variation-price" >
+                                                        <span id="sellingAmount"></span>
+                                                    </div>
 
                                  <div class="fix-bottom product-sticky-content sticky-content">
                                      <div class="product-form container">
@@ -180,7 +180,7 @@
                                          </button>
                                      </div>
                                  </div>
-                                         
+
                                  <div class="social-links-wrapper">
                                      <div class="social-links">
                                          <div class="social-icons social-no-color border-thin">
@@ -222,29 +222,18 @@
                                  <div class="row mb-4">
                                      <div class="col-md-6 mb-5">
                                          <h4 class="title tab-pane-title font-weight-bold mb-2">Detail</h4>
-                                         <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                             sed do eiusmod tempor incididunt arcu cursus vitae congue mauris.
-                                             Sagittis id consectetur purus ut. Tellus rutrum tellus pelle Vel
-                                             pretium lectus quam id leo in vitae turpis massa.</p>
-                                         <ul class="list-type-check">
-                                             <li>Nunc nec porttitor turpis. In eu risus enim. In vitae mollis
-                                                 elit.
-                                             </li>
-                                             <li>Vivamus finibus vel mauris ut vehicula.</li>
-                                             <li>Nullam a magna porttitor, dictum risus nec, faucibus sapien.
-                                             </li>
-                                         </ul>
+                                         <p class="mb-4">{{ $getSpecificProduct->product->description }}</p>
                                      </div>
                                      <div class="col-md-6 mb-5">
                                          <div class="banner banner-video product-video br-xs">
                                              <figure class="banner-media">
                                                  <a href="#">
-                                                     <img src="<?php echo asset('assets')?>/images/products/video-banner-610x300.jpg"
+                                                     <img src="<?php echo asset('assets') ?>/images/products/video-banner-610x300.jpg"
                                                          alt="banner" width="610" height="300"
                                                          style="background-color: #bebebe;">
                                                  </a>
                                                  <a class="btn-play-video btn-iframe"
-                                                     href="<?php echo asset('assets')?>/video/memory-of-a-woman.mp4"></a>
+                                                     href="<?php echo asset('assets') ?>/video/memory-of-a-woman.mp4"></a>
                                              </figure>
                                          </div>
                                      </div>
@@ -271,91 +260,87 @@
                                  </div>
                              </div>
                              <div class="tab-pane" id="product-tab-specification">
-                                 <ul class="list-none">
-                                     <li>
-                                         <label>Model</label>
-                                         <p>Skysuite 320</p>
-                                     </li>
-                                     <li>
-                                         <label>Color</label>
-                                         <p>Black</p>
-                                     </li>
-                                     <li>
-                                         <label>Size</label>
-                                         <p>Large, Small</p>
-                                     </li>
-                                     <li>
-                                         <label>Guarantee Time</label>
-                                         <p>3 Months</p>
-                                     </li>
-                                 </ul>
+                                 @foreach ($ProductSpecs as $spec)
+                                 <p>{{ $spec->specify_attribute }} : {{ $spec->specify_value }} </p>
+                                 @endforeach
                              </div>
                              <div class="tab-pane" id="product-tab-vendor">
-                                 <div class="row mb-3">
-                                     <div class="col-md-6 mb-4">
-                                         <figure class="vendor-banner br-sm">
-                                             <img src="<?php echo asset('assets')?>/images/products/vendor-banner.jpg"
-                                                 alt="Vendor Banner" width="610" height="295"
-                                                 style="background-color: #353B55;" />
-                                         </figure>
-                                     </div>
-                                     <div class="col-md-6 pl-2 pl-md-6 mb-4">
-                                         <div class="vendor-user">
-                                             <figure class="vendor-logo mr-4">
-                                                 <a href="#">
-                                                     <img src="<?php echo asset('assets')?>/images/products/vendor-logo.jpg"
-                                                         alt="Vendor Logo" width="80" height="80" />
-                                                 </a>
-                                             </figure>
-                                             <div>
-                                                 <div class="vendor-name"><a href="#">Jone Doe</a></div>
-                                                 <div class="ratings-container">
-                                                     <div class="ratings-full">
-                                                         <span class="ratings" style="width: 90%;"></span>
-                                                         <span class="tooltiptext tooltip-top"></span>
-                                                     </div>
-                                                     <a href="#" class="rating-reviews">(32 Reviews)</a>
-                                                 </div>
-                                             </div>
-                                         </div>
-                                         <ul class="vendor-info list-style-none">
-                                             <li class="store-name">
-                                                 <label>Store Name:</label>
-                                                 <span class="detail">OAIO Store</span>
-                                             </li>
-                                             <li class="store-address">
-                                                 <label>Address:</label>
-                                                 <span class="detail">Steven Street, El Carjon, CA 92020, United
-                                                     States (US)</span>
-                                             </li>
-                                             <li class="store-phone">
-                                                 <label>Phone:</label>
-                                                 <a href="#tel:">1234567890</a>
-                                             </li>
-                                         </ul>
-                                         <a href="vendor-dokan-store.html"
-                                             class="btn btn-dark btn-link btn-underline btn-icon-right">Visit
-                                             Store<i class="w-icon-long-arrow-right"></i></a>
-                                     </div>
-                                 </div>
-                                 <p class="mb-5"><strong class="text-dark">L</strong>orem ipsum dolor sit amet,
-                                     consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                                     dolore magna aliqua.
-                                     Venenatis tellus in metus vulputate eu scelerisque felis. Vel pretium
-                                     lectus quam id leo in vitae turpis massa. Nunc id cursus metus aliquam.
-                                     Libero id faucibus nisl tincidunt eget. Aliquam id diam maecenas ultricies
-                                     mi eget mauris. Volutpat ac tincidunt vitae semper quis lectus. Vestibulum
-                                     mattis ullamcorper velit sed. A arcu cursus vitae congue mauris.
-                                 </p>
-                                 <p class="mb-2"><strong class="text-dark">A</strong> arcu cursus vitae congue
-                                     mauris. Sagittis id consectetur purus
-                                     ut. Tellus rutrum tellus pellentesque eu tincidunt tortor aliquam nulla.
-                                     Diam in
-                                     arcu cursus euismod quis. Eget sit amet tellus cras adipiscing enim eu. In
-                                     fermentum et sollicitudin ac orci phasellus. A condimentum vitae sapien
-                                     pellentesque
-                                     habitant morbi tristique senectus et. In dictum non consectetur a erat. Nunc
-                                     scelerisque viverra mauris in aliquam sem fringilla.</p>
+                                @if ($vendor_details != '')
+                            <div class="row mb-3">
+
+
+                                <div class="col-md-6 mb-4">
+                                    <figure class="vendor-banner br-sm">
+                                        <img src="{{ asset('assets/images/vendor/profile/' . $vendor_details->profile_image) }}"
+                                            alt="Vendor Banner" width="610" height="200"
+                                            style="background-color: #353B55;" />
+                                    </figure>
+                                </div>
+                                <div class="col-md-6 pl-2 pl-md-6 mb-4">
+                                    <div class="vendor-user">
+                                        <!--<figure class="vendor-logo mr-4">
+                                                        <a href="#">
+                                                            <img src="/website_assets/images/products/vendor-logo.jpg"
+                                                                alt="Vendor Logo" width="80" height="80" />
+                                                        </a>
+                                                    </figure>-->
+                                        <div>
+                                            <div class="vendor-name"><a
+                                                    href="#">{{ $vendor_details->owner_name }}</a>
+                                            </div>
+                                            <div class="ratings-container">
+                                                <div class="ratings-full">
+                                                    <span class="ratings" style="width: 90%;"></span>
+                                                    <span class="tooltiptext tooltip-top"></span>
+                                                </div>
+                                                <!--<a href="#" class="rating-reviews">(32 Reviews)</a>-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <ul class="vendor-info list-style-none">
+                                        <li class="store-name">
+                                            <label>Store Name:</label>
+                                            <span class="detail">{{ $vendor_details->shop_name }}</span>
+                                        </li>
+                                        <li class="store-address">
+                                            <label>Address:</label>
+                                            <span class="detail">{{ $vendor_details->address }},</span>
+                                            <span class="detail">{{ $vendor_details->address1 }},</span>
+                                            <span class="detail">{{ $vendor_details->city }},</span>
+                                            <span class="detail">{{ $vendor_details->state }}</span>
+                                            <span class="detail">- {{ $vendor_details->pincode }}</span>
+                                        </li>
+                                        <li class="store-phone">
+                                            <label>Phone:</label>
+                                            <a href="#tel:">{{ $vendor_details->mobile_number1 }}</a>
+                                        </li>
+                                        <li class="store-phone">
+                                            <label>Other Phone:</label>
+                                            <a href="#tel:">{{ $vendor_details->mobile_number2 }}</a>
+                                        </li>
+                                    </ul>
+                                    <a href="vendor-dokan-store.html"
+                                        class="btn btn-dark btn-link btn-underline btn-icon-right">Visit
+                                        Store<i class="w-icon-long-arrow-right"></i></a>
+                                    <p class="mb-5">
+                                        {{ $vendor_details->description }}
+                                    </p>
+                                </div>
+                            </div>
+                            @else
+                            <div class="row mb-3">
+
+
+                                <div class="col-md-6 mb-4">
+                                    <figure class="vendor-banner br-sm">
+                                        <img src="{{ asset('website_assets/images/brands/brand.jpg') }}"
+                                            alt="Vendor Banner" width="610" height="200"
+                                            style="background-color: #353B55;" />
+                                    </figure>
+                                </div>
+
+                            </div>
+                            @endif
                              </div>
                              <div class="tab-pane" id="product-tab-reviews">
                                  <div class="row mb-4">
@@ -522,7 +507,7 @@
                                                  <li class="comment">
                                                      <div class="comment-body">
                                                          <figure class="comment-avatar">
-                                                             <img src="<?php echo asset('assets')?>/images/agents/1-100x100.png"
+                                                             <img src="<?php echo asset('assets') ?>/images/agents/1-100x100.png"
                                                                  alt="Commenter Avatar" width="90" height="90">
                                                          </figure>
                                                          <div class="comment-content">
@@ -558,10 +543,10 @@
                                                                  <div class="review-image">
                                                                      <a href="#">
                                                                          <figure>
-                                                                             <img src="<?php echo asset('assets')?>/images/products/default/review-img-1.jpg"
+                                                                             <img src="<?php echo asset('assets') ?>/images/products/default/review-img-1.jpg"
                                                                                  width="60" height="60"
                                                                                  alt="Attachment image of John Doe's review on Electronics Black Wrist Watch"
-                                                                                 data-zoom-image="<?php echo asset('assets')?>/images/products/default/review-img-1-800x900.jpg" />
+                                                                                 data-zoom-image="<?php echo asset('assets') ?>/images/products/default/review-img-1-800x900.jpg" />
                                                                          </figure>
                                                                      </a>
                                                                  </div>
@@ -572,7 +557,7 @@
                                                  <li class="comment">
                                                      <div class="comment-body">
                                                          <figure class="comment-avatar">
-                                                             <img src="<?php echo asset('assets')?>/images/agents/2-100x100.png"
+                                                             <img src="<?php echo asset('assets') ?>/images/agents/2-100x100.png"
                                                                  alt="Commenter Avatar" width="90" height="90">
                                                          </figure>
                                                          <div class="comment-content">
@@ -608,18 +593,18 @@
                                                                  <div class="review-image">
                                                                      <a href="#">
                                                                          <figure>
-                                                                             <img src="<?php echo asset('assets')?>/images/products/default/review-img-2.jpg"
+                                                                             <img src="<?php echo asset('assets') ?>/images/products/default/review-img-2.jpg"
                                                                                  width="60" height="60"
                                                                                  alt="Attachment image of John Doe's review on Electronics Black Wrist Watch"
-                                                                                 data-zoom-image="<?php echo asset('assets')?>/images/products/default/review-img-2.jpg" />
+                                                                                 data-zoom-image="<?php echo asset('assets') ?>/images/products/default/review-img-2.jpg" />
                                                                          </figure>
                                                                      </a>
                                                                      <a href="#">
                                                                          <figure>
-                                                                             <img src="<?php echo asset('assets')?>/images/products/default/review-img-3.jpg"
+                                                                             <img src="<?php echo asset('assets') ?>/images/products/default/review-img-3.jpg"
                                                                                  width="60" height="60"
                                                                                  alt="Attachment image of John Doe's review on Electronics Black Wrist Watch"
-                                                                                 data-zoom-image="<?php echo asset('assets')?>/images/products/default/review-img-3.jpg" />
+                                                                                 data-zoom-image="<?php echo asset('assets') ?>/images/products/default/review-img-3.jpg" />
                                                                          </figure>
                                                                      </a>
                                                                  </div>
@@ -630,7 +615,7 @@
                                                  <li class="comment">
                                                      <div class="comment-body">
                                                          <figure class="comment-avatar">
-                                                             <img src="<?php echo asset('assets')?>/images/agents/3-100x100.png"
+                                                             <img src="<?php echo asset('assets') ?>/images/agents/3-100x100.png"
                                                                  alt="Commenter Avatar" width="90" height="90">
                                                          </figure>
                                                          <div class="comment-content">
@@ -674,7 +659,7 @@
                                                  <li class="comment">
                                                      <div class="comment-body">
                                                          <figure class="comment-avatar">
-                                                             <img src="<?php echo asset('assets')?>/images/agents/1-100x100.png"
+                                                             <img src="<?php echo asset('assets') ?>/images/agents/1-100x100.png"
                                                                  alt="Commenter Avatar" width="90" height="90">
                                                          </figure>
                                                          <div class="comment-content">
@@ -710,10 +695,10 @@
                                                                  <div class="review-image">
                                                                      <a href="#">
                                                                          <figure>
-                                                                             <img src="<?php echo asset('assets')?>/images/products/default/review-img-1.jpg"
+                                                                             <img src="<?php echo asset('assets') ?>/images/products/default/review-img-1.jpg"
                                                                                  width="60" height="60"
                                                                                  alt="Attachment image of John Doe's review on Electronics Black Wrist Watch"
-                                                                                 data-zoom-image="<?php echo asset('assets')?>/images/products/default/review-img-1.jpg" />
+                                                                                 data-zoom-image="<?php echo asset('assets') ?>/images/products/default/review-img-1.jpg" />
                                                                          </figure>
                                                                      </a>
                                                                  </div>
@@ -724,7 +709,7 @@
                                                  <li class="comment">
                                                      <div class="comment-body">
                                                          <figure class="comment-avatar">
-                                                             <img src="<?php echo asset('assets')?>/images/agents/2-100x100.png"
+                                                             <img src="<?php echo asset('assets') ?>/images/agents/2-100x100.png"
                                                                  alt="Commenter Avatar" width="90" height="90">
                                                          </figure>
                                                          <div class="comment-content">
@@ -760,18 +745,18 @@
                                                                  <div class="review-image">
                                                                      <a href="#">
                                                                          <figure>
-                                                                             <img src="<?php echo asset('assets')?>/images/products/default/review-img-2.jpg"
+                                                                             <img src="<?php echo asset('assets') ?>/images/products/default/review-img-2.jpg"
                                                                                  width="60" height="60"
                                                                                  alt="Attachment image of John Doe's review on Electronics Black Wrist Watch"
-                                                                                 data-zoom-image="<?php echo asset('assets')?>/images/products/default/review-img-2-800x900.jpg" />
+                                                                                 data-zoom-image="<?php echo asset('assets') ?>/images/products/default/review-img-2-800x900.jpg" />
                                                                          </figure>
                                                                      </a>
                                                                      <a href="#">
                                                                          <figure>
-                                                                             <img src="<?php echo asset('assets')?>/images/products/default/review-img-3.jpg"
+                                                                             <img src="<?php echo asset('assets') ?>/images/products/default/review-img-3.jpg"
                                                                                  width="60" height="60"
                                                                                  alt="Attachment image of John Doe's review on Electronics Black Wrist Watch"
-                                                                                 data-zoom-image="<?php echo asset('assets')?>/images/products/default/review-img-3-800x900.jpg" />
+                                                                                 data-zoom-image="<?php echo asset('assets') ?>/images/products/default/review-img-3-800x900.jpg" />
                                                                          </figure>
                                                                      </a>
                                                                  </div>
@@ -786,7 +771,7 @@
                                                  <li class="comment">
                                                      <div class="comment-body">
                                                          <figure class="comment-avatar">
-                                                             <img src="<?php echo asset('assets')?>/images/agents/3-100x100.png"
+                                                             <img src="<?php echo asset('assets') ?>/images/agents/3-100x100.png"
                                                                  alt="Commenter Avatar" width="90" height="90">
                                                          </figure>
                                                          <div class="comment-content">
@@ -830,7 +815,7 @@
                                                  <li class="comment">
                                                      <div class="comment-body">
                                                          <figure class="comment-avatar">
-                                                             <img src="<?php echo asset('assets')?>/images/agents/2-100x100.png"
+                                                             <img src="<?php echo asset('assets') ?>/images/agents/2-100x100.png"
                                                                  alt="Commenter Avatar" width="90" height="90">
                                                          </figure>
                                                          <div class="comment-content">
@@ -866,18 +851,18 @@
                                                                  <div class="review-image">
                                                                      <a href="#">
                                                                          <figure>
-                                                                             <img src="<?php echo asset('assets')?>/images/products/default/review-img-2.jpg"
+                                                                             <img src="<?php echo asset('assets') ?>/images/products/default/review-img-2.jpg"
                                                                                  width="60" height="60"
                                                                                  alt="Attachment image of John Doe's review on Electronics Black Wrist Watch"
-                                                                                 data-zoom-image="<?php echo asset('assets')?>/images/products/default/review-img-2-800x900.jpg" />
+                                                                                 data-zoom-image="<?php echo asset('assets') ?>/images/products/default/review-img-2-800x900.jpg" />
                                                                          </figure>
                                                                      </a>
                                                                      <a href="#">
                                                                          <figure>
-                                                                             <img src="<?php echo asset('assets')?>/images/products/default/review-img-3.jpg"
+                                                                             <img src="<?php echo asset('assets') ?>/images/products/default/review-img-3.jpg"
                                                                                  width="60" height="60"
                                                                                  alt="Attachment image of John Doe's review on Electronics Black Wrist Watch"
-                                                                                 data-zoom-image="<?php echo asset('assets')?>/images/products/default/review-img-3-800x900.jpg" />
+                                                                                 data-zoom-image="<?php echo asset('assets') ?>/images/products/default/review-img-3-800x900.jpg" />
                                                                          </figure>
                                                                      </a>
                                                                  </div>
@@ -892,7 +877,7 @@
                                                  <li class="comment">
                                                      <div class="comment-body">
                                                          <figure class="comment-avatar">
-                                                             <img src="<?php echo asset('assets')?>/images/agents/1-100x100.png"
+                                                             <img src="<?php echo asset('assets') ?>/images/agents/1-100x100.png"
                                                                  alt="Commenter Avatar" width="90" height="90">
                                                          </figure>
                                                          <div class="comment-content">
@@ -928,10 +913,10 @@
                                                                  <div class="review-image">
                                                                      <a href="#">
                                                                          <figure>
-                                                                             <img src="<?php echo asset('assets')?>/images/products/default/review-img-3.jpg"
+                                                                             <img src="<?php echo asset('assets') ?>/images/products/default/review-img-3.jpg"
                                                                                  width="60" height="60"
                                                                                  alt="Attachment image of John Doe's review on Electronics Black Wrist Watch"
-                                                                                 data-zoom-image="<?php echo asset('assets')?>/images/products/default/review-img-3-800x900.jpg" />
+                                                                                 data-zoom-image="<?php echo asset('assets') ?>/images/products/default/review-img-3-800x900.jpg" />
                                                                          </figure>
                                                                      </a>
                                                                  </div>
@@ -971,9 +956,9 @@
                                  <div class="swiper-slide product">
                                      <figure class="product-media">
                                          <a href="product-default.html">
-                                             <img src="<?php echo asset('assets')?>/images/products/default/1-1.jpg" alt="Product"
+                                             <img src="<?php echo asset('assets') ?>/images/products/default/1-1.jpg" alt="Product"
                                                  width="300" height="338" />
-                                             <img src="<?php echo asset('assets')?>/images/products/default/1-2.jpg" alt="Product"
+                                             <img src="<?php echo asset('assets') ?>/images/products/default/1-2.jpg" alt="Product"
                                                  width="300" height="338" />
                                          </a>
                                          <div class="product-action-vertical">
@@ -1009,7 +994,7 @@
                                  <div class="swiper-slide product">
                                      <figure class="product-media">
                                          <a href="product-default.html">
-                                             <img src="<?php echo asset('assets')?>/images/products/default/2.jpg" alt="Product"
+                                             <img src="<?php echo asset('assets') ?>/images/products/default/2.jpg" alt="Product"
                                                  width="300" height="338" />
                                          </a>
                                          <div class="product-action-vertical">
@@ -1048,7 +1033,7 @@
                                  <div class="swiper-slide product">
                                      <figure class="product-media">
                                          <a href="product-default.html">
-                                             <img src="<?php echo asset('assets')?>/images/products/default/3.jpg" alt="Product"
+                                             <img src="<?php echo asset('assets') ?>/images/products/default/3.jpg" alt="Product"
                                                  width="300" height="338" />
                                          </a>
                                          <div class="product-action-vertical">
@@ -1085,9 +1070,9 @@
                                  <div class="swiper-slide product">
                                      <figure class="product-media">
                                          <a href="product-default.html">
-                                             <img src="<?php echo asset('assets')?>/images/products/default/4-1.jpg" alt="Product"
+                                             <img src="<?php echo asset('assets') ?>/images/products/default/4-1.jpg" alt="Product"
                                                  width="300" height="338" />
-                                             <img src="<?php echo asset('assets')?>/images/products/default/4-2.jpg" alt="Product"
+                                             <img src="<?php echo asset('assets') ?>/images/products/default/4-2.jpg" alt="Product"
                                                  width="300" height="338" />
                                          </a>
                                          <div class="product-action-vertical">
@@ -1148,7 +1133,7 @@
                                  <div class="swiper-slide product">
                                      <figure class="product-media">
                                          <a href="product-default.html">
-                                             <img src="<?php echo asset('assets')?>/images/products/default/5.jpg" alt="Product"
+                                             <img src="<?php echo asset('assets') ?>/images/products/default/5.jpg" alt="Product"
                                                  width="300" height="338" />
                                          </a>
                                          <div class="product-action-vertical">
@@ -1181,7 +1166,7 @@
                                  <div class="swiper-slide product">
                                      <figure class="product-media">
                                          <a href="product-default.html">
-                                             <img src="<?php echo asset('assets')?>/images/products/default/6.jpg" alt="Product"
+                                             <img src="<?php echo asset('assets') ?>/images/products/default/6.jpg" alt="Product"
                                                  width="300" height="338" />
                                          </a>
                                          <div class="product-action-vertical">
@@ -1218,9 +1203,9 @@
                                  <div class="swiper-slide product">
                                      <figure class="product-media">
                                          <a href="product-default.html">
-                                             <img src="<?php echo asset('assets')?>/images/products/default/7-1.jpg" alt="Product"
+                                             <img src="<?php echo asset('assets') ?>/images/products/default/7-1.jpg" alt="Product"
                                                  width="300" height="338" />
-                                             <img src="<?php echo asset('assets')?>/images/products/default/7-2.jpg" alt="Product"
+                                             <img src="<?php echo asset('assets') ?>/images/products/default/7-2.jpg" alt="Product"
                                                  width="300" height="338" />
                                          </a>
                                          <div class="product-action-vertical">
@@ -1254,7 +1239,7 @@
                                  <div class="swiper-slide product">
                                      <figure class="product-media">
                                          <a href="product-default.html">
-                                             <img src="<?php echo asset('assets')?>/images/products/default/8.jpg" alt="Product"
+                                             <img src="<?php echo asset('assets') ?>/images/products/default/8.jpg" alt="Product"
                                                  width="300" height="338" />
                                          </a>
                                          <div class="product-action-vertical">
@@ -1330,7 +1315,7 @@
                              <div class="widget widget-banner mb-9">
                                  <div class="banner banner-fixed br-sm">
                                      <figure>
-                                         <img src="<?php echo asset('assets')?>/images/shop/banner3.jpg" alt="Banner" width="266"
+                                         <img src="<?php echo asset('assets') ?>/images/shop/banner3.jpg" alt="Banner" width="266"
                                              height="220" style="background-color: #1D2D44;" />
                                      </figure>
                                      <div class="banner-content">
@@ -1365,7 +1350,7 @@
                                                  <div class="product product-widget">
                                                      <figure class="product-media">
                                                          <a href="#">
-                                                             <img src="<?php echo asset('assets')?>/images/shop/13.jpg" alt="Product"
+                                                             <img src="<?php echo asset('assets') ?>/images/shop/13.jpg" alt="Product"
                                                                  width="100" height="113" />
                                                          </a>
                                                      </figure>
@@ -1385,7 +1370,7 @@
                                                  <div class="product product-widget">
                                                      <figure class="product-media">
                                                          <a href="#">
-                                                             <img src="<?php echo asset('assets')?>/images/shop/14.jpg" alt="Product"
+                                                             <img src="<?php echo asset('assets') ?>/images/shop/14.jpg" alt="Product"
                                                                  width="100" height="113" />
                                                          </a>
                                                      </figure>
@@ -1405,7 +1390,7 @@
                                                  <div class="product product-widget">
                                                      <figure class="product-media">
                                                          <a href="#">
-                                                             <img src="<?php echo asset('assets')?>/images/shop/15.jpg" alt="Product"
+                                                             <img src="<?php echo asset('assets') ?>/images/shop/15.jpg" alt="Product"
                                                                  width="100" height="113" />
                                                          </a>
                                                      </figure>
@@ -1427,7 +1412,7 @@
                                                  <div class="product product-widget">
                                                      <figure class="product-media">
                                                          <a href="#">
-                                                             <img src="<?php echo asset('assets')?>/images/shop/16.jpg" alt="Product"
+                                                             <img src="<?php echo asset('assets') ?>/images/shop/16.jpg" alt="Product"
                                                                  width="100" height="113" />
                                                          </a>
                                                      </figure>
@@ -1447,7 +1432,7 @@
                                                  <div class="product product-widget">
                                                      <figure class="product-media">
                                                          <a href="#">
-                                                             <img src="<?php echo asset('assets')?>/images/shop/17.jpg" alt="Product"
+                                                             <img src="<?php echo asset('assets') ?>/images/shop/17.jpg" alt="Product"
                                                                  width="100" height="113" />
                                                          </a>
                                                      </figure>
@@ -1467,7 +1452,7 @@
                                                  <div class="product product-widget">
                                                      <figure class="product-media">
                                                          <a href="#">
-                                                             <img src="<?php echo asset('assets')?>/images/shop/18.jpg" alt="Product"
+                                                             <img src="<?php echo asset('assets') ?>/images/shop/18.jpg" alt="Product"
                                                                  width="100" height="113" />
                                                          </a>
                                                      </figure>
@@ -1501,53 +1486,56 @@
      <!-- End of Page Content -->
  </main>
  <!-- End of Main -->
-  <script>
-     function setSize(size)
-    {
-        $('#product-size').val(size);
-    }
-    function setColor(color)
-    {
+ <script>
+     function setSize(size,e) {
+       var amt1 = $(e).attr('data-amount');
+       var amt2 =  $(e).attr('data-amount1');
+         $('#product-size').val(size);
+         setTimeout(() => {
+            $('.new-price').text("₹"+amt1);
+            $('#strikeamt').text("₹"+amt2);
+               $('#sellingAmount').text("₹"+amt1);
+         }, 300);
+     }
+
+     function setColor(color) {
          $('#product-color').val(color);
-    }
+     }
 
-    function addCart(id) {
-       
+     function addCart(id) {
 
-        var pincode = '<?= session()->get('pincode'); ?>';
-       
-        if(pincode === '')
-        {
-             $.notify("Please Check Pincode!", "error");  
+
+         var pincode = '<?= session()->get('pincode'); ?>';
+
+         if (pincode === '') {
+             $.notify("Please Check Pincode!", "error");
              return false;
-        }
+         }
 
-        var qty = $('#quantity').val();
-        var url = '<?= route('customCart') ?>';
-        var size =   $('#product-size').val();
-        var color =  $('#product-color').val();
-      
-        if(color === '')
-        {
-             $.notify("Please Choose Color!", "error");  
-             return false;
-        }
+         var qty = $('#quantity').val();
+         var url = '<?= route('customCart') ?>';
+         var size = $('#product-size').val();
+         var color = $('#product-color').val();
 
-        if(size === '')
-        {
-             $.notify("Please Choose Size!", "error");  
+         if (color === '') {
+             $.notify("Please Choose Color!", "error");
              return false;
-        }
-        $.post(url, {
-            id: id,
-            qty: qty,
-            size: size,
-            color: color,
-            '_token': '<?= csrf_token() ?>'
-        }, function(data) {
-            $.notify(data.message, "success", "bottom");            
-            $('.cart-count').html(data.count);
-        });
-    }
-  </script>
+         }
+
+         if (size === '') {
+             $.notify("Please Choose Size!", "error");
+             return false;
+         }
+         $.post(url, {
+             id: id,
+             qty: qty,
+             size: size,
+             color: color,
+             '_token': '<?= csrf_token() ?>'
+         }, function(data) {
+             $.notify(data.message, "success", "bottom");
+             $('.cart-count').html(data.count);
+         });
+     }
+ </script>
  @endsection
