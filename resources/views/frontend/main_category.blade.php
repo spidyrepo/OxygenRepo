@@ -91,7 +91,7 @@
                                 <!-- Start of Sticky Sidebar -->
                                 <div class="sticky-sidebar">
                                     <div class="filter-actions">
-                                        <label>Filter :</label>
+                                        {{-- <label>Filter :</label> --}}
                                         <a href="#" class="btn btn-dark btn-link filter-clean"></a>
                                     </div>
                                   

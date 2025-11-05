@@ -177,7 +177,7 @@
          </div>
          <!-- End of Swiper Container -->
 
-         <h2 class="title title-center mb-5">Top Offers Of The Month</h2>
+         {{-- <h2 class="title title-center mb-5">Top Offers Of The Month</h2>
          <div class="swiper-container swiper-theme shadow-swiper pb-10"
              data-swiper-options="{
                     'spaceBetween': 20,
@@ -219,7 +219,7 @@
                     } ?>
              </div>
              <div class="swiper-pagination"></div>
-         </div>
+         </div> --}}
          <!-- End of Swiper -->
 
 
