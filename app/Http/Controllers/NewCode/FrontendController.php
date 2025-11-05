@@ -136,6 +136,11 @@ class FrontendController extends Controller
         return $resultArr;
     }
 
+
+
+
+    
+
     public function getProduct($id = '')
     {
 
@@ -267,13 +272,66 @@ class FrontendController extends Controller
         ]);
     }
 
+
+
+     public function getProductByCategory($main_category_id = '' )
+    {
+        $productsData = Products::from('products as p')
+            ->leftJoin('category as c', 'c.id', '=', 'p.category')
+            ->leftJoin('category_sub as cs', 'cs.id', '=', 'p.category_sub')
+            ->leftJoin('category_main as cm', 'cm.id', '=', 'p.category_main')
+            ->leftJoin('products_details as pd', 'pd.products_id', '=', 'p.id')
+            ->leftJoin('vendor_details as vp', 'vp.id', '=', 'p.vendor_id');
+        if ($main_category_id != '') {
+            $productsData = $productsData->where('p.category_main', $main_category_id);
+        }
+        $productsData = $productsData->select(
+            'p.id',
+            'p.vendor_id',
+            'p.product_name',
+            'p.product_image',
+            'pd.selling_price',
+            'pd.retail_price',
+            'c.category_name',
+            'cs.category_sub_name',
+            'cm.category_main_name',
+            'vp.shop_name',
+            'vp.profile_image',
+            'pd.attributevalue2 as size',
+            'pd.attributevalue1 as color',
+            'pd.product_detail_image'
+        )->get();
+        $resultArr = [];
+        foreach ($productsData as $val) {
+            $productId = $val->id;
+            if (! isset($resultArr[$productId])) {
+                $resultArr[$productId] = [
+                    'id'                 => $val->id,
+                    'vendor_id'          => $val->vendor_id,
+                    'product_name'       => $val->product_name,
+                    'product_image'      => $val->product_image,
+                    'selling_price'      => $val->selling_price,
+                    'retail_price'       => $val->retail_price,
+                    'category_name'      => $val->category_name,
+                    'category_sub_name'  => $val->category_sub_name,
+                    'category_main_name' => $val->category_main_name,
+                    'shop_name'          => $val->shop_name,
+                    'profile_image'      => $val->profile_image,
+                ];
+            }
+        }
+
+        return $resultArr;
+    }
+
     public function mainCategoryShop($main_category_id)
     {
 
-        $product = Products::where('status', 1)->where('category_main', $main_category_id)->get();
+        $prouctsList = $this->getProductByCategory($main_category_id);
+
         $categories = Category::where('main_category_id', $main_category_id)->get();
 
-        return view('frontend/main_category', compact('product', 'categories'));
+        return view('frontend/main_category', compact('prouctsList', 'categories'));
     }
 
 
@@ -287,7 +345,7 @@ class FrontendController extends Controller
             $product->where('category_sub', $sub_category_id);
         }
         $product->get();
-        
+
         $sub_categories = CategorySub::where('category_id', $category_id)->where('status', 1)->get();
 
 
