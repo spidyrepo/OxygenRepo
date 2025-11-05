@@ -96,11 +96,12 @@
                  </div>
 
                  <div class="product-short-desc">
-                     <ul class="list-type-check list-style-none">
+                     <!-- <ul class="list-type-check list-style-none">
                          <li>Ultrices eros in cursus turpis massa cursus mattis.</li>
                          <li>Volutpat ac tincidunt vitae semper quis lectus.</li>
                          <li>Aliquam id diam maecenas ultricies mi eget mauris.</li>
-                     </ul>
+                     </ul> -->
+                     <p><?= $prouctsList[$id]['description'] ?></p>
                  </div>
 
                  <hr class="product-divider">
