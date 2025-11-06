@@ -683,6 +683,91 @@
        </div>
    </div>
 
+<style>
+    .mfp-content{
+        width: 60% !important;
+    }
+</style>
+
+   <!-- Start of Quick View -->
+<div class="login-register-popup mfp-hide">
+    <div class="row gutter-sm">
+        <div class="col-md-6 mb-4 mb-md-0">
+            <div class="login-popup">
+                <div class="tab tab-nav-boxed tab-nav-center tab-nav-underline">
+                    <ul class="nav nav-tabs text-uppercase" role="tablist">
+                        <li class="nav-item">
+                            <a href="#sign-in" class="nav-link active">Sign In</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#sign-up" class="nav-link">Sign Up</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+
+                        <div class="tab-pane active" id="sign-in">
+                            <form id="login-form" class="ebb-form" autocomplete="Off">
+                                <div class="form-group">
+                                    <label>Username or email address *</label>
+                                    <input type="text" class="form-control" name="username" id="login_username" required>
+                                </div>
+                                <div class="form-group mb-0">
+                                    <label>Password *</label>
+                                    <input type="text" class="form-control" name="password" id="login_password" required>
+                                </div>
+                                <div class="form-checkbox d-flex align-items-center justify-content-between">
+                                    <input type="checkbox" class="custom-checkbox" id="remember1" name="remember1" required="">
+                                    <label for="remember1">Remember me</label>
+                                    <a href="#">Last your password?</a>
+                                </div>
+
+                                <button type="button" class="btn btn-success" onclick="cuslogin()" id="cus_login">Login</button>
+                            </form>
+                        </div>
+
+                        <div class="tab-pane" id="sign-up">
+                            <form id="register-form" class="ebb-form" autocomplete="off">
+                                <div class="form-group">
+                                    <label>Customer Name *</label>
+                                    <input type="text" class="form-control" name="email_1" id="register_username" placeholder="Name" style="text-transform:uppercase" required autocomplete="new-username">
+                                </div>
+                                <div class="form-group">
+                                    <label>Your email address *</label>
+                                    <input type="text" class="form-control" name="email_1" id="register_email" onblur="isEmail(this.value)" placeholder="Email ID" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Phone Number *</label>
+                                    <input type="text" class="form-control" name="phone-number" id="register_mobile" onblur="verify_mobile(this.value)" placeholder="Mobile Number" required>
+                                </div>
+                                <div class="form-group mb-5">
+                                    <label>Password *</label>
+                                    <input type="password" class="form-control" name="password_1" id="register_password" onblur="pass_verify(this.value)" placeholder="New Password" required autocomplete="new-pass">
+                                </div>
+                                <div class="form-group mb-5">
+                                    <label>Password *</label>
+                                    <input type="password" class="form-control" name="password_1" id="register_cpassword" onblur="cpass_verify(this.value)" placeholder="Confirm Password" autocomplete="off" required>
+                                </div>
+
+                                <div class="form-checkbox d-flex align-items-center justify-content-between mb-5">
+                                    <input type="checkbox" class="custom-checkbox" id="remember" name="remember" required="">
+                                    <label for="remember" class="font-size-md">I agree to the <a href="#" class="text-primary font-size-md">privacy policy</a></label>
+                                </div>
+                                <button type="button" id="cus_register" onclick="cusregister()" class="btn btn-primary">Register</button>
+
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4 mb-md-0">
+            <img src="{{asset('website_assets/images/icons/login.jpg')}}">
+
+        </div>
+    </div>
+</div>
+
    <!-- Plugin JS File -->
 
    <script src="<?= asset('frontend') ?>/vendor/jquery.plugin/jquery.plugin.min.js"></script>
@@ -705,6 +790,27 @@
    <script src="<?= asset('frontend') ?>/js/main.min.js"></script>
    <script src="<?= asset('frontend') ?>/js/notify.min.js"></script>
    <script>
+
+
+ function showLoginPopup() {
+        //    Wolmart.popup({
+        //        items: {
+        //            src: ".login-register-popup"
+        //        },
+        //        type: "inline",
+        //        closeBtnInside: true,                      
+        //        callbacks: {
+        //            close: function() {},
+        //        },
+        //    })
+         Wolmart.popup({
+        items: {
+            src: ".login-register-popup"
+        },
+        type: "inline",
+        closeBtnInside: true
+    });
+       }
 
         $('#pincodeForm').on('submit', function(e) {
             e.preventDefault(); 
