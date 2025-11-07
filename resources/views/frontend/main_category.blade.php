@@ -97,14 +97,21 @@
                                   
 
                                     <!-- Start of Collapsible Widget -->
-                                    <div class="widget widget-collapsible">
+                                   <div class="widget widget-collapsible">
                                         <h3 class="widget-title"><label>Price</label></h3>
                                         <div class="widget-body">
                                             <div class="range-container">
-                                                <label class="range-label">Price Range 
-                                                    <span class="range-value" id="priceValue">Rs. 0</span>
+
+                                                <label class="range-label pb-2">Price Range:
+                                                    <span class="range-value " id="minPriceValue">Rs. 0</span> -
+                                                    <span class="range-value" id="maxPriceValue">Rs. 5000</span>
                                                 </label>
-                                                <input type="range" id="priceRange" min="0" max="5000" step="10" value="0">
+
+                                                <div class="double-range">
+                                                    <input type="range" id="minPrice" min="0" max="5000" step="10" value="0">
+                                                    <input type="range" id="maxPrice" min="0" max="5000" step="10" value="5000">
+                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
@@ -241,22 +248,33 @@
                                 </ul>
                             </div> --}}
                         </div>
-                        <!-- End of Shop Main Content -->
                     </div>
-                    <!-- End of Shop Content -->
                 </div>
             </div>
-            <!-- End of Page Content -->
         </main>
-        <!-- End of Main -->
 
 
         <script>
-const priceRange = document.getElementById('priceRange');
-const priceValue = document.getElementById('priceValue');
+const minPrice = document.getElementById('minPrice');
+const maxPrice = document.getElementById('maxPrice');
+const minPriceValue = document.getElementById('minPriceValue');
+const maxPriceValue = document.getElementById('maxPriceValue');
 
-priceRange.addEventListener('input', () => {
-  priceValue.textContent = 'Rs. ' + priceRange.value;
-});
+function updatePriceRange() {
+    let minVal = parseInt(minPrice.value);
+    let maxVal = parseInt(maxPrice.value);
+
+    // prevent crossing the sliders
+    if (minVal > maxVal - 100) {
+        minPrice.value = maxVal - 100;
+        minVal = maxVal - 100;
+    }
+
+    minPriceValue.textContent = `Rs. ${minVal}`;
+    maxPriceValue.textContent = `Rs. ${maxVal}`;
+}
+
+minPrice.addEventListener('input', updatePriceRange);
+maxPrice.addEventListener('input', updatePriceRange);
 </script>
  @endsection

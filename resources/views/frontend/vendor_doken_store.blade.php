@@ -30,7 +30,7 @@
                             <a href="#" class="sidebar-toggle"><i class="fas fa-chevron-right"></i></a>
                             <div class="sidebar-content">
                                 <div class="sticky-sidebar">
-                                    <div class="widget widget-collapsible widget-categories">
+                                    {{-- <div class="widget widget-collapsible widget-categories">
                                         <h3 class="widget-title"><span>All Categories</span></h3>
                                         <ul class="widget-body filter-items search-ul">
                                             <li><a href="#">Clothing</a></li>
@@ -43,7 +43,7 @@
                                             <li><a href="#">Shoes</a></li>
                                             <li><a href="#">Sports</a></li>
                                         </ul>
-                                    </div>
+                                    </div> --}}
                                     <!-- End of Widget -->
                                     <div class="widget widget-collapsible widget-contact">
                                         <h3 class="widget-title"><span>Contact Vendor</span></h3>
@@ -72,7 +72,7 @@
                                         </ul>
                                     </div>
                                     <!-- End of Widget -->
-                                    <div class="widget widget-collapsible widget-products">
+                                    {{-- <div class="widget widget-collapsible widget-products">
                                         <h3 class="widget-title"><span>Best Selling</span></h3>
                                         <div class="widget-body">
                                             <div class="product product-widget">
@@ -139,9 +139,9 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <!-- End of Widget -->
-                                    <div class="widget widget-collapsible widget-products">
+                                    {{-- <div class="widget widget-collapsible widget-products">
                                         <h3 class="widget-title"><span>Top Rated</span></h3>
                                         <div class="widget-body">
                                             <div class="product product-widget">
@@ -205,7 +205,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <!-- End of Widget -->
                                 </div>
                             </div>

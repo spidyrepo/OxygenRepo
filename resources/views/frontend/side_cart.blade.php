@@ -29,7 +29,7 @@
 </div>
 <div class="cart-total">
     <label>Subtotal:</label>
-    <span class="price">$<?= $total ?? 0 ?></span>
+    <span class="price">₹<?= $total ?? 0 ?></span>
 </div>
 <div class="cart-action">
     <a href="<?= route('shopping-cart') ?>" class="btn btn-dark btn-outline btn-rounded">View Cart</a>

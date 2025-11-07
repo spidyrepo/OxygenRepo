@@ -58,14 +58,14 @@
                              Shop Name:
                              <span class="product-category"><a href="#"><?= $prouctsList[$id]['shop_name'] ?></a></span>
                          </div>
-                         <div class="product-categories">
+                         {{-- <div class="product-categories">
                              Category:
                              <span class="product-category"><a href="#"><?= $prouctsList[$id]['category_name'] ?></a></span>
                          </div>
                          <div class="product-categories">
                              Sub Category:
                              <span class="product-category"><a href="#"><?= $prouctsList[$id]['category_main_name'] ?></a></span>
-                         </div>
+                         </div> --}}
                          <!-- <div class="product-sku">
                                SKU: <span>MS46891340</span>
                            </div> -->
@@ -110,7 +110,7 @@
                  </div>
 
                  <div class="product-form">
-                     <a href="" class="btn btn-primary btn-cart">
+                     <a href="<?= url('/productVar/'.$prouctsList[$id]['id'] ) ?>" class="btn btn-primary ">
                          <i class="w-icon-cart"></i>
                          <span>Add to Cart</span>
                      </a>

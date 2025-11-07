@@ -663,7 +663,7 @@
                <div class="row mt-3">
                    <div class="col-md-10">
                        <div class="form-group mt-1">
-                           <h6> <label for="pincode">Enter Pincode</label></h6>
+                           <h6> <label for="pincode"></label></h6>
                            <input type="text" class="form-control" id="pincode"
                                name="pincode"
                                placeholder="Enter pincode" value="{{ session('pincode') }}"
