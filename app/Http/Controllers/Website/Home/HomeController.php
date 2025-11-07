@@ -542,7 +542,7 @@ class HomeController extends Controller
                 // "bidamount" =>$bidamount
             ]);
     }
-    /*end*/
+   
     public function vendorallproduct($productdetail_id)
     {
 
