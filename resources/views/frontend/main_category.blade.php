@@ -19,12 +19,7 @@
             <!-- Start of Page Content -->
             <div class="page-content">
                 <div class="container">
-                    
 
-                   
-                    <!-- End of Shop Brands-->
-
-                    <!-- Start of Shop Category -->
                     <div class="shop-default-category category-ellipse-section ">
                         <div class="swiper-container swiper-theme shadow-swiper"
                             data-swiper-options="{
@@ -52,6 +47,8 @@
                             <div class="swiper-wrapper row gutter-lg cols-xl-8 cols-lg-7 cols-md-6 cols-sm-4 cols-xs-3 cols-2">
                               
                               	@foreach($categories as $category )
+
+                              <?=   $category_id = $category->id; ?>
                                 <div class="swiper-slide category-wrap">
                                     <div class="category category-ellipse">
                                        <center>
@@ -73,30 +70,25 @@
                                 @endforeach
                               
                             </div>
+
+                            <input  type="hidden"  id="category_id" value="<?= $category_id  ?>">
+
+                            
                             <div class="swiper-pagination"></div>
                         </div>
                     </div>
-                    <!-- End of Shop Category -->
 
-                    <!-- Start of Shop Content -->
                     <div class="shop-content row gutter-lg mb-10">
-                        <!-- Start of Sidebar, Shop Sidebar -->
                         <aside class="sidebar shop-sidebar sticky-sidebar-wrapper sidebar-fixed">
-                            <!-- Start of Sidebar Overlay -->
                             <div class="sidebar-overlay"></div>
                             <a class="sidebar-close" href="#"><i class="close-icon"></i></a>
 
-                            <!-- Start of Sidebar Content -->
                             <div class="sidebar-content scrollable">
-                                <!-- Start of Sticky Sidebar -->
                                 <div class="sticky-sidebar">
                                     <div class="filter-actions">
-                                        {{-- <label>Filter :</label> --}}
                                         <a href="#" class="btn btn-dark btn-link filter-clean"></a>
                                     </div>
                                   
-
-                                    <!-- Start of Collapsible Widget -->
                                    <div class="widget widget-collapsible">
                                         <h3 class="widget-title"><label>Price</label></h3>
                                         <div class="widget-body">
@@ -115,13 +107,27 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- End of Collapsible Widget -->
+
+
+
+                                    <div class="widget widget-collapsible">
+                                        <h3 class="widget-title"><span>Color</span><span class="toggle-btn"></span></h3>
+                                        <ul class="widget-body filter-items item-check mt-1">
+                                            <div class="color-picker">
+                                            @foreach ($colours as $color)
+                                                <div class="color-swatch" title="{{ $color }}">
+                                                    <input type="checkbox" id="color_{{ $color }}" name="colors[]" value="{{ $color }}" style="display: none;">
+                                                    <label for="color_{{ $color }}" style="background-color: {{ $color }};"></label>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                        </ul>
+                                       
+                                    </div>
                             </div>
-                            <!-- End of Sidebar Content -->
                         </aside>
                      
 
-                        <!-- Start of Shop Main Content -->
                         <div class="main-content">
                             <nav class="toolbox sticky-toolbox sticky-content fix-top">
                                 <div class="toolbox-left">
@@ -157,10 +163,11 @@
                                     </div> --}}
                                 </div>
                             </nav>
-                            <div class="product-wrapper row cols-md-5 cols-sm-2 cols-2">
-                                @if(count($prouctsList) > 0)
+                            <div class="product-wrapper row cols-md-5 cols-sm-2 cols-2" id="productslist">
+                              
+                                @if(count($prouctsList) > 0) 
                                     @foreach($prouctsList as $products )
-
+                                            
                                         <div class="product-wrap">
                                             <div class="product text-center">
                                                 <figure class="product-media">
@@ -224,34 +231,13 @@
 
                             </div>
 
-                            {{-- <div class="toolbox toolbox-pagination justify-content-between">
-                                <p class="showing-info mb-2 mb-sm-0">
-                                    Showing<span>1-12 of 60</span>Products
-                                </p>
-                                <ul class="pagination">
-                                    <li class="prev disabled">
-                                        <a href="#" aria-label="Previous" tabindex="-1" aria-disabled="true">
-                                            <i class="w-icon-long-arrow-left"></i>Prev
-                                        </a>
-                                    </li>
-                                    <li class="page-item active">
-                                        <a class="page-link" href="#">1</a>
-                                    </li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#">2</a>
-                                    </li>
-                                    <li class="next">
-                                        <a href="#" aria-label="Next">
-                                            Next<i class="w-icon-long-arrow-right"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div> --}}
+                            
                         </div>
                     </div>
                 </div>
             </div>
         </main>
+
 
 
         <script>
@@ -276,5 +262,110 @@ function updatePriceRange() {
 
 minPrice.addEventListener('input', updatePriceRange);
 maxPrice.addEventListener('input', updatePriceRange);
+
+
+
+
+  $(document).ready(function() {
+  
+        $('input[name="colors[]"]').on('change', function() {
+            getproducts();
+        });
+
+        $('#orderby').change(function() {
+            getproducts();
+        });
+      
+    });
+
+
+
+
+
+function getproducts()
+{
+  
+    let min_price = $('#min_price').length ? $('#min_price').val() : null;
+    
+    let max_price = $('#max_price').length ? $('#max_price').val() : null;
+    let orderby = $('#orderby').length ? $('#orderby').val() : null;
+    let category_id = $('#category_id').length ? $('#category_id').val() : null;
+    var checkedColors = [];            
+    $('input[name="colors[]"]:checked').each(function() {
+        checkedColors.push($(this).val());  
+    });
+
+
+
+    var siteurl = "{{ url('/') }}";
+   $.ajax({
+    url: "{{ route('get-filter-product') }}",
+    method: 'GET',
+    data: {
+        minprice: min_price,
+        maxprice: max_price,
+        orderby: orderby,
+        category_id: category_id,
+        color: checkedColors
+    },
+    success: function(data) {
+        $('#productslist').empty();
+
+        if (data.products.length > 0) {
+            $.each(data.products, function(index, product) {
+
+                  let discount_percentage = ((product.retail_price - product.selling_price) / product.retail_price) * 100;
+                let discount_rounded = Math.round(discount_percentage / 10) * 10;
+                let productHtml = `
+                    <div class="product-wrap">
+                        <div class="product text-center">
+                            <figure class="product-media">
+                                <a href="${siteurl}/productVar/${product.id}">
+                                    <img src="${siteurl}/assets/images/products/${product.product_image}" alt="${product.product_name}" width="300" height="200" />
+                                </a>
+                                <div class="product-action-horizontal">
+                                    <a href="#" class="btn-product-icon btn-cart w-icon-cart" title="Add to cart"></a>
+                                    <a href="#" class="btn-product-icon btn-wishlist w-icon-heart" title="Wishlist"></a>
+                                    <a href="javascript:void(0)" onclick="showQuickView('${product.id}')" class="btn-product-icon btn-quickview w-icon-search" title="Quick View"></a>
+                                </div>
+                            </figure>
+                            <div class="product-details">
+                                <div class="product-cat">
+                                    <a href="${siteurl}/vendorDetails/${product.vendor_id}">${product.shop_name}</a>
+                                </div>
+                                <h3 class="product-name">
+                                    <a href="${siteurl}/productVar/${product.id}">${product.product_name}</a>
+                                </h3>
+                                <div class="ratings-container">
+                                    <div class="ratings-full">
+                                        <span class="ratings" style="width:100%;"></span>
+                                        <span class="tooltiptext tooltip-top"></span>
+                                    </div>
+                                    <a href="#" class="rating-reviews">(3 reviews)</a>
+                                </div>
+                                <div class="product-pa-wrapper">
+                                    <div class="product-price">₹${product.selling_price}</div>
+                                    <div class="product-price-discount"><del>₹${product.retail_price}</del></div>
+                                    <div class="product-offer-percentage">${discount_rounded}% Off</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>`;
+                $('#productslist').append(productHtml);
+            });
+        } else {
+            $('#productslist').append(`
+                <div align="center">
+                    <img src="${siteurl}/assets/images/banners/outofstock.png" alt="Out Of Stock" width="190" height="190">
+                </div>
+            `);
+        }
+    },
+    error: function(xhr, status, error) {
+        console.error(error);
+    }
+});
+
+}
 </script>
  @endsection

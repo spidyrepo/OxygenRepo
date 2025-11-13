@@ -301,6 +301,7 @@ class HomeController extends Controller
     }
     public function subcategoryshow($category_id)
     {
+        
 
         $products = Products::where('category_sub', $category_id)->where('status', 1)->select('id', 'category_sub', 'product_name', 'product_image', 'offers', 'collection')->take(20)->get();
 
@@ -318,15 +319,13 @@ class HomeController extends Controller
             ->leftJoin('products', 'products.id', '=', 'products_details.products_id')
             ->select(DB::raw('DISTINCT(products_details.attributevalue1) as color'))
             ->where('products.category_sub', $category_id)
-            ->pluck('color');  // Use pluck to directly get an array of colors
+            ->pluck('color');  
 
-        $colors = $productcolors->toArray();  // Convert to array if needed
+        $colors = $productcolors->toArray();  
         $maincolors = array("Black", "White", "Gray", "Silver", "Maroon", "Red", "Purple", "Fuchsia", "Green", "Lime", "Olive", "Yellow", "Navy", "Blue", "Teal");
 
-        // Merge the arrays and remove duplicates
         $mergedColors = array_unique(array_merge($maincolors, $colors));
 
-        // Optional: reindex the array if needed
         $mergedColors = array_values($mergedColors);
 
         //dd($mergedColors); 

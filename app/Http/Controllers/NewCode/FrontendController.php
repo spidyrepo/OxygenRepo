@@ -214,11 +214,11 @@ class FrontendController extends Controller
                 $resultArr[$productId]['retail_amount'][] = $val->retail_amount;
             }
 
-             if (! in_array($val->selling_amount, $resultArr[$productId]['selling_amount'])) {
+            if (! in_array($val->selling_amount, $resultArr[$productId]['selling_amount'])) {
                 $resultArr[$productId]['selling_amount'][] = $val->selling_amount;
             }
 
-             if (! in_array($val->size, $resultArr[$productId]['size'])) {
+            if (! in_array($val->size, $resultArr[$productId]['size'])) {
                 $resultArr[$productId]['size'][] = $val->size;
             }
 
@@ -257,17 +257,17 @@ class FrontendController extends Controller
     {
         $prouctsList = $this->getProduct($id);
         $imageList   = $this->getProductImageList($id);
-         $getSpecificProduct =  ProductsDetails::with('product', 'product.CategoryChild')
+        $getSpecificProduct =  ProductsDetails::with('product', 'product.CategoryChild')
             ->where('id', $id)->first();
         $getProduct = Products::where('product_id', $getSpecificProduct->products_id)->first();
-        
+
         $ProductSpecs = ProductSpecs::where('products_id', $getSpecificProduct->products_id)->get();
 
-         $vendor_name = Vendor::where('id', $getProduct->vendor_id)->value('shop_name');
+        $vendor_name = Vendor::where('id', $getProduct->vendor_id)->value('shop_name');
 
         // print_r($getProduct->vendor_id);exit;
         $vendor_details = vendorcreate::where('id', $getProduct->created_by)->first();
-        return view('frontend/product', compact('id','vendor_details', 'prouctsList', 'imageList','getSpecificProduct','ProductSpecs'));
+        return view('frontend/product', compact('id', 'vendor_details', 'prouctsList', 'imageList', 'getSpecificProduct', 'ProductSpecs'));
     }
 
     public function quickView($id)
@@ -307,7 +307,7 @@ class FrontendController extends Controller
 
 
 
-    public function getProductByCategory( $category_id  = '', $sub_category_id = '')
+    public function getProductByCategory($category_id  = '', $sub_category_id = '')
     {
         $productsData = Products::from('products as p')
             ->leftJoin('category as c', 'c.id', '=', 'p.category')
@@ -315,7 +315,7 @@ class FrontendController extends Controller
             ->leftJoin('category_main as cm', 'cm.id', '=', 'p.category_main')
             ->leftJoin('products_details as pd', 'pd.products_id', '=', 'p.id')
             ->leftJoin('vendor_details as vp', 'vp.id', '=', 'p.vendor_id');
-        
+
         if ($category_id != '') {
             $productsData = $productsData->where('p.category', $category_id);
         }
@@ -366,7 +366,7 @@ class FrontendController extends Controller
 
 
 
-    public function getProductByMainCategory($main_category_id = '' )
+    public function getProductByMainCategory($main_category_id = '')
     {
         $productsData = Products::from('products as p')
             ->leftJoin('category as c', 'c.id', '=', 'p.category')
@@ -374,12 +374,14 @@ class FrontendController extends Controller
             ->leftJoin('category_main as cm', 'cm.id', '=', 'p.category_main')
             ->leftJoin('products_details as pd', 'pd.products_id', '=', 'p.id')
             ->leftJoin('vendor_details as vp', 'vp.id', '=', 'p.vendor_id');
+
         if ($main_category_id != '') {
             $productsData = $productsData->where('p.category_main', $main_category_id);
         }
 
         $productsData = $productsData->select(
             'p.id',
+            'p.category_main',
             'p.vendor_id',
             'p.product_name',
             'p.product_image',
@@ -394,12 +396,15 @@ class FrontendController extends Controller
             'pd.attributevalue1 as color',
             'pd.product_detail_image'
         )->get();
+
+
         $resultArr = [];
         foreach ($productsData as $val) {
             $productId = $val->id;
             if (! isset($resultArr[$productId])) {
                 $resultArr[$productId] = [
                     'id'                 => $val->id,
+                    'category_id'        => $val->category_main,
                     'vendor_id'          => $val->vendor_id,
                     'product_name'       => $val->product_name,
                     'product_image'      => $val->product_image,
@@ -414,6 +419,7 @@ class FrontendController extends Controller
             }
         }
 
+
         return $resultArr;
     }
 
@@ -423,9 +429,23 @@ class FrontendController extends Controller
 
         $prouctsList = $this->getProductByMainCategory($main_category_id);
 
+
         $categories = Category::where('main_category_id', $main_category_id)->get();
 
-        return view('frontend/main_category', compact('prouctsList', 'categories'));
+        $productcolors = DB::table('products_details')
+            ->leftJoin('products', 'products.id', '=', 'products_details.products_id')
+            ->select(DB::raw('DISTINCT(products_details.attributevalue1) as color'))
+            ->where('products.category_sub', $main_category_id)
+            ->pluck('color');
+
+        $colors = $productcolors->toArray();
+        $maincolors   = array("Black", "White", "Gray", "Silver", "Maroon", "Red", "Purple", "Fuchsia", "Green", "Lime", "Olive", "Yellow", "Navy", "Blue", "Teal");
+
+        $mergedColors = array_unique(array_merge($maincolors, $colors));
+
+        $colours = array_values($mergedColors);
+
+        return view('frontend/main_category', compact('prouctsList', 'categories', 'colours'));
     }
 
 
@@ -492,5 +512,101 @@ class FrontendController extends Controller
         $records = Cart::getContent();
         $total   = Cart::getTotal();
         return view('frontend.checkout', compact('count', 'records', 'total'));
+    }
+
+    public function getFilterProducts(Request $request)
+    {
+        $main_category_id = $request->category_id;
+        $minprice = $request->minprice;
+        $maxprice = $request->maxprice;
+        $orderby = $request->orderby;
+
+        $productsQuery = Products::from('products as p')
+            ->leftJoin('category as c', 'c.id', '=', 'p.category')
+            ->leftJoin('category_sub as cs', 'cs.id', '=', 'p.category_sub')
+            ->leftJoin('category_main as cm', 'cm.id', '=', 'p.category_main')
+            ->leftJoin('products_details as pd', 'pd.products_id', '=', 'p.id')
+            ->leftJoin('vendor_details as vp', 'vp.id', '=', 'p.vendor_id')
+            ->where('p.status', 1);
+
+        if (!empty($main_category_id)) {
+            $productsQuery->where('p.category_main', $main_category_id);
+        }
+
+        if (!empty($minprice)) {
+            $productsQuery->where('pd.selling_price', '>=', $minprice);
+        }
+
+        if (!empty($maxprice)) {
+            $productsQuery->where('pd.selling_price', '<=', $maxprice);
+        }
+
+        if (!empty($request->color)) {
+            $productsQuery->whereIn('pd.attributevalue1', $request->color);
+        }
+
+        // switch ($orderby) {
+        //     case 'date':
+        //         $productsQuery->orderBy('p.created_at', 'desc');
+        //         break;
+        //     case 'price-low':
+        //         $productsQuery->orderBy('pd.selling_price', 'asc');
+        //         break;
+        //     case 'price-high':
+        //         $productsQuery->orderBy('pd.selling_price', 'desc');
+        //         break;
+          
+        // }
+
+        $products = $productsQuery->select(
+            'p.id',
+            'p.category_main',
+            'p.vendor_id',
+            'p.product_name',
+            'p.product_image',
+            'pd.selling_price',
+            'pd.retail_price',
+            'c.category_name',
+            'cs.category_sub_name',
+            'cm.category_main_name',
+            'vp.shop_name',
+            'vp.profile_image',
+            'pd.attributevalue2 as size',
+            'pd.attributevalue1 as color',
+            'pd.product_detail_image'
+        )->get();
+
+        $resultArr = [];
+        $discount_percentage = 0;
+        foreach ($products as $val) {
+            $productId = $val->id;
+
+
+            if ($val->retail_price > 0) {
+                $discount_percentage = round((($val->retail_price - $val->selling_price) / $val->retail_price) * 100);
+            }
+            if (!isset($resultArr[$productId])) {
+                $resultArr[$productId] = [
+                    'id'                 => $val->id,
+                    'category_id'        => $val->category_main,
+                    'vendor_id'          => $val->vendor_id,
+                    'product_name'       => $val->product_name,
+                    'product_image'      => $val->product_image,
+                    'selling_price'      => $val->selling_price,
+                    'retail_price'       => $val->retail_price,
+                    'category_name'      => $val->category_name,
+                    'category_sub_name'  => $val->category_sub_name,
+                    'category_main_name' => $val->category_main_name,
+                    'shop_name'          => $val->shop_name,
+                    'profile_image'      => $val->profile_image,
+                    'size'               => $val->size,
+                    'color'              => $val->color,
+                    'product_detail_image' => $val->product_detail_image,
+                    'discount'           => $discount_percentage,
+                ];
+            }
+        }
+
+        return response()->json(['products' => array_values($resultArr)]);
     }
 }

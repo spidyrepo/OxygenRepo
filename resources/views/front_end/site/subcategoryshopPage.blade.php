@@ -70,7 +70,7 @@
                                                     type="number" name="max_price" id="max_price" class="max_price text-center"
                                                     placeholder="₹max">
                                                 <button type="button"
-                                                    class="btn btn-primary btn-rounded" id="getproducts">Go</button>
+                                                    class="btn btn-primary btn-rounded" >Go</button>
                                             </form>
                                         </div>
                                     </div>
@@ -157,8 +157,9 @@
                                             @endforeach
                                         </div>
                                         </ul>
-                                       
                                     </div>
+
+
                                     @php $size=0; @endphp
                                     <!-- End of Collapsible Widget -->
                                     @foreach ($attributes as $group)
@@ -173,7 +174,7 @@
                                         <h3 class="widget-title"><span>{{ $group->attribute_group_name }}</span><span class="toggle-btn"></span></h3>
                                         <ul class="widget-body filter-items item-check mt-1">
                                         <div class="size-picker">
-                                        @foreach ($attr_val as $key => $value)
+                                            @foreach ($attr_val as $key => $value)
                                                 <div class="size-swatch" title="{{ $value }}">
                                                     <input type="checkbox" id="size{{ $value }}" name="size{{ $size }}[]" value="{{ $value }}" style="display: none;">
                                                     <label for="size{{ $value }}" > {{ $value }} </label>

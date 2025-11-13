@@ -21837,14 +21837,13 @@ aside .sp-sidebar-banner span {
   margin-bottom: 10px;
 }
 
-
 .range-value {
   display: inline-block;
   background: white;
   padding: 4px 8px;
   border: 1px solid #ccc;
   border-radius: 6px;
-  margin: 0 5px;
+  /* margin: 0 5px; */
   font-weight: bold;
 }
 
@@ -21870,4 +21869,41 @@ input[type="range"]::-webkit-slider-thumb {
   background: orange;
   border-radius: 50%;
   cursor: pointer;
+}
+
+.color-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.color-swatch {
+  width: 25px;
+  height: 25px;
+  position: relative;
+}
+
+.color-swatch label {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  position: relative;
+  transition: border 0.2s ease-in-out;
+}
+
+.color-swatch input:checked + label {
+  border: 2px solid orange;
+}
+
+.color-swatch input:checked + label::after {
+  content: "✔";
+  color: white;
+  font-size: 16px;
+  position: absolute;
+  top: 2px;
+  left: 4px;
+  font-weight: bold;
 }
