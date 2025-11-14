@@ -7,8 +7,14 @@
             <nav class="breadcrumb-nav">
                 <div class="container">
                     <ul class="breadcrumb bb-no">
-                        <li><a href="demo1.html">Home</a></li>
-                        <li>Shop</li>
+                      
+                        <li><a href="{{ url('demoEight')}}">Home</a></li>
+                        <li><a href="{{ url( 'mainCategoryShop/'.$main_category->id ) }}">  {{ $main_category->category_main_name  }} </a> </li>
+                        <li><a href="{{ url( 'categoryShop/'.$category->id ) }}">  {{$category->category_name  }} </a> </li>
+                        <?php  if(isset($sub_category)) {  ?>
+                            <li><a href="{{ url( 'categoryShop/'.$category->id.'/'.$sub_category->id ) }}">  {{$sub_category->category_sub_name  }} </a> </li>
+                        <?php }  ?>
+
                     </ul>
                 </div>
             </nav>
@@ -49,7 +55,7 @@
                         }">
                             <div class="swiper-wrapper row gutter-lg cols-xl-8 cols-lg-7 cols-md-6 cols-sm-4 cols-xs-3 cols-2">
                               
-                              	@foreach($sub_categories as $sc )
+                              	@foreach($sub_categories_menu as $sc )
 
                                     <div class="swiper-slide category-wrap">
                                         <div class="category category-ellipse">

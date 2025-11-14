@@ -429,8 +429,10 @@ class FrontendController extends Controller
 
         $prouctsList = $this->getProductByMainCategory($main_category_id);
 
-
         $categories = Category::where('main_category_id', $main_category_id)->get();
+
+        $main_category = CategoryMain::where('id', $main_category_id)->first();
+
 
         $productcolors = DB::table('products_details')
             ->leftJoin('products', 'products.id', '=', 'products_details.products_id')
@@ -445,27 +447,32 @@ class FrontendController extends Controller
 
         $colours = array_values($mergedColors);
 
-        return view('frontend/main_category', compact('prouctsList', 'categories', 'colours','main_category_id'));
+        return view('frontend/main_category', compact('prouctsList', 'categories', 'colours', 'main_category'));
     }
 
 
     public function categoryShop($category_id, $sub_category_id = '')
     {
 
+        $category = Category::where('id', $category_id)->first();
+        $main_category = CategoryMain::where('id',  $category->main_category_id)->first();
+        $sub_category = CategorySub::where('id',  $sub_category_id)->first();
+
+
         $product = Products::where('status', 1)
-            ->where('category_main', $category_id);
+            ->where('category', $category_id);
 
         if ($sub_category_id > 0) {
             $product->where('category_sub', $sub_category_id);
         }
         $product->get();
 
-        $sub_categories = CategorySub::where('category_id', $category_id)->where('status', 1)->get();
+        $sub_categories_menu = CategorySub::where('category_id', $category_id)->where('status', 1)->get();
 
 
         $prouctsList = $this->getProductByCategory($category_id, $sub_category_id);
 
-        return view('frontend/category', compact('product', 'sub_categories', 'prouctsList'));
+        return view('frontend/category', compact('product', 'sub_categories_menu', 'prouctsList','main_category','category','sub_category'));
     }
 
 
@@ -555,7 +562,7 @@ class FrontendController extends Controller
         //     case 'price-high':
         //         $productsQuery->orderBy('pd.selling_price', 'desc');
         //         break;
-          
+
         // }
 
         $products = $productsQuery->select(

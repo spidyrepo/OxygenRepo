@@ -9,8 +9,10 @@
             <nav class="breadcrumb-nav">
                 <div class="container">
                     <ul class="breadcrumb bb-no">
-                        <li><a href="demo1.html">Home</a></li>
-                        <li>Shop</li>
+
+                        <li><a href="{{ url('demoEight')}}">Home</a></li>
+                        <li><a href="{{ url( 'mainCategoryShop/'.$main_category->id ) }}">  {{ $main_category->category_main_name  }} </a> </li>
+
                     </ul>
                 </div>
             </nav>
@@ -71,7 +73,7 @@
                               
                             </div>
 
-                            <input  type="hidden"  id="category_id" value="<?= $main_category_id  ?>">
+                            <input  type="hidden"  id="category_id" value="<?= $main_category->id  ?>">
 
                             
                             <div class="swiper-pagination"></div>
