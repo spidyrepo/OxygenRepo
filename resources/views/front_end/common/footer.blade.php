@@ -1060,8 +1060,6 @@ use Illuminate\Support\Facades\Auth;
         } else {
 
         }
-
-
     }
     var i = 0;
 

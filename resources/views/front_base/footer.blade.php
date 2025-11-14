@@ -708,7 +708,7 @@
                         <div class="tab-pane active" id="sign-in">
                             <form id="login-form" class="ebb-form" autocomplete="Off">
                                 <div class="form-group">
-                                    <label>Username or email address *</label>
+                                    <label>Mobile*</label>
                                     <input type="text" class="form-control" name="username" id="login_username" required>
                                 </div>
                                 <div class="form-group mb-0">
@@ -963,8 +963,201 @@
         });
     }
 
+    function cuslogin() {
+        var username = $('#login_username').val();
+        var password = $('#login_password').val();
+        var url = '<?= url('Cuslogin') ?>';
+        if (username != '' && password != '') {
 
-       console.log("WOLMART = " + Wolmart);
+            $.ajax({
+
+                url: url,
+                type: "GET",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "username": username,
+                    "password": password
+                },
+
+                dataType: "json",
+                success: function(data) {
+                    console.log(data);
+                    if (data.msg == 'Success') {
+                        swal("Success!", "Login Successfully", "success");
+                        location.reload();
+                    } else {
+                        //alert(data.msg);
+                        swal("Warning!", "Username And Password is Wrong", "error");
+                    }
+
+
+                },
+                error: function(data) {
+                    console.log('Error:', data);
+                }
+            });
+        } else {
+
+            swal("Warning!", "Fill All Form Details", "warning");
+
+        }
+    }
+
+    $('#forget-mail').click(function() {
+
+        var email = $('#lost_email').val();
+        if (email != '') {
+
+            $.ajax({
+
+                url: url + '/Forget_password',
+                type: "GET",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "email": email
+                },
+
+                dataType: "json",
+                success: function(data) {
+                    console.log(data);
+                    if (data.msg == 'Success') {
+                        swal("Success!", "Password Send Your Mail Id", "success");
+
+                    } else {
+
+                        swal("Warning!", data.msg, "error");
+                    }
+
+
+                },
+                error: function(data) {
+                    console.log('Error:', data);
+                }
+            });
+        } else {
+
+            swal("Warning!", "Fill All Form Details", "warning");
+
+        }
+
+    });
+     function cusregister() {
+        var customer_name = $('#register_username').val();
+        var customer_mobileno = $('#register_mobile').val();
+        var customer_email = $('#register_email').val();
+        var customer_password = $('#register_password').val();
+        var customer_cpassword = $('#register_cpassword').val();
+        var url = '<?= url('CusRegister') ?>';
+        if (customer_password != customer_cpassword) {
+            swal("Warning!", "Password Miss Matched", "warning");
+        } else if (customer_name != '' && customer_mobileno != '' && customer_password != '' && customer_cpassword != '') {
+            $('#reg-btn1').show();
+            $('#reg-btn2').hide();
+            $.ajax({
+                url: url,
+                type: "GET",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "customer_name": customer_name,
+                    "customer_mobileno": customer_mobileno,
+                    "customer_email": customer_email,
+                    "customer_password": customer_password
+
+                },
+
+                dataType: "json",
+                success: function(data) {
+                    console.log(data);
+                    if (data.msg == 'Success') {
+                        swal("Success!", "Registered  Successfully", "success");
+
+                        location.reload();
+                    } else {
+                        //alert(data.msg);
+                        swal("Failed", "Mobile Number Already Registered", "error");
+                    }
+                    $('#reg-btn1').hide();
+                    $('#reg-btn2').show();
+
+                },
+                error: function(data) {
+                    console.log('Error:', data);
+                    $('#reg-btn1').hide();
+                    $('#reg-btn2').show();
+                }
+            });
+        } else {
+
+            swal("Warning!", "Fill All Form Details", "warning");
+
+        }
+
+    }
+
+    function pass_verify(pass) {
+
+        if (pass.length < 8) {
+            //swal("Warning!", "Password Minimum 8 Character", "warning");
+
+            $('#register_password').val('');
+        }
+    }
+
+    function cpass_verify(cpass) {
+        var pass = $('#register_password').val();
+        if (pass.length < 8) {
+            swal("Warning!", "Password Minimum 8 Character", "warning");
+
+        } else if (pass != cpass) {
+            swal("Warning!", "Password Miss Matched", "warning");
+            $('#register_cpassword').val('');
+        }
+    }
+
+    function opass_verify(cpass) {
+        var pass = $('#cpd').val();
+        if (pass != cpass) {
+            swal("Warning!", "Old Password Miss Matched", "warning");
+            $('#customer_opassword').val('');
+        }
+    }
+
+    function isEmail(email) {
+        var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
+        if (email == '') {
+
+            swal("Warning!", "Enter the Email ID", "warning");
+        } else if (regex.test(email) == false) {
+
+
+            swal("Warning!", "Invalid Email ID", "warning");
+            $('#register_email').val('');
+        } else {
+
+        }
+    }
+
+    function verify_mobile(id) {
+
+        var mobile = id;
+
+
+
+        var reg = /(6|7|8|9)\d{9}/;
+
+        if (mobile == '') {
+
+            swal("Warning!", "Enter the Mobile Number", "warning");
+        } else if (reg.test(mobile) == false) {
+
+
+            swal("Warning!", "Invalid Mobile Number", "warning");
+            $("#register_mobile").val('');
+        } else {
+
+        }
+    }
    </script>
    </body>
 
