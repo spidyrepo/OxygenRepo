@@ -445,7 +445,7 @@ class FrontendController extends Controller
 
         $colours = array_values($mergedColors);
 
-        return view('frontend/main_category', compact('prouctsList', 'categories', 'colours'));
+        return view('frontend/main_category', compact('prouctsList', 'categories', 'colours','main_category_id'));
     }
 
 

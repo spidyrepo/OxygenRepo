@@ -2,7 +2,7 @@
  @section('title','Vendor Products')
  @section('content')
 
-
+ 
   <!-- Start of Main -->
         <main class="main">
             <!-- Start of Breadcrumb -->
@@ -48,7 +48,7 @@
                               
                               	@foreach($categories as $category )
 
-                              <?=   $category_id = $category->id; ?>
+                             
                                 <div class="swiper-slide category-wrap">
                                     <div class="category category-ellipse">
                                        <center>
@@ -71,7 +71,7 @@
                               
                             </div>
 
-                            <input  type="hidden"  id="category_id" value="<?= $category_id  ?>">
+                            <input  type="hidden"  id="category_id" value="<?= $main_category_id  ?>">
 
                             
                             <div class="swiper-pagination"></div>
