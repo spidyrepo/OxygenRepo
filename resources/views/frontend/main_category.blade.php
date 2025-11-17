@@ -1,5 +1,5 @@
    @extends('app_template')
- @section('title','Vendor Products')
+ @section('title',' Products')
  @section('content')
 
  
@@ -102,8 +102,8 @@
                                                 </label>
 
                                                 <div class="double-range">
-                                                    <input type="range" id="minPrice" min="0" max="5000" step="10" value="0">
-                                                    <input type="range" id="maxPrice" min="0" max="5000" step="10" value="5000">
+                                                    <input class="price-filter" type="range" id="minPrice" min="0" max="5000" step="10" value="0">
+                                                    <input class="price-filter" type="range" id="maxPrice" min="0" max="5000" step="10" value="5000">
                                                 </div>
 
                                             </div>
@@ -138,11 +138,10 @@
                                             class="w-icon-category"></i><span>Filters</span></a>
                                     <div class="toolbox-item toolbox-sort select-box text-dark">
                                         <label>Sort By :</label>
-                                        <select name="orderby" class="form-control">
+                                        <select name="orderby" id="orderby" class="form-control">
                                             <option value="default" selected="selected">Default sorting</option>
-                                            <option value="date">Sort by latest</option>
-                                            <option value="price-low">Sort by pric: low to high</option>
-                                            <option value="price-high">Sort by price: high to low</option>
+                                            <option value="price-low">Low to High</option>
+                                            <option value="price-high">High to Low</option>
                                         </select>
                                     </div>
                                 </div>
@@ -242,132 +241,138 @@
 
 
 
-        <script>
-const minPrice = document.getElementById('minPrice');
-const maxPrice = document.getElementById('maxPrice');
-const minPriceValue = document.getElementById('minPriceValue');
-const maxPriceValue = document.getElementById('maxPriceValue');
+    <script>
+        const minPrice = document.getElementById('minPrice');
+        const maxPrice = document.getElementById('maxPrice');
+        const minPriceValue = document.getElementById('minPriceValue');
+        const maxPriceValue = document.getElementById('maxPriceValue');
 
-function updatePriceRange() {
-    let minVal = parseInt(minPrice.value);
-    let maxVal = parseInt(maxPrice.value);
+        function updatePriceRange() {
+            let minVal = parseInt(minPrice.value);
+            let maxVal = parseInt(maxPrice.value);
 
-    // prevent crossing the sliders
-    if (minVal > maxVal - 100) {
-        minPrice.value = maxVal - 100;
-        minVal = maxVal - 100;
-    }
+            // prevent crossing the sliders
+            if (minVal > maxVal - 100) {
+                minPrice.value = maxVal - 100;
+                minVal = maxVal - 100;
+            }
 
-    minPriceValue.textContent = `Rs. ${minVal}`;
-    maxPriceValue.textContent = `Rs. ${maxVal}`;
-}
-
-minPrice.addEventListener('input', updatePriceRange);
-maxPrice.addEventListener('input', updatePriceRange);
-
-
-
-
-  $(document).ready(function() {
-  
-        $('input[name="colors[]"]').on('change', function() {
-            getproducts();
-        });
-
-        $('#orderby').change(function() {
-            getproducts();
-        });
-      
-    });
-
-
-
-
-
-function getproducts()
-{
-  
-    let min_price = $('#min_price').length ? $('#min_price').val() : null;
-    
-    let max_price = $('#max_price').length ? $('#max_price').val() : null;
-    let orderby = $('#orderby').length ? $('#orderby').val() : null;
-    let category_id = $('#category_id').length ? $('#category_id').val() : null;
-    var checkedColors = [];            
-    $('input[name="colors[]"]:checked').each(function() {
-        checkedColors.push($(this).val());  
-    });
-
-
-
-    var siteurl = "{{ url('/') }}";
-   $.ajax({
-    url: "{{ route('get-filter-product') }}",
-    method: 'GET',
-    data: {
-        minprice: min_price,
-        maxprice: max_price,
-        orderby: orderby,
-        category_id: category_id,
-        color: checkedColors
-    },
-    success: function(data) {
-        $('#productslist').empty();
-
-        if (data.products.length > 0) {
-            $.each(data.products, function(index, product) {
-
-                  let discount_percentage = ((product.retail_price - product.selling_price) / product.retail_price) * 100;
-                let discount_rounded = Math.round(discount_percentage / 10) * 10;
-                let productHtml = `
-                    <div class="product-wrap">
-                        <div class="product text-center">
-                            <figure class="product-media">
-                                <a href="${siteurl}/productVar/${product.id}">
-                                    <img src="${siteurl}/assets/images/products/${product.product_image}" alt="${product.product_name}" width="300" height="200" />
-                                </a>
-                                <div class="product-action-horizontal">
-                                    <a href="#" class="btn-product-icon btn-cart w-icon-cart" title="Add to cart"></a>
-                                    <a href="#" class="btn-product-icon btn-wishlist w-icon-heart" title="Wishlist"></a>
-                                    <a href="javascript:void(0)" onclick="showQuickView('${product.id}')" class="btn-product-icon btn-quickview w-icon-search" title="Quick View"></a>
-                                </div>
-                            </figure>
-                            <div class="product-details">
-                                <div class="product-cat">
-                                    <a href="${siteurl}/vendorDetails/${product.vendor_id}">${product.shop_name}</a>
-                                </div>
-                                <h3 class="product-name">
-                                    <a href="${siteurl}/productVar/${product.id}">${product.product_name}</a>
-                                </h3>
-                                <div class="ratings-container">
-                                    <div class="ratings-full">
-                                        <span class="ratings" style="width:100%;"></span>
-                                        <span class="tooltiptext tooltip-top"></span>
-                                    </div>
-                                    <a href="#" class="rating-reviews">(3 reviews)</a>
-                                </div>
-                                <div class="product-pa-wrapper">
-                                    <div class="product-price">₹${product.selling_price}</div>
-                                    <div class="product-price-discount"><del>₹${product.retail_price}</del></div>
-                                    <div class="product-offer-percentage">${discount_rounded}% Off</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>`;
-                $('#productslist').append(productHtml);
-            });
-        } else {
-            $('#productslist').append(`
-                <div align="center">
-                    <img src="${siteurl}/assets/images/banners/outofstock.png" alt="Out Of Stock" width="190" height="190">
-                </div>
-            `);
+            minPriceValue.textContent = `Rs. ${minVal}`;
+            maxPriceValue.textContent = `Rs. ${maxVal}`;
         }
-    },
-    error: function(xhr, status, error) {
-        console.error(error);
-    }
-});
 
-}
-</script>
+        minPrice.addEventListener('input', updatePriceRange);
+        maxPrice.addEventListener('input', updatePriceRange);
+
+
+
+
+        $(document).ready(function() {
+    
+            $('input[name="colors[]"]').on('change', function() {
+                getproducts();
+            });
+
+            $('#orderby').change(function() {
+                getproducts();
+            });
+
+            $('.price-filter').change(function() {
+                getproducts();
+            });
+        
+        });
+
+
+
+
+
+        function getproducts()
+        {
+        
+            let min_price = $('#minPrice').length ? $('#minPrice').val() : null;
+            let max_price = $('#maxPrice').length ? $('#maxPrice').val() : null;
+        
+            let orderby = $('#orderby').length ? $('#orderby').val() : null;
+           
+            let category_id = $('#category_id').length ? $('#category_id').val() : null;
+
+            var checkedColors = [];            
+            $('input[name="colors[]"]:checked').each(function() {
+                checkedColors.push($(this).val());  
+            });
+
+            var siteurl = "{{ url('/') }}";
+            $.ajax({
+                url: "{{ route('get-filter-product') }}",
+                method: 'GET',
+                data: {
+                    minprice: min_price,
+                    maxprice: max_price,
+                    orderby: orderby,
+                    main_category_id: category_id,
+                    category_id: 0,
+                    sub_category_id: 0,
+                    color: checkedColors
+                },
+                success: function(data) {
+                    $('#productslist').empty();
+
+                    if (data.products.length > 0) {
+                        $.each(data.products, function(index, product) {
+
+                            let discount_percentage = ((product.retail_price - product.selling_price) / product.retail_price) * 100;
+                            let discount_rounded = Math.round(discount_percentage / 10) * 10;
+                            let productHtml = `
+                                <div class="product-wrap">
+                                    <div class="product text-center">
+                                        <figure class="product-media">
+                                            <a href="${siteurl}/productVar/${product.id}">
+                                                <img src="${siteurl}/assets/images/products/${product.product_image}" alt="${product.product_name}" width="300" height="200" />
+                                            </a>
+                                            <div class="product-action-horizontal">
+                                                <a href="#" class="btn-product-icon btn-cart w-icon-cart" title="Add to cart"></a>
+                                                <a href="#" class="btn-product-icon btn-wishlist w-icon-heart" title="Wishlist"></a>
+                                                <a href="javascript:void(0)" onclick="showQuickView('${product.id}')" class="btn-product-icon btn-quickview w-icon-search" title="Quick View"></a>
+                                            </div>
+                                        </figure>
+                                        <div class="product-details">
+                                            <div class="product-cat">
+                                                <a href="${siteurl}/vendorDetails/${product.vendor_id}">${product.shop_name}</a>
+                                            </div>
+                                            <h3 class="product-name">
+                                                <a href="${siteurl}/productVar/${product.id}">${product.product_name}</a>
+                                            </h3>
+                                            <div class="ratings-container">
+                                                <div class="ratings-full">
+                                                    <span class="ratings" style="width:100%;"></span>
+                                                    <span class="tooltiptext tooltip-top"></span>
+                                                </div>
+                                                <a href="#" class="rating-reviews">(3 reviews)</a>
+                                            </div>
+                                            <div class="product-pa-wrapper">
+                                                <div class="product-price">₹${product.selling_price}</div>
+                                                <div class="product-price-discount"><del>₹${product.retail_price}</del></div>
+                                                <div class="product-offer-percentage">${discount_rounded}% Off</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>`;
+                            $('#productslist').append(productHtml);
+                        });
+                    } else {
+                        $('#productslist').append(`
+                            <div align="center">
+                                <img src="${siteurl}/assets/images/banners/outofstock.png" alt="Out Of Stock" width="190" height="190">
+                            </div>
+                        `);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error(error);
+                }
+            });
+
+        }
+    </script>
  @endsection

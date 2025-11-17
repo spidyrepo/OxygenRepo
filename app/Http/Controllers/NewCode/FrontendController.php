@@ -441,6 +441,7 @@ class FrontendController extends Controller
             ->pluck('color');
 
         $colors = $productcolors->toArray();
+
         $maincolors   = array("Black", "White", "Gray", "Silver", "Maroon", "Red", "Purple", "Fuchsia", "Green", "Lime", "Olive", "Yellow", "Navy", "Blue", "Teal");
 
         $mergedColors = array_unique(array_merge($maincolors, $colors));
@@ -469,10 +470,28 @@ class FrontendController extends Controller
 
         $sub_categories_menu = CategorySub::where('category_id', $category_id)->where('status', 1)->get();
 
-
         $prouctsList = $this->getProductByCategory($category_id, $sub_category_id);
 
-        return view('frontend/category', compact('product', 'sub_categories_menu', 'prouctsList','main_category','category','sub_category'));
+
+
+        $productcolors = DB::table('products_details')
+            ->leftJoin('products', 'products.id', '=', 'products_details.products_id')
+            ->select(DB::raw('DISTINCT(products_details.attributevalue1) as color'))
+            ->where('products.category', $category_id);
+
+        if ($sub_category_id > 0) {
+            $productcolors->where('products.category_sub', $sub_category_id);
+        }
+
+        $colors = $productcolors->pluck('color')->toArray();
+
+        $maincolors   = array("Black", "White", "Gray", "Silver", "Maroon", "Red", "Purple", "Fuchsia", "Green", "Lime", "Olive", "Yellow", "Navy", "Blue", "Teal");
+
+        $mergedColors = array_unique(array_merge($maincolors, $colors));
+
+        $colours = array_values($mergedColors);
+
+        return view('frontend/category', compact('product', 'sub_categories_menu', 'prouctsList', 'main_category', 'category', 'sub_category', 'colours'));
     }
 
 
@@ -521,9 +540,13 @@ class FrontendController extends Controller
         return view('frontend.checkout', compact('count', 'records', 'total'));
     }
 
+
+
     public function getFilterProducts(Request $request)
     {
-        $main_category_id = $request->category_id;
+        $main_category_id = $request->main_category_id;
+        $category_id = $request->category_id;
+        $sub_category_id = $request->sub_category_id;
         $minprice = $request->minprice;
         $maxprice = $request->maxprice;
         $orderby = $request->orderby;
@@ -540,6 +563,14 @@ class FrontendController extends Controller
             $productsQuery->where('p.category_main', $main_category_id);
         }
 
+        if (!empty($category_id)) {
+            $productsQuery->where('p.category', $category_id);
+        }
+
+        if (!empty($sub_category_id)) {
+            $productsQuery->where('p.category_sub', $sub_category_id);
+        }
+
         if (!empty($minprice)) {
             $productsQuery->where('pd.selling_price', '>=', $minprice);
         }
@@ -552,18 +583,14 @@ class FrontendController extends Controller
             $productsQuery->whereIn('pd.attributevalue1', $request->color);
         }
 
-        // switch ($orderby) {
-        //     case 'date':
-        //         $productsQuery->orderBy('p.created_at', 'desc');
-        //         break;
-        //     case 'price-low':
-        //         $productsQuery->orderBy('pd.selling_price', 'asc');
-        //         break;
-        //     case 'price-high':
-        //         $productsQuery->orderBy('pd.selling_price', 'desc');
-        //         break;
-
-        // }
+        switch ($orderby) {
+            case 'price-low':
+                $productsQuery->orderBy('pd.selling_price', 'asc');
+                break;
+            case 'price-high':
+                $productsQuery->orderBy('pd.selling_price', 'desc');
+                break;
+        }
 
         $products = $productsQuery->select(
             'p.id',
@@ -616,4 +643,5 @@ class FrontendController extends Controller
 
         return response()->json(['products' => array_values($resultArr)]);
     }
+
 }
