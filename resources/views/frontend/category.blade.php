@@ -237,7 +237,7 @@
                             
 
                             </div>
-{{-- 
+                            {{-- 
                             <div class="toolbox toolbox-pagination justify-content-between">
                                 <p class="showing-info mb-2 mb-sm-0">
                                     Showing<span>1-12 of 60</span>Products
@@ -260,7 +260,8 @@
                                         </a>
                                     </li>
                                 </ul>
-                            </div> --}}
+                            </div> 
+                            --}}
                         </div>
                         <!-- End of Shop Main Content -->
                     </div>
