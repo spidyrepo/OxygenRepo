@@ -28,6 +28,12 @@ class FrontendController extends Controller
         return view('frontend/vendor_doken_store_grid', compact('vendorcreate'));
     }
 
+
+     public function myAccount()
+    {
+        return view('frontend/my_account');
+    }
+
     public function getProductImageList($id)
     {
         $imageList = ProductsDetails::from('products_details as pd')

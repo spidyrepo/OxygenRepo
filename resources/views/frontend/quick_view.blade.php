@@ -4,6 +4,13 @@
              <div class="product-gallery product-gallery-sticky">
                  <div class="swiper-container product-single-swiper swiper-theme nav-inner">
                      <div class="swiper-wrapper row cols-1 gutter-no">
+                         <div class="swiper-slide">
+                                     <figure class="product-image">
+                                         <img id="firstImg" src="<?php echo asset('assets') ?>/images/products/<?= $prouctsList[$id]['product_image']?>"
+                                             data-zoom-image="<?php echo asset('assets') ?>/images/products/<?= $prouctsList[$id]['product_image']?>"
+                                             alt="Water Boil Black Utensil" width="800" height="900">
+                                     </figure>
+                                 </div>
                          <?php
                             if (isset($imageList)) {
                                 foreach ($imageList as $row) { ?>
@@ -19,6 +26,8 @@
 
 
                      </div>
+
+
                      <button class="swiper-button-next"></button>
                      <button class="swiper-button-prev"></button>
                  </div>
@@ -28,21 +37,23 @@
                             'prevEl': '.swiper-button-prev'
                         }
                     }">
-                     <?php     
-                    
-                        if (isset($imageList)) {
-                            foreach ($imageList as $key=> $row) {                                                         
-                                ?>
-                             <div class="product-thumbs swiper-wrapper row cols-4 gutter-sm">
-                                 <div class="product-thumb swiper-slide">
-                                     <img src="<?php echo asset('assets') ?>/images/products/detail/<?= $row ?>" alt="Product Thumb" width="103"
+                     <div class="product-thumbs swiper-wrapper row cols-4 gutter-sm">
+                         <?php
+
+                            if (isset($imageList)) {
+                                foreach ($imageList as $key => $row) { ?>
+                                 <div onclick="setImage(this)" data-image="<?php echo asset('assets') ?>/images/products/detail/<?= $row ?>" class="product-thumb swiper-slide">
+                                     <img  src="<?php echo asset('assets') ?>/images/products/detail/<?= $row ?>" alt="Product Thumb" width="103"
                                          height="116">
                                  </div>
-                            </div>
-                         <?php } }   ?>
-                             
-                             <button class="swiper-button-next"></button>
-                             <button class="swiper-button-prev"></button>
+
+                         <?php }
+                            }   ?>
+                     </div>
+
+
+                     <!-- <button class="swiper-button-next"></button>
+                     <button class="swiper-button-prev"></button> -->
                  </div>
              </div>
          </div>
@@ -110,7 +121,7 @@
                  </div>
 
                  <div class="product-form">
-                     <a href="<?= url('/productVar/'.$prouctsList[$id]['id'] ) ?>" class="btn btn-primary ">
+                     <a href="<?= url('/productVar/' . $prouctsList[$id]['id']) ?>" class="btn btn-primary ">
                          <i class="w-icon-cart"></i>
                          <span>Add to Cart</span>
                      </a>
