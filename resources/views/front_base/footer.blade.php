@@ -1157,6 +1157,11 @@
 
         }
     }
+
+     function setImage(e) {
+            var img = $(e).attr('data-image');
+            $('#firstImg').attr('src', img);
+        }
    </script>
    </body>
 

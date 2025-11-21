@@ -97,6 +97,7 @@ Route::get('/checkoutPage', [FrontendController::class, 'checkoutPage'])->name('
 Route::get('/mainCategoryShop/{id}', [FrontendController::class, 'mainCategoryShop'])->name('mainCategoryShop');
 Route::get('categoryShop/{category_id}/{sub_category_id?}', [FrontendController::class, 'categoryShop'])->name('categoryShop');
 Route::get('get-filter-product/', [FrontendController::class, 'getFilterProducts'])->name('get-filter-product');
+Route::get('/myAccount', [FrontendController::class, 'myAccount'])->name('myAccount');
 
 
 /** NEW CODE END  */
