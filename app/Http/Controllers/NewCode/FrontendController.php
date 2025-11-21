@@ -17,6 +17,8 @@ use Darryldecode\Cart\Facades\CartFacade as Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\City;
+use App\Models\PinCode\PinCode;
+
 
 class FrontendController extends Controller
 {
@@ -235,6 +237,16 @@ class FrontendController extends Controller
 
     public function demoEight()
     {
+
+        
+
+
+
+
+
+
+        // dd($pincode);
+
         $mainslider = mainslider::where('status', 1)->get();
 
         $topCategories = CategoryMain::select('category_main.id', 'category_main.category_main_name', 'category_main.category_main_image', DB::raw('COUNT(products.id) as product_count'))
@@ -247,10 +259,25 @@ class FrontendController extends Controller
 
         $prouctsList = $this->getSpecificProduct('');
         $vendorcreate = vendorcreate::get();
-        $cities = City::get();
 
 
-        return view('frontend/demo_eight', compact('mainslider', 'topCategories', 'prouctsList', 'vendorcreate', 'cities'));
+        $pincode = session('pincode');
+
+        if ($pincode) {
+            $zonal_id = PinCode::where('name', $pincode)->value('zonal_id');
+
+            $locations = PinCode::where('zonal_id', $zonal_id)
+                ->select('area')
+                ->get();
+        } else {
+            $locations = PinCode::select('area')
+                ->inRandomOrder()
+                ->limit(8)
+                ->get();
+        }
+
+
+        return view('frontend/demo_eight', compact('mainslider', 'topCategories', 'prouctsList', 'vendorcreate', 'locations'));
     }
 
     public function productVar($id = '')
@@ -643,5 +670,4 @@ class FrontendController extends Controller
 
         return response()->json(['products' => array_values($resultArr)]);
     }
-
 }

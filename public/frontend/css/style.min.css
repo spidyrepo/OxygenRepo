@@ -21848,28 +21848,38 @@ aside .sp-sidebar-banner span {
 }
 
 .double-range {
-  position: relative;
-  height: 40px;
+    position: relative;
+    height: 40px;
 }
 
+/* RANGE BASE */
 .double-range input[type="range"] {
-  position: absolute;
-  width: 100%;
-  pointer-events: none;
-  appearance: none;
-  background: none;
-  height: 10px;
+    position: absolute;
+    width: 100%;
+    height: 8px;
+    -webkit-appearance: none;
+    background: transparent;
+    pointer-events: auto;  /* 🔥 ENABLE DRAGGING */
 }
 
-input[type="range"]::-webkit-slider-thumb {
-  pointer-events: auto;
-  appearance: none;
-  width: 20px;
-  height: 20px;
-  background: orange;
-  border-radius: 50%;
-  cursor: pointer;
+/* RANGE TRACK */
+input[type="range"]::-webkit-slider-runnable-track {
+    height: 8px;
+    background: #ddd;
+    border-radius: 5px;
 }
+
+/* RANGE THUMB */
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    background: orange;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-top: -5px; 
+}
+
 
 .color-picker {
   display: flex;

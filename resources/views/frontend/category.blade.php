@@ -104,9 +104,9 @@
                                         <div class="widget-body">
                                             <div class="range-container">
 
-                                                <label class="range-label pb-2">Price Range:
-                                                    <span class="range-value " id="minPriceValue">Rs. 0</span> -
-                                                    <span class="range-value" id="maxPriceValue">Rs. 5000</span>
+                                                <label class="range-label pb-2">
+                                                    <span class="range-value " id="minPriceValue">Rs. 0 </span> -
+                                                    <span class="range-value" id="maxPriceValue">Rs. 5000 </span>
                                                 </label>
 
                                                 <div class="double-range">

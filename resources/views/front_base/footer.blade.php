@@ -24,7 +24,6 @@
                                    <a href="#" class="social-icon social-twitter w-icon-twitter"></a>
                                    <a href="#" class="social-icon social-instagram w-icon-instagram"></a>
                                    <a href="#" class="social-icon social-youtube w-icon-youtube"></a>
-                                   <a href="#" class="social-icon social-pinterest w-icon-pinterest"></a>
                                </div>
                            </div>
                        </div>
@@ -103,7 +102,7 @@
            <p>Account</p>
        </a>
        <div class="cart-dropdown dir-up">
-           <a href="cart.html" class="sticky-link">
+            <a href="cart.html" class="sticky-link">
                <i class="w-icon-cart"></i>
                <p>Cart</p>
            </a>
