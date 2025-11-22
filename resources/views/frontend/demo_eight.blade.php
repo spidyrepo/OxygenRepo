@@ -2,6 +2,8 @@
  @section('title','Vendor Eight')
  @section('content')
  <!-- Start of Main -->
+
+ 
  <main class="main">
      <div class="container pb-2">
          <div class=" mt-4">
@@ -587,7 +589,7 @@
          </div>
          <!-- End of Swiper Container -->
 
-         <h2 class="title text-left mb-5 appear-animate">Our Vendors</h2>
+         <h2 class="title text-left mb-5 appear-animate"> Shops</h2>
          <div class="swiper-container swiper-theme  brands-wrapper br-sm mb-9 appear-animate"
              data-swiper-options="{
                     'autoplay': {
@@ -620,10 +622,19 @@
                 <div class="swiper-slide swiper-slide-vendor">
                      <figure>
                         <a href="<?= url('/vendorDetails/'.$row['id']) ?>" >
-                            <img style="border-radius: 50%" src="{{ asset('assets/images/vendor/profile/' . $row->profile_image) }}" alt="Brand" />
+                            <img style="border-radius: 50%; object-fit: cover; margin-top: 20px;" src="{{ asset('assets/images/vendor/profile/' . $row->profile_image) }}" alt="Brand" />
                         </a>
+
+                         <center>
+                            <figcaption style="margin-top: 20px; font-weight: 600;">
+                                    {{ $row->shop_name }}
+                                </figcaption>
+                        </center> 
                       
                      </figure>
+
+                       
+                              
                  </div>
 
                  <?php }
@@ -635,7 +646,7 @@
 
 
 
-           <h2 class="title text-left mb-5 appear-animate">Our Locations</h2>
+           <h2 class="title text-left mb-5 appear-animate"> Locations</h2>
          <div class="swiper-container swiper-theme  brands-wrapper br-sm mb-9 appear-animate"
              data-swiper-options="{
                     'autoplay': {
@@ -662,16 +673,16 @@
                 }">
              <div class="swiper-wrapper row cols-xl-8 cols-lg-6 cols-md-4 cols-sm-3 cols-2">
                  
-                @isset($cities)
-                    @foreach($cities as $row)
+                @isset($locations)
+                    @foreach($locations as $row)
                         <div class="swiper-slide swiper-slide-vendor text-center">
                             <figure>
                                 <img src="{{ asset('frontend/images/city.png') }}" 
-                                    alt="{{ $row->city_name }}" 
-                                    style="width:100px;height:100px;object-fit:cover;border-radius:50%;">
+                                    alt="{{ $row->area }}" 
+                                    style="width:150px;height:150px;object-fit:cover;border-radius:50%;">
                                 
                                 <figcaption style="margin-top: 8px; font-weight: 600;">
-                                    {{ $row->city_name }}
+                                    {{ $row->area }}
                                 </figcaption>
                             </figure>
                         </div>

@@ -86,14 +86,14 @@
 
                         
                         <!-- End of Dropdown Menu -->
-                        <span class="divider d-lg-show"></span>
+                        {{-- <span class="divider d-lg-show"></span> --}}
                         <a href="blog.html" class="d-lg-show">Blog</a>
-                        <a href="contact-us.html" class="d-lg-show">Contact Us</a>
-                        <a href="my-account.html" class="d-lg-show">My Account</a>
-                        <a href="javascript:void(0)" onclick="showLoginPopup()" class="d-lg-show login sign-in"><i
+                        <a href="contact-us.html" class="d-lg-show">Contact Us</a>  
+                        {{-- <a href="my-account.html" class="d-lg-show">My Account</a> --}}
+                        {{-- <a href="javascript:void(0)" onclick="showLoginPopup()" class="d-lg-show login sign-in"><i
                                 class="w-icon-account"></i>Sign In</a>
                         <span class="delimiter d-lg-show">/</span>
-                        <a href="javascript:void(0)" onclick="showLoginPopup()" class="ml-0 d-lg-show login register">Register</a>
+                        <a href="javascript:void(0)" onclick="showLoginPopup()" class="ml-0 d-lg-show login register">Register</a> --}}
                     </div>
                 </div>
             </div>
@@ -139,7 +139,13 @@
                         </div>
                         <a class="wishlist label-down link d-xs-show" href="wishlist.html">
                             <i class="w-icon-heart"></i>
-                            <span class="wishlist-label d-lg-show">Wishlist</span>
+                            <span class="wishlist-label d-lg-show mt-1">Wishlist</span>
+                        </a>
+
+                
+                            <a   href="javascript:void(0)" onclick="showLoginPopup()"  class="compare label-down link d-xs-show" >
+                                <i class="w-icon-account"  style="font-size:28px;"></i>
+                            <span class="compare-label d-lg-show mt-1">Login</span>
                         </a>
                         {{-- <a class="compare label-down link d-xs-show" href="compare.html">
                             <i class="w-icon-compare"></i>

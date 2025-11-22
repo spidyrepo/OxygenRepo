@@ -104,9 +104,9 @@
                                         <div class="widget-body">
                                             <div class="range-container">
 
-                                                <label class="range-label pb-2">Price Range:
-                                                    <span class="range-value " id="minPriceValue">Rs. 0</span> -
-                                                    <span class="range-value" id="maxPriceValue">Rs. 5000</span>
+                                                <label class="range-label pb-2">
+                                                    <span class="range-value " id="minPriceValue">Rs. 0 </span> -
+                                                    <span class="range-value" id="maxPriceValue">Rs. 5000 </span>
                                                 </label>
 
                                                 <div class="double-range">
@@ -237,7 +237,7 @@
                             
 
                             </div>
-{{-- 
+                            {{-- 
                             <div class="toolbox toolbox-pagination justify-content-between">
                                 <p class="showing-info mb-2 mb-sm-0">
                                     Showing<span>1-12 of 60</span>Products
@@ -260,7 +260,8 @@
                                         </a>
                                     </li>
                                 </ul>
-                            </div> --}}
+                            </div> 
+                            --}}
                         </div>
                         <!-- End of Shop Main Content -->
                     </div>

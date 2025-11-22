@@ -1,4 +1,7 @@
    <!-- Start of Footer -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  
    <footer class="footer appear-animate" data-animation-options="{
             'name': 'fadeIn'
         }">
@@ -24,7 +27,6 @@
                                    <a href="#" class="social-icon social-twitter w-icon-twitter"></a>
                                    <a href="#" class="social-icon social-instagram w-icon-instagram"></a>
                                    <a href="#" class="social-icon social-youtube w-icon-youtube"></a>
-                                   <a href="#" class="social-icon social-pinterest w-icon-pinterest"></a>
                                </div>
                            </div>
                        </div>
@@ -103,7 +105,7 @@
            <p>Account</p>
        </a>
        <div class="cart-dropdown dir-up">
-           <a href="cart.html" class="sticky-link">
+            <a href="cart.html" class="sticky-link">
                <i class="w-icon-cart"></i>
                <p>Cart</p>
            </a>
@@ -711,14 +713,17 @@
                                     <label>Mobile*</label>
                                     <input type="text" class="form-control" name="username" id="login_username" required>
                                 </div>
-                                <div class="form-group mb-0">
+                               <div class="form-group mb-0 position-relative">
                                     <label>Password *</label>
-                                    <input type="text" class="form-control" name="password" id="login_password" required>
+                                    <input type="password" class="form-control" name="password" id="login_password" required>
+
+                                    <i class="fa-solid fa-eye toggle-password" onclick="togglePassword()" 
+                                    style="position:absolute; right:10px; margin-top:-30px; cursor:pointer;"></i>
                                 </div>
                                 <div class="form-checkbox d-flex align-items-center justify-content-between">
                                     <input type="checkbox" class="custom-checkbox" id="remember1" name="remember1" required="">
                                     <label for="remember1">Remember me</label>
-                                    <a href="#">Last your password?</a>
+                                    <a href="">Last your password?</a>
                                 </div>
 
                                 <button type="button" class="btn btn-success" onclick="cuslogin()" id="cus_login">Login</button>
@@ -742,10 +747,18 @@
                                 <div class="form-group mb-5">
                                     <label>Password *</label>
                                     <input type="password" class="form-control" name="password_1" id="register_password" onblur="pass_verify(this.value)" placeholder="New Password" required autocomplete="new-pass">
+                                        <i class="fa-solid fa-eye toggle-password-1"
+                                            onclick="togglePasswordRegister('register_password', this)"
+                                            style="position:absolute; right:10px; margin-top:-30px; cursor:pointer;">
+                                        </i>
                                 </div>
                                 <div class="form-group mb-5">
-                                    <label>Password *</label>
+                                    <label>Confirm Password *</label>
                                     <input type="password" class="form-control" name="password_1" id="register_cpassword" onblur="cpass_verify(this.value)" placeholder="Confirm Password" autocomplete="off" required>
+                                    <i class="fa-solid fa-eye toggle-password-2"
+                                        onclick="togglePasswordRegister('register_cpassword', this)"
+                                        style="position:absolute; right:10px; margin-top:-30px; cursor:pointer;">
+                                    </i>
                                 </div>
 
                                 <div class="form-checkbox d-flex align-items-center justify-content-between mb-5">
@@ -790,6 +803,40 @@
    <script src="<?= asset('frontend') ?>/js/main.min.js"></script>
    <script src="<?= asset('frontend') ?>/js/notify.min.js"></script>
    <script>
+
+
+function togglePassword() {
+    var input = document.getElementById("login_password");
+    var icon = document.querySelector(".toggle-password");
+
+    if (input.type === "password") {
+        input.type = "text";
+        icon.classList.remove("fa-eye");
+        icon.classList.add("fa-eye-slash");
+    } else {
+        input.type = "password";
+        icon.classList.remove("fa-eye-slash");
+        icon.classList.add("fa-eye");
+    }
+}
+
+
+
+
+function togglePasswordRegister(inputId, icon) {
+    let input = document.getElementById(inputId);
+
+    if (input.type === "password") {
+        input.type = "text";
+        icon.classList.remove("fa-eye");
+        icon.classList.add("fa-eye-slash");
+    } else {
+        input.type = "password";
+        icon.classList.remove("fa-eye-slash");
+        icon.classList.add("fa-eye");
+    }
+}
+
 
 
  function showLoginPopup() {

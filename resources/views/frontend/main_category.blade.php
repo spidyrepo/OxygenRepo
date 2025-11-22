@@ -93,21 +93,24 @@
                                   
                                    <div class="widget widget-collapsible">
                                         <h3 class="widget-title"><label>Price</label></h3>
-                                        <div class="widget-body">
-                                            <div class="range-container">
+                                      <div class="widget-body">
+                                        <div class="range-container">
 
-                                                <label class="range-label pb-2">Price Range:
-                                                    <span class="range-value " id="minPriceValue">Rs. 0</span> -
-                                                    <span class="range-value" id="maxPriceValue">Rs. 5000</span>
-                                                </label>
+                                            <label class="range-label pb-2">
+                                                <span class="range-value" id="minPriceValue">Rs. 0</span> -
+                                                <span class="range-value" id="maxPriceValue">Rs. 5000</span>
+                                            </label>
 
-                                                <div class="double-range">
-                                                    <input class="price-filter" type="range" id="minPrice" min="0" max="5000" step="10" value="0">
-                                                    <input class="price-filter" type="range" id="maxPrice" min="0" max="5000" step="10" value="5000">
-                                                </div>
+                                         
 
+                                            <div class="double-range">
+                                                <input class="price-filter" type="range" id="minPrice" min="0" max="5000" step="10" value="0">
+                                                <input class="price-filter" type="range" id="maxPrice" min="0" max="5000" step="10" value="5000">
                                             </div>
+
                                         </div>
+                                    </div>
+
                                     </div>
 
 
