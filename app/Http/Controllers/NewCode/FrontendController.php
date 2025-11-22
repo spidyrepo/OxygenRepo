@@ -17,6 +17,8 @@ use Darryldecode\Cart\Facades\CartFacade as Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\City;
+use App\Models\Ecom_Customer_info;
+use Illuminate\Support\Facades\Session;
 
 class FrontendController extends Controller
 {
@@ -31,7 +33,11 @@ class FrontendController extends Controller
 
      public function myAccount()
     {
-        return view('frontend/my_account');
+
+        $customer_id = Session::get('customer_id');
+        $customer = Ecom_Customer_info::where('customer_id', $customer_id)->first();
+        
+        return view('frontend/my_account',compact('customer'));
     }
 
     public function getProductImageList($id)
