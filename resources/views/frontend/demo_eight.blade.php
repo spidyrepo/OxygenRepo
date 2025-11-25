@@ -647,7 +647,7 @@
 
 
            <h2 class="title text-left mb-5 appear-animate"> Locations</h2>
-         <div class="swiper-container swiper-theme  brands-wrapper br-sm mb-9 appear-animate"
+         <div class="swiper-container swiper-theme  brands-wrapper br-sm mb-9 appear-animate mt-2"
              data-swiper-options="{
                     'autoplay': {
                         'delay': 4000,
@@ -674,10 +674,10 @@
              <div class="swiper-wrapper row cols-xl-8 cols-lg-6 cols-md-4 cols-sm-3 cols-2">
                  
                 @isset($locations)
-                    @foreach($locations as $row)
+                    @foreach($locations as  $key=>$row)
                         <div class="swiper-slide swiper-slide-vendor text-center">
                             <figure>
-                                <img src="{{ asset('frontend/images/city.png') }}" 
+                                <img src="{{ asset('frontend/images/00' . $key+1 . '.jpg') }}"  
                                     alt="{{ $row->area }}" 
                                     style="width:150px;height:150px;object-fit:cover;border-radius:50%;">
                                 

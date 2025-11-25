@@ -10,14 +10,14 @@
             <nav class="breadcrumb-nav">
                 <div class="container">
                     <ul class="breadcrumb bb-no">
-                        <li><a href="demo1.html">Home</a></li>
-                        <li><a href="#">Vendor</a></li>
-                        <li><a href="#">Dokan</a></li>
-                        <li>Store</li>
+                        <li><a href="{{ route('demoEight') }}">Home</a></li>
+                        <li><a href="{{ route('vendorDokenGrid') }}">Shops</a></li>
+                        <li><a href="{{ route('vendorDetails', $vendordetails->id) }}">{{  $vendordetails->shop_name  }}</a></li>
+                  
                     </ul>
                 </div>
             </nav>
-            <!-- End of Breadcrumb -->
+      
 
             <!-- Start of Pgae Contetn -->
             <div class="page-content mb-8">
