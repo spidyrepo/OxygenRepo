@@ -13,7 +13,7 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="<?= asset('frontend') ?>/images/favicon.png">
-        <script src="<?= asset('frontend') ?>/vendor/jquery/jquery.min.js"></script>
+       
     <!-- WebFont.js -->
     <script>
         WebFontConfig = {
@@ -50,7 +50,7 @@
      <link rel="stylesheet" href="<?= asset('frontend') ?>/vendor/swiper/swiper-bundle.min.css">
     <link rel="stylesheet" type="text/css" href="<?= asset('frontend') ?>/css/demo8.min.css">
    
-   
+    <script src="<?= asset('frontend') ?>/vendor/jquery/jquery.min.js"></script>
    
 </head>
 
