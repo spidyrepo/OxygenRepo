@@ -12,6 +12,8 @@ use App\Models\Products\Products;
 use App\Models\Products\ProductsDetails;
 use App\Models\Products\ProductSpecs;
 use App\Models\Vendor;
+use App\Models\Offer\Offer;
+
 use App\Models\vendor\vendorcreate;
 use Darryldecode\Cart\Facades\CartFacade as Cart;
 use Illuminate\Http\Request;
@@ -33,13 +35,13 @@ class FrontendController extends Controller
     }
 
 
-     public function myAccount()
+    public function myAccount()
     {
 
         $customer_id = Session::get('customer_id');
         $customer = Ecom_Customer_info::where('customer_id', $customer_id)->first();
-        
-        return view('frontend/my_account',compact('customer'));
+
+        return view('frontend/my_account', compact('customer'));
     }
 
     public function getProductImageList($id)
@@ -250,7 +252,7 @@ class FrontendController extends Controller
     public function demoEight()
     {
 
-        
+
 
 
 
@@ -531,6 +533,27 @@ class FrontendController extends Controller
         $colours = array_values($mergedColors);
 
         return view('frontend/category', compact('product', 'sub_categories_menu', 'prouctsList', 'main_category', 'category', 'sub_category', 'colours'));
+    }
+
+
+    public function offers()
+    {
+        
+        $offer = Offer::get();
+        $vendorcreate = vendorcreate::get();
+        return view('frontend/offers', compact('offer', 'vendorcreate'));
+
+    }
+
+
+
+    public function offers_list()
+    {
+        
+        $offer = Offer::get();
+        $vendorcreate = vendorcreate::get();
+        return view('frontend/offers-products', compact('offer', 'vendorcreate'));
+
     }
 
 

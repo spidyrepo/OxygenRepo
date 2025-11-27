@@ -58,7 +58,7 @@
 								@endforeach
 								</ul>
 							@endif
-                            <form id="frmOffer" name="frmOffer" class="needs-validation" method="POST" action="{{ route('offer.main.store') }}">
+                            <form id="frmOffer" name="frmOffer" class="needs-validation" method="POST"    enctype="multipart/form-data"  action="{{ route('offer.main.store') }}">
 							 @csrf	
                                 <div class="row">
                                     <div class="col-sm-12">
@@ -69,6 +69,7 @@
                                                     required="">
                                             </div>
                                         </div>
+
                                         <div class="form-group row">
                                             <label class="mb-3"><b>Offer Type</b></label>
                                             <div class="col-md-12">
@@ -108,10 +109,26 @@
                                                 </div>
                                             </div>
                                         </div>
+
+
+                                       
                                     </div>
                                 </div>
                         </div>
                     </div>
+
+                     <div class="card">
+                        <div class="card-body">
+                            <div class="form-group row">
+                                <label for="validationCustom02" class="mb-1">Offer
+                                    Logo </label>
+
+                                <input class="form-control" name="offer_logo"
+                                    type="file" accept="image/*">
+                            </div>
+                        </div>
+                    </div>
+
 
                     <div class="card" id="buyxgetydiv" style="display: none;">
                         <div class="card-body">

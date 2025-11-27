@@ -45,32 +45,29 @@ class CategoryMainController extends Controller
     {
 
         $category_main = new CategoryMain();
-         $statement = DB::select("SHOW TABLE STATUS LIKE 'category_main'");
+        $statement = DB::select("SHOW TABLE STATUS LIKE 'category_main'");
         $next_maincategory_id = $statement[0]->Auto_increment;
 
         // $file = $request->main_category_image;
 
         // if ($file !== null) $filename = ImageUploadHelper::storeImage($file, $this->image_path);
-        if($request->file('main_category_image'))
-            {   
-                $category_image = $request->file('main_category_image');
-                
-                $image=$next_maincategory_id."_image.".$category_image->getClientOriginalExtension();
-                
-                $img = Image::make($category_image->getRealPath());
-                $image_path = "assets/images/categoryMain";
-                 $img->fit(400, 400)->save($image_path . '/' . $image);
-            
-                
-                
-                
-                $filename =  $image;
-            }
-            else
-            {
-                $filename ="";
-            }
-           
+        if ($request->file('main_category_image')) {
+            $category_image = $request->file('main_category_image');
+
+            $image = $next_maincategory_id . "_image." . $category_image->getClientOriginalExtension();
+
+            $img = Image::make($category_image->getRealPath());
+            $image_path = "assets/images/categoryMain";
+            $img->fit(400, 400)->save($image_path . '/' . $image);
+
+
+
+
+            $filename =  $image;
+        } else {
+            $filename = "";
+        }
+
 
         try {
             $category_main->category_main_name = $request->main_category_name;
@@ -95,9 +92,7 @@ class CategoryMainController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-    }
+    public function show($id) {}
 
     /**
      * Show the form for editing the specified resource.
@@ -108,21 +103,18 @@ class CategoryMainController extends Controller
     public function edit($id)
     {
         $category_main = CategoryMain::find($id);
-        if($category_main)
-        {
+        if ($category_main) {
             return response()->json([
 
-                'status'=>200,
-                'category_main'=>$category_main
-               
+                'status' => 200,
+                'category_main' => $category_main
+
             ]);
-        }
-        else
-        {
+        } else {
             return response()->json([
 
-                'status'=>404,
-                'message'=>'Package not found',
+                'status' => 404,
+                'message' => 'Package not found',
             ]);
         }
     }
@@ -136,10 +128,10 @@ class CategoryMainController extends Controller
      */
     public function update(Request $request, $id, FlasherInterface $flasher)
     {
-       
-    //echo 'test123';
+
+        //echo 'test123';
         $category_main = CategoryMain::find($id);
-      
+
         // if(isset($request->editmain_category_image))
         // {
         //     $file = $request->editmain_category_image;
@@ -148,33 +140,30 @@ class CategoryMainController extends Controller
         //     }
         // } else{
 
-           
+
         //     $filename = $request->oldeditmain_category_image;
         // }
-        
-             if($request->file('editmain_category_image'))
-            {   
-                $category_image = $request->file('editmain_category_image');
-                
-                $image=$category_main->id."_image.".$category_image->getClientOriginalExtension();
-                
-                $img = Image::make($category_image->getRealPath());
-                $image_path = "assets/images/categoryMain";
-                $img->fit(400, 400)->save($image_path . '/' . $image);
-            
-                
-                
-                
-                $filename =  $image;
-            }
-            else
-            {
-                $filename =$request->oldeditmain_category_image;
-            }
+
+        if ($request->file('editmain_category_image')) {
+            $category_image = $request->file('editmain_category_image');
+
+            $image = $category_main->id . "_image." . $category_image->getClientOriginalExtension();
+
+            $img = Image::make($category_image->getRealPath());
+            $image_path = "assets/images/categoryMain";
+            $img->fit(400, 400)->save($image_path . '/' . $image);
+
+
+
+
+            $filename =  $image;
+        } else {
+            $filename = $request->oldeditmain_category_image;
+        }
 
         try {
             $category_main->category_main_name = $request->editmain_category_name;
-            
+
             $category_main->category_main_sortorder = $request->editmain_category_sortorder;
             $category_main->category_main_keywords = $request->editmain_category_keywords;
             $category_main->category_main_image = $filename ?? "-";

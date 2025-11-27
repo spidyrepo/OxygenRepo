@@ -55,8 +55,8 @@
 								@endforeach
 								</ul>
 							@endif
-                            <form id="frmOffer" name="frmOffer" class="needs-validation" method="POST" action="{{ route('offer.main.update', $offer->id) }}">
-							 @method('PUT');
+                            <form id="frmOffer" name="frmOffer" class="needs-validation" method="POST"    enctype="multipart/form-data" action="{{ route('offer.main.update', $offer->id) }}">
+							 @method('PUT')
                                 @csrf	
 
                                     <?php 
@@ -518,6 +518,27 @@
                         </div>
                     </div>
                     @endif
+
+
+
+                    <input type="hidden" name="old_logo" value="{{ $offer->offer_logo }}" > 
+
+                     <div class="card">
+                        <div class="card-body row">
+                            <div class="form-group col-md-8">
+                                <label for="validationCustom02" class="mb-1">Offer
+                                    Logo </label>
+
+                                <input class="form-control" name="offer_logo"
+                                    type="file" accept="image/*">
+                            </div>
+
+                            <div class="form-group col-md-4 mt-2">
+                              <img src="{{ asset('assets/images/offer_logo') . '/' .  $offer->offer_logo }}" height="60" width="60">
+                            </div>
+                        </div>
+                    </div>
+
 
 
 

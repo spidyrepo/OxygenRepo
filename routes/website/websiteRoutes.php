@@ -99,6 +99,8 @@ Route::get('categoryShop/{category_id}/{sub_category_id?}', [FrontendController:
 Route::get('get-filter-product/', [FrontendController::class, 'getFilterProducts'])->name('get-filter-product');
 Route::get('/myAccount', [FrontendController::class, 'myAccount'])->name('myAccount');
 
+Route::get('/offers', [FrontendController::class, 'offers'])->name('offers');
+Route::get('/offers-list/{id}', [FrontendController::class, 'offers_list'])->name('offers-list');
 
 /** NEW CODE END  */
 

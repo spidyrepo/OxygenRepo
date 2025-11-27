@@ -66,11 +66,8 @@
    <th data-field="id" data-sortable="true">Id</th> 
    
    <th data-field="title" data-sortable="true">Offer Title</th>
+   <th data-field="logo" data-sortable="true">Offer Logo</th>
     <th data-field="otype" data-sortable="true">Offer Type</th>
-	
-    
-    
-	 
 	 <th data-field="dtype" data-sortable="true">Discount Type</th>
 	 <th data-field="value" data-sortable="true">Value</th>
 	 <th data-field="shold" data-sortable="true">Threshold</th>
@@ -106,6 +103,8 @@
                                                 <td>{{ $zzone.'-'. str_pad($attribute->created_by_id, 4, '0', STR_PAD_LEFT).'-'.str_pad($loop->iteration, 4, '0', STR_PAD_LEFT);  }}</td>
 
                                                 <td>{{ $attribute->title }}</td>
+                                                <td> <img src="{{ asset('assets/images/offer_logo') . '/' .  $attribute->offer_logo }}" height="60" width="60"></td>
+                                                 
 
                                                 <td>{{ $attribute->type }}</td>
 

@@ -455,7 +455,7 @@
                             </nav>
                         </div>
                         <div class="header-right">
-                            <a href="#"><i class="w-icon-sale"></i>Offer Products</a>
+                            <a href="{{ url('offers') }}"><i class="w-icon-sale"></i>Offer Products</a>
                             <a href="#" class="d-xl-show"><i class="w-icon-map-marker mr-1"></i>Track Order</a>
                         </div>
                     </div>

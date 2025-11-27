@@ -24,28 +24,29 @@
 
                     <div class="shop-default-category category-ellipse-section ">
                         <div class="swiper-container swiper-theme shadow-swiper"
-                            data-swiper-options="{
-                            'spaceBetween': 20,
-                            'slidesPerView': 2,
-                            'breakpoints': {
-                                '480': {
-                                    'slidesPerView': 3
-                                },
-                                '576': {
-                                    'slidesPerView': 4
-                                },
-                                '768': {
-                                    'slidesPerView': 6
-                                },
-                                '992': {
-                                    'slidesPerView': 7
-                                },
-                                '1200': {
-                                    'slidesPerView': 8,
-                                    'spaceBetween': 30
+                                data-swiper-options="{
+                                'spaceBetween': 20,
+                                'slidesPerView': 2,
+                                'breakpoints': {
+                                    '480': {
+                                        'slidesPerView': 3
+                                    },
+                                    '576': {
+                                        'slidesPerView': 4
+                                    },
+                                    '768': {
+                                        'slidesPerView': 6
+                                    },
+                                    '992': {
+                                        'slidesPerView': 7
+                                    },
+                                    '1200': {
+                                        'slidesPerView': 8,
+                                        'spaceBetween': 30
+                                    }
                                 }
-                            }
-                        }">
+                            }"
+                        >
                             <div class="swiper-wrapper row gutter-lg cols-xl-8 cols-lg-7 cols-md-6 cols-sm-4 cols-xs-3 cols-2">
                               
                               	@foreach($categories as $category )
