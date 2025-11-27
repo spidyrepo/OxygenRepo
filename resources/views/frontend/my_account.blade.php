@@ -34,7 +34,7 @@
                            <a href="#account-orders" class="nav-link">Orders</a>
                        </li>
                        <li class="nav-item">
-                           <a href="#account-downloads" class="nav-link">Downloads</a>
+                           <a href="#account-downloads" class="nav-link">Wallet</a>
                        </li>
                        <li class="nav-item">
                            <a href="#account-addresses" class="nav-link">Addresses</a>
@@ -90,10 +90,10 @@
                                    <a href="#account-downloads" class="link-to-tab">
                                        <div class="icon-box text-center">
                                            <span class="icon-box-icon icon-download">
-                                               <i class="w-icon-download"></i>
+                                               <i class="w-icon-wallet"></i>
                                            </span>
                                            <div class="icon-box-content">
-                                               <p class="text-uppercase mb-0">Downloads</p>
+                                               <p class="text-uppercase mb-0">Wallet</p>
                                            </div>
                                        </div>
                                    </a>
