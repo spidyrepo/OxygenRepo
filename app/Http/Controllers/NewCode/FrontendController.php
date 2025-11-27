@@ -538,22 +538,45 @@ class FrontendController extends Controller
 
     public function offers()
     {
-        
-        $offer = Offer::get();
-        $vendorcreate = vendorcreate::get();
-        return view('frontend/offers', compact('offer', 'vendorcreate'));
 
+        $offer_id  = isset($_GET['id']) ? $_GET['id'] : 0;
+
+        $offer = Offer::get();
+
+     $query = DB::table('vendor_details as vd')
+        ->leftJoin('products as p', 'p.vendor_id', '=', 'vd.id')
+        ->leftJoin('master_offers as o', 'o.id', '=', 'p.offers')
+        ->select(
+            'vd.*',
+            DB::raw('GROUP_CONCAT(DISTINCT p.product_name) as products'),
+            DB::raw('GROUP_CONCAT(DISTINCT o.title) as offers'),
+            DB::raw('GROUP_CONCAT(DISTINCT o.id) as offer_ids')
+        )
+        ->groupBy('vd.id');
+
+    // ✔ Filter Condition
+    if ($offer_id) {
+        // If offer_id passed → get vendors having that offer
+        $query->where('o.id', $offer_id);
+    } else {
+        // If NO offer_id passed → show vendors who have ANY offer
+        $query->whereNotNull('o.id');
+    }
+
+
+        $vendorcreate = $query->get();
+
+        return view('frontend/offers', compact('offer', 'vendorcreate'));
     }
 
 
 
     public function offers_list()
     {
-        
+
         $offer = Offer::get();
         $vendorcreate = vendorcreate::get();
         return view('frontend/offers-products', compact('offer', 'vendorcreate'));
-
     }
 
 
