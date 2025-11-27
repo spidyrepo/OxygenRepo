@@ -1031,9 +1031,8 @@ function togglePasswordRegister(inputId, icon) {
                     console.log(data);
                     if (data.msg == 'Success') {
                         swal("Success!", "Login Successfully", "success");
-                        location.reload();
+                        window.location.href="{{ route('myAccount') }}";
                     } else {
-                        //alert(data.msg);
                         swal("Warning!", "Username And Password is Wrong", "error");
                     }
 
