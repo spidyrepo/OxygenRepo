@@ -423,7 +423,7 @@ class FrontendController extends Controller
         }
         if ($offer_id != '') {
             $productsData = $productsData->where('p.offers', $offer_id);
-        }else{
+        } else {
             $productsData = $productsData->whereNotNull('p.offers');
         }
 
@@ -603,6 +603,11 @@ class FrontendController extends Controller
     {
 
         $offer_id  = isset($_GET['id']) ? $_GET['id'] : 0;
+         if ($offer_id != '') {
+            $offer_name = Offer::where('id', $offer_id)->value('title');
+        } else {
+            $offer_name = '';
+        }
 
         $offer = Offer::get();
 
@@ -625,7 +630,7 @@ class FrontendController extends Controller
 
         $vendorcreate = $query->get();
 
-        return view('frontend/offers', compact('offer', 'vendorcreate'));
+        return view('frontend/offers', compact('offer', 'vendorcreate','offer_id','offer_name'));
     }
 
 
@@ -635,10 +640,15 @@ class FrontendController extends Controller
         $offer = Offer::get();
 
         $offer_id = isset($_GET['id']) ? $_GET['id'] : '';
+        if ($offer_id != '') {
+            $offer_name = Offer::where('id', $offer_id)->value('title');
+        } else {
+            $offer_name = '';
+        }
 
         $prouctsList = $this->getProductByVendorOffers($vendor_id, $offer_id);
 
-        return view('frontend/offers-products', compact('offer', 'prouctsList','vendor_id'));
+        return view('frontend/offers-products', compact('offer', 'prouctsList', 'offer_id','vendor_id', 'offer_name'));
     }
 
 

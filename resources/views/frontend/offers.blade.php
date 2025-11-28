@@ -13,6 +13,12 @@
                         <li><a href="{{ url('demoEight')}}">Home</a></li>
                         <li><a href="{{ url( 'offers' ) }}"> Offers </a> </li>
 
+                        <?php if($offer_id > 0){  ?>
+                            <li><a href="{{ url( 'offers/?id='.$offer_id ) }}"> <?= $offer_name ?> </a> </li>
+                        <?php  } else {  ?>
+                            <li><a href="{{ url( 'offers') }}"> All </a> </li>
+                        <?php } ?>
+
                     </ul>
                 </div>
             </nav>
@@ -110,7 +116,7 @@
                                 <div class="toolbox-left mb-4 mb-md-0">
                                     {{-- <a href="#" class="btn btn-primary btn-outline btn-rounded btn-icon-left "><i class="w-icon-category"></i>VENDORS</a> --}}
                                     {{-- <label class="d-block">Total Store Showing 6</label> --}}
-                                    <h2><label class="d-block">Offer</label></h3>
+                                    <h2><label class="d-block">Offer  </label></h3><h4><?=  $offer_name ? '( ' . $offer_name. ' )' :''  ?></h4>
                                 </div>
                                
                             </div>
