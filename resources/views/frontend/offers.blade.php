@@ -49,6 +49,28 @@
                         >
                             <div class="swiper-wrapper row gutter-lg cols-xl-8 cols-lg-7 cols-md-6 cols-sm-4 cols-xs-3 cols-2">
                               
+
+                                  <div class="swiper-slide category-wrap">
+                                    <div class="category category-ellipse">
+                                       <center>
+
+                                         <figure class="category-media">
+                                            <a href="{{ url( 'offers' ) }}">
+                                                
+                                                <img src="{{ asset('assets/images/offer_logo/all_offer.jpeg') }}" alt="All Offers"
+                                                   style="background-color: #5C92C0;" />
+                                            </a>
+                                        </figure>
+                                       </center>
+                                        <div class="category-content">
+                                            <h4 class="category-name">
+                                                <a href="{{ url( 'offers' ) }}">All Offers</a>
+                                            </h4>
+                                        </div>
+                                    </div>
+                                </div>
+
+
                               	@foreach($offer as $o )
 
                              
@@ -88,7 +110,7 @@
                                 <div class="toolbox-left mb-4 mb-md-0">
                                     {{-- <a href="#" class="btn btn-primary btn-outline btn-rounded btn-icon-left "><i class="w-icon-category"></i>VENDORS</a> --}}
                                     {{-- <label class="d-block">Total Store Showing 6</label> --}}
-                                    <h2><label class="d-block">SHOPS</label></h3>
+                                    <h2><label class="d-block">Offer</label></h3>
                                 </div>
                                
                             </div>
