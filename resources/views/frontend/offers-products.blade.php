@@ -57,7 +57,7 @@
                                        <center>
 
                                          <figure class="category-media">
-                                            <a href="{{ url( 'offers?id='.$o->id ) }}">
+                                            <a href="{{ url( 'offer-products/'.$vendor_id.'?id='.$o->id ) }}">
                                                 
                                                 <img src="{{ asset('assets/images/offer_logo/'.$o->offer_logo) }}" alt="Categroy"
                                                    style="background-color: #5C92C0;" />
@@ -66,7 +66,7 @@
                                        </center>
                                         <div class="category-content">
                                             <h4 class="category-name">
-                                                <a href="{{ url( 'offers?id='.$o->id ) }}">{{$o->title}}</a>
+                                                <a href="{{ url( 'offer-products/'.$vendor_id.'?id='.$o->id ) }}">{{$o->title}}</a>
                                             </h4>
                                         </div>
                                     </div>
@@ -99,54 +99,71 @@
                                     <button class="btn btn-primary btn-rounded" type="submit">Apply</button>
                                 </form>
                             </div>
-                            <div class="row cols-lg-3 cols-md-2 cols-sm-2 cols-1 mt-4">
 
-                            @foreach($vendorcreate as $vendorcreate )
+                              <div class="product-wrapper row cols-md-5 cols-sm-2 cols-2"  id="productslist">
+                                @if(count($prouctsList) > 0)
+                                    @foreach($prouctsList as $products )
 
-                                    <div class="store-wrap mb-4">
-                                        <div class="store store-grid">
-                                            <div class="store-header" style="position: relative; overflow: hidden;">
-                                                <figure class="store-banner" style="margin: 0;">
-                                                    <img 
-                                                        src="{{ asset('assets/images/vendor/profile/' . $vendorcreate->profile_image) }}"
-                                                        alt="Vendor"
-                                                        style="width: 100%; height: auto; object-fit: cover; display: block;" />
+                                        <div class="product-wrap">
+                                            <div class="product text-center">
+                                                <figure class="product-media">
+                                                    <a href="<?= url('/productVar/'.$products['id'] ) ?>">
+                                                        <img src="<?php echo asset('assets') ?>/images/products/<?= $products['product_image']  ?>" alt="Product" width="300"
+                                                            height="200" />
+                                                    </a>
+                                                    <div class="product-action-horizontal">
+                                                        <a href="" class="btn-product-icon btn-cart w-icon-cart"
+                                                            title="Add to cart"></a>
+                                                        <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                            title="Wishlist"></a>
+                                                    
+                                                        <a href="javascript:void(0)" onclick="showQuickView('<?= $products['id']  ?>')" data-id='<?=  $products['id']  ?>' class="btn-product-icon btn-quickview w-icon-search"
+                                                            title="Quick View"></a>
+                                                    </div>
                                                 </figure>
-                                                <div class="banner-overlay"></div>
-                                            </div>
-                                            <div class="store-content">
-                                                <h4 class="store-title">
-                                                    <a href=" {{ url('/vendorDetails/'.$vendorcreate->id) }}">{{ $vendorcreate->shop_name }}</a>
-                                                </h4>
-                                                <div class="ratings-container">
-                                                    <div class="ratings-full">
-                                                        <span class="ratings" style="width: 100%;"></span>
-                                                        <span class="tooltiptext tooltip-top"></span>
+                                                <div class="product-details">
+                                                    <div class="product-cat">
+                                                        <a href="<?= url('/vendorDetails/'.$products['vendor_id']) ?>">{{ $products['shop_name']  }}</a>
+                                                    </div>
+                                                    <h3 class="product-name">
+                                                        <a href="">{{ $products['product_name']  }}</a>
+                                                    </h3>
+                                                    <div class="ratings-container">
+                                                        <div class="ratings-full">
+                                                            <span class="ratings" style="width: 100%;"></span>
+                                                            <span class="tooltiptext tooltip-top"></span>
+                                                        </div>
+                                                        <a href="product-default.html" class="rating-reviews">(3 reviews)</a>
+                                                    </div>
+                                                    {{-- <div class="product-pa-wrapper">
+                                                        <div class="product-price">
+                                                            $220.00 - $230.00
+                                                        </div>
+                                                    </div> --}}
+
+                                                    <div class="product-pa-wrapper">
+                                                        <div class="product-price">
+                                                            ₹{{ $products['selling_price'] }} 
+                                                        </div>
+                                                        <div  class="product-price-discount" >
+                                                                ₹{{ $products['retail_price'] }} 
+                                                        </div>
+                                                        <?php 
+                                                        $discount_percentage = (($products['retail_price'] - $products['selling_price']) / $products['retail_price']) * 100;
+                                                            $discount_rounded = round($discount_percentage / 10) * 10;
+                                                        ?>
+
+                                                        <div  class="product-offer-percentage" >
+                                                                {{ $discount_rounded }}% Off
+                                                        </div>
                                                     </div>
                                                 </div>
-                                                <div class="store-address-grid">
-                                                    <b>
-                                                    {{ $vendorcreate->address }} , <br>
-                                                    {{-- {{ $vendorcreate->address }} , <br> --}}
-                                                    {{ $vendorcreate->city }}  - {{ $vendorcreate->pincode }} ,  <br>
-                                                    {{ $vendorcreate->state }} . <br>
-                                                    <i class="w-icon-phone"></i> {{ $vendorcreate->mobile_number1 }}
-                                                    </b>
-                                                </div>
-                                            
-                                            </div>
-                                            <div class="store-footer">
-                                                <figure class="seller-brand">
-                                                    <img src="{{ asset('assets/images/vendor/profile/' . $vendorcreate->profile_image) }}" alt="Brand" width="80" height="80" />
-                                                </figure>
-                                                <a href=" {{ url('/vendorDetails/'.$vendorcreate->id) }}" class="btn btn-dark btn-link btn-underline btn-icon-right btn-visit">
-                                                <b>Visit Store</b> <i class="w-icon-long-arrow-right"></i></a>
                                             </div>
                                         </div>
-                                    </div>
-                            @endforeach
-                            
-                            </div>
+
+                                    @endforeach
+				                @endif
+                           
                         </div>
                     </div>
                 </div>

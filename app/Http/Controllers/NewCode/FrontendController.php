@@ -407,6 +407,69 @@ class FrontendController extends Controller
 
 
 
+
+
+    public function getProductByVendorOffers($vendor_id  = '', $offer_id = '')
+    {
+        $productsData = Products::from('products as p')
+            ->leftJoin('category as c', 'c.id', '=', 'p.category')
+            ->leftJoin('category_sub as cs', 'cs.id', '=', 'p.category_sub')
+            ->leftJoin('category_main as cm', 'cm.id', '=', 'p.category_main')
+            ->leftJoin('products_details as pd', 'pd.products_id', '=', 'p.id')
+            ->leftJoin('vendor_details as vp', 'vp.id', '=', 'p.vendor_id');
+
+        if ($vendor_id != '') {
+            $productsData = $productsData->where('p.vendor_id', $vendor_id);
+        }
+        if ($offer_id != '') {
+            $productsData = $productsData->where('p.offers', $offer_id);
+        }else{
+            $productsData = $productsData->whereNotNull('p.offers');
+        }
+
+        $productsData = $productsData->select(
+            'p.id',
+            'p.vendor_id',
+            'p.product_name',
+            'p.product_image',
+            'pd.selling_price',
+            'pd.retail_price',
+            'c.category_name',
+            'cs.category_sub_name',
+            'cm.category_main_name',
+            'vp.shop_name',
+            'vp.profile_image',
+            'pd.attributevalue2 as size',
+            'pd.attributevalue1 as color',
+            'pd.product_detail_image'
+        )->get();
+        $resultArr = [];
+        foreach ($productsData as $val) {
+            $productId = $val->id;
+            if (! isset($resultArr[$productId])) {
+                $resultArr[$productId] = [
+                    'id'                 => $val->id,
+                    'vendor_id'          => $val->vendor_id,
+                    'product_name'       => $val->product_name,
+                    'product_image'      => $val->product_image,
+                    'selling_price'      => $val->selling_price,
+                    'retail_price'       => $val->retail_price,
+                    'category_name'      => $val->category_name,
+                    'category_sub_name'  => $val->category_sub_name,
+                    'category_main_name' => $val->category_main_name,
+                    'shop_name'          => $val->shop_name,
+                    'profile_image'      => $val->profile_image,
+                ];
+            }
+        }
+
+        return $resultArr;
+    }
+
+
+
+
+
     public function getProductByMainCategory($main_category_id = '')
     {
         $productsData = Products::from('products as p')
@@ -567,11 +630,15 @@ class FrontendController extends Controller
 
 
 
-    public function offers_list($vendor_id)
+    public function offers_products($vendor_id)
     {
         $offer = Offer::get();
-        $vendorcreate = vendorcreate::where('id', $vendor_id)->get();
-        return view('frontend/offers-products', compact('offer', 'vendorcreate'));
+
+        $offer_id = isset($_GET['id']) ? $_GET['id'] : '';
+
+        $prouctsList = $this->getProductByVendorOffers($vendor_id, $offer_id);
+
+        return view('frontend/offers-products', compact('offer', 'prouctsList','vendor_id'));
     }
 
 

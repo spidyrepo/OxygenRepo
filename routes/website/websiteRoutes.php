@@ -100,7 +100,7 @@ Route::get('get-filter-product/', [FrontendController::class, 'getFilterProducts
 Route::get('/myAccount', [FrontendController::class, 'myAccount'])->name('myAccount');
 
 Route::get('/offers', [FrontendController::class, 'offers'])->name('offers');
-Route::get('/offers-list/{id}', [FrontendController::class, 'offers_list'])->name('offers-list');
+Route::get('/offer-products/{id}', [FrontendController::class, 'offers_products'])->name('offer-products');
 
 /** NEW CODE END  */
 
