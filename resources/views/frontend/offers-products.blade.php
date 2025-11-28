@@ -126,7 +126,7 @@
                                 </form>
                             </div>
 
-                              <div class="product-wrapper row cols-md-5 cols-sm-2 cols-2"  id="productslist">
+                              <div class="product-wrapper row cols-md-6 cols-sm-2 cols-2"  id="productslist">
                                 @if(count($prouctsList) > 0)
                                     @foreach($prouctsList as $products )
 
