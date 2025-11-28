@@ -87,15 +87,42 @@ class FrontendController extends Controller
             )
             ->get();
 
+
+
+
+        $topCollection = DB::table('products')
+            ->leftJoin('products_details', 'products.id', '=', 'products_details.products_id')
+            ->leftJoin('category_sub', 'products.category_sub', '=', 'category_sub.id')
+            ->select(
+                'products.id',
+                'products.product_name',
+                'products.product_image',
+                'category_sub.category_sub_name',
+                DB::raw('MIN(products_details.retail_price) as retail_price'),
+                DB::raw('MIN(products_details.selling_price) as selling_price')
+            )
+            ->where('products.vendor_id', $id)
+            ->where('products.status', 0)
+            ->groupBy(
+                'products.id',
+                'products.product_name',
+                'products.product_image',
+                'category_sub.category_sub_name'
+            )
+            ->get();
+
         $vendorcreate = vendorcreate::where('user_id', $id)->first();
-        $subid        = explode(',', $vendorcreate->sub_category_ids); // This converts to an array
+        $subid        = explode(',', $vendorcreate->sub_category_ids);
 
         $Categorysub = CategorySub::whereIn('id', $subid)->get();
         return view('frontend/vendor_doken_store')
             ->with([
-                "products"      => $products,
-                "Categorysub"   => $Categorysub,
-                "vendordetails" => $vendorcreate,
+                "products"          => $products,
+                "topCollection"     => $topCollection,
+                "newCollection"     => $products,
+                "featuredProducts"  => $products,
+                "Categorysub"       => $Categorysub,
+                "vendordetails"     => $vendorcreate,
             ]);
     }
 
@@ -603,7 +630,7 @@ class FrontendController extends Controller
     {
 
         $offer_id  = isset($_GET['id']) ? $_GET['id'] : 0;
-         if ($offer_id != '') {
+        if ($offer_id != '') {
             $offer_name = Offer::where('id', $offer_id)->value('title');
         } else {
             $offer_name = '';
@@ -630,7 +657,7 @@ class FrontendController extends Controller
 
         $vendorcreate = $query->get();
 
-        return view('frontend/offers', compact('offer', 'vendorcreate','offer_id','offer_name'));
+        return view('frontend/offers', compact('offer', 'vendorcreate', 'offer_id', 'offer_name'));
     }
 
 
@@ -648,7 +675,7 @@ class FrontendController extends Controller
 
         $prouctsList = $this->getProductByVendorOffers($vendor_id, $offer_id);
 
-        return view('frontend/offers-products', compact('offer', 'prouctsList', 'offer_id','vendor_id', 'offer_name'));
+        return view('frontend/offers-products', compact('offer', 'prouctsList', 'offer_id', 'vendor_id', 'offer_name'));
     }
 
 

@@ -260,50 +260,79 @@
                             <!-- End of Store Banner -->
 
 
-                           <ul class="nav nav-tabs mb-3" id="productTabs">
-                                <li  style="cursor:pointer;" class="nav-item">
-                                    <a class="nav-link active" data-target="#allProducts"
-                                    onclick="activateTab(this.getAttribute('data-target'))">All Products</a>
+                            <ul class="nav nav-tabs mb-3" id="productTabs">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-target="#allProducts" href="#">All Products</a>
                                 </li>
-                                <li  style="cursor:pointer;" class="nav-item">
-                                    <a class="nav-link" data-target="#topCollection"
-                                    onclick="activateTab(this.getAttribute('data-target'))">Top Collection</a>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-target="#topCollection" href="#">Top Collection</a>
                                 </li>
-                                <li  style="cursor:pointer;" class="nav-item">
-                                    <a class="nav-link" data-target="#newCollection"
-                                    onclick="activateTab(this.getAttribute('data-target'))">New Collection</a>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-target="#newCollection" href="#">New Collection</a>
                                 </li>
-                                <li  style="cursor:pointer;" class="nav-item">
-                                    <a class="nav-link" data-target="#featuredProducts"
-                                    onclick="activateTab(this.getAttribute('data-target'))">Featured Products</a>
+                                <li class="nav-item">
+                                    <a class="nav-link" data-target="#featuredProducts" href="#">Featured Products</a>
                                 </li>
                             </ul>
 
 
-                            <div  id="allProducts" class="product-wrapper row cols-md-5 cols-sm-2 cols-2 tabContent active">
-                                @foreach ($products as $product)
-                                    @include('frontend/product-card', ['product' => $product])
-                                @endforeach
-                            </div>
+                            <div class="product-wrapper row cols-md-5 cols-sm-2 cols-2">
 
-                            <div  id="topCollection" class="product-wrapper row cols-md-5 cols-sm-2 cols-2 tabContent d-none">
-                                @foreach ($topCollection as $product)
-                                    @include('frontend/product-card', ['product' => $product])
-                                @endforeach
-                            </div>
+                                @if(!empty($products))                              
+                                @foreach ($products as $product)  
+                                    <div class="product-wrap">
+                                        <div class="product text-center">
+                                            <figure class="product-media">
+                                                <a href="<?= url('/productVar/'.$product->id) ?>">
+                                                    <img src="{{ asset('assets/images/products') . '/' . $product->product_image }}" alt="Product" 
+                                                         />
+                                                </a>
+                                                <div class="product-action-vertical">
+                                                    <a href="<?= url('/productVar/'.$product->id) ?>" class="btn-product-icon btn-cart w-icon-cart"
+                                                        title="Add to cart"></a>
+                                                    <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                        title="Wishlist"></a>
+                                                   
+                                                    <a href="#" onclick="showQuickView('<?= $product->id ?>')" data-id='<?= $product->id ?>'   class="btn-product-icon btn-quickview w-icon-search"
+                                                        title="Quick View"></a>
+                                                </div>
+                                            </figure>
+                                            <div class="product-details">
+                                                <h3 class="product-name">
+                                                    <a href="<?= url('/productVar/'.$product->id) ?>">{{ $product->product_name }}</a>
+                                                </h3>
+                                                <div class="ratings-container">
+                                                    <div class="ratings-full">
+                                                        <span class="ratings" style="width: 100%;"></span>
+                                                        <span class="tooltiptext tooltip-top"></span>
+                                                    </div>
+                                                    <a href="product-default.html" class="rating-reviews">(3 reviews)</a>
+                                                </div>
+                                                <div class="product-pa-wrapper">
+                                                    <div class="product-price">
+                                                       ₹{{ $product->selling_price }} 
+                                                    </div>
+                                                    <div  class="product-price-discount" >
+                                                         ₹{{ $product->retail_price }} 
+                                                    </div>
+                                                    <?php 
+                                                        $discount_percentage = (($product->retail_price - $product->selling_price) / $product->retail_price) * 100;
+                                                        $discount_formatted = number_format($discount_percentage, 0);
+                                                    ?>
 
-                            <div  id="newCollection" class="product-wrapper row cols-md-5 cols-sm-2 cols-2 tabContent d-none">
-                                @foreach ($newCollection as $product)
-                                    @include('frontend/product-card', ['product' => $product])
-                                @endforeach
-                            </div>
+                                                    <div  class="product-offer-percentage" >
+                                                            {{ $discount_formatted }}% Off
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                            <div  id="featuredProducts" class="product-wrapper row cols-md-5 cols-sm-2 cols-2 tabContent d-none">
-                                @foreach ($featuredProducts as $product)
-                                    @include('frontend/product-card', ['product' => $product])
-                                @endforeach
-                            </div>
+                                 @endforeach 
+                                @endif
+                               
                             
+                            </div>
                         </div>
                         <!-- End of Main Content -->
                     </div>
@@ -313,34 +342,3 @@
         </main>
         <!-- End of Main -->
  @endsection
-
-  <script>
-    function activateTab(target) {
-
-       
-        document.querySelectorAll('#productTabs .nav-link')
-            .forEach(x => x.classList.remove('active'));
-
-        document.querySelector('#productTabs .nav-link[data-target="' + target + '"]')
-            ?.classList.add('active');
-
-        document.querySelectorAll('.tabContent')
-            .forEach(x => x.classList.add('d-none'));
-
-        document.querySelector(target)?.classList.remove('d-none');
-    }
-
-    document.querySelectorAll('#productTabs .nav-link').forEach(function(tab){
-        tab.addEventListener('click', function(e){
-            e.preventDefault();
-            let target = this.getAttribute('data-target');
-
-            history.pushState(null, null, target);  
-            activateTab(target);
-        });
-    });
-
-  
-</script>
-
-
