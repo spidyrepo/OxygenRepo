@@ -278,7 +278,7 @@
                                             height="291" />
                                     </a>
                                     <div class="product-action-vertical">
-                                        <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                        <a href="#"   onclick="addwishlist('{{  $row['id'] }}')" class="btn-product-icon btn-wishlist w-icon-heart"
                                             title="Add to wishlist"></a>                                    
                                     </div>
                                     <div class="product-action"> <!--  -->

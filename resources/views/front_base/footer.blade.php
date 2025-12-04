@@ -781,6 +781,40 @@
     </div>
 </div>
 
+<script>
+    function addwishlist(pid) {
+
+        var user_id = '<?= session()->get('customer_id'); ?>';
+
+        if(user_id == 0 && user_id =='')
+        {
+            $.notify("Please Login", "error");
+            return false;
+        }
+
+        var product_id = pid;
+        var url = '<?= route("add-wishlist") ?>';
+        $.ajax({            
+            url: url,
+            type: "GET",
+            data: {
+                "_token": "{{ csrf_token() }}",
+                "product_id": product_id
+            },
+            dataType: "json",
+            success: function(data) {
+                swal("success!", "Wishlist Added Successfully", "success");
+                $('.wishcount').html(data.wishcount);
+            },
+            error: function(data) {
+                console.log('Error:', data);
+            }
+        });
+
+
+    }
+</script>
+
    <!-- Plugin JS File -->
 
    <script src="<?= asset('frontend') ?>/vendor/jquery.plugin/jquery.plugin.min.js"></script>

@@ -22,10 +22,19 @@ use App\Models\City;
 use App\Models\Ecom_Customer_info;
 use Illuminate\Support\Facades\Session;
 use App\Models\PinCode\PinCode;
-
+use App\Models\wishlist;
 
 class FrontendController extends Controller
 {
+
+
+    public function customer_logout()
+    {
+        Session::forget('customer_id');
+        return redirect('/demoEight');
+    }
+
+
     public function vendorDokenGrid()
     {
 
@@ -39,7 +48,10 @@ class FrontendController extends Controller
     {
 
         $customer_id = Session::get('customer_id');
+
         $customer = Ecom_Customer_info::where('customer_id', $customer_id)->first();
+
+        // dd($customer);
 
         return view('frontend/my_account', compact('customer'));
     }
@@ -826,5 +838,53 @@ class FrontendController extends Controller
         }
 
         return response()->json(['products' => array_values($resultArr)]);
+    }
+
+
+
+    public function myWishlist(Request $request)
+    {
+        $customer_id = Session::get('customer_id');
+
+        $wishlist = wishlist::select('ecom_wishlist.*', 'pr.product_name', 'pd.product_detail_image', 'pd.retail_price', 'pd.selling_price')
+            ->leftJoin('products_details as pd', 'pd.id', '=', 'ecom_wishlist.ecom_product_id')
+            ->leftJoin('products as pr', 'pd.products_id', '=', 'pr.product_id')
+            ->where('ecom_wishlist.customer_id', '=', $customer_id)
+            ->get();
+        $wishCount = count($wishlist);
+        return view('frontend.wishlist', compact('wishlist', 'wishCount'));
+    }
+
+
+
+    public function addWishlist(Request $request)
+    {
+        $customer_id = Session::get('customer_id');
+        $id = $request->product_id;
+        $ip = $request->ip();
+
+        $wishlist = wishlist::where('customer_id', $customer_id)->where('ecom_product_id', $id)->get();
+
+        $wishCount = count($wishlist);
+
+        $products = ProductsDetails::where('id', $id)->first();
+
+        $productview = Products::where('id', '=', $products->products_id)->first();
+
+
+        if ($wishCount == 0) {
+
+            $wishlist = new wishlist;
+
+            $wishlist->ecom_wishlist_ipaddress =  $ip;
+            $wishlist->ecom_product_id = $id;
+            $wishlist->customer_id =  $customer_id;
+            $wishlist->ecom_product_name = $productview->product_name;
+            $wishlist->save();
+        }
+
+        $wishlist = wishlist::where('customer_id', $customer_id)->get();
+        $wishCount = count($wishlist);
+        return response()->json(['msg' => 'Success', 'wishcount' => $wishCount], 200);
     }
 }

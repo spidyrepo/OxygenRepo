@@ -98,9 +98,13 @@ Route::get('/mainCategoryShop/{id}', [FrontendController::class, 'mainCategorySh
 Route::get('categoryShop/{category_id}/{sub_category_id?}', [FrontendController::class, 'categoryShop'])->name('categoryShop');
 Route::get('get-filter-product/', [FrontendController::class, 'getFilterProducts'])->name('get-filter-product');
 Route::get('/myAccount', [FrontendController::class, 'myAccount'])->name('myAccount');
-
+Route::get('/myWishlist', [FrontendController::class, 'myWishlist'])->name('myWishlist');
+Route::get('/add-wishlist', [FrontendController::class,'addWishlist'])->name('add-wishlist');
 Route::get('/offers', [FrontendController::class, 'offers'])->name('offers');
 Route::get('/offer-products/{id}', [FrontendController::class, 'offers_products'])->name('offer-products');
+
+Route::get('/customer-logout', [FrontendController::class, 'customer_logout'])->name('customer-logout');
+
 
 /** NEW CODE END  */
 
@@ -197,7 +201,7 @@ Route::get('AjaxPincode', [CartController::class,'GetCity']);
 
 Route::get('/Cuslogin', [CustomerController::class,'loginverify']);
 Route::get('/Forget_password', [CustomerController::class,'forgetmail']);
-Route::get('/CusLogout', [CustomerController::class,'logout']);
+// Route::get('/CusLogout', [CustomerController::class,'logout']);
 Route::get('/CheckoutLogout', [CustomerController::class,'checkoutlogout']);
 Route::get('/CusRegister', [CustomerController::class,'register']);
 Route::post('/updateaddress', [CustomerController::class,'updateaddress']);

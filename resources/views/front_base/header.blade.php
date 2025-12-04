@@ -137,12 +137,15 @@
                                 <a href="tel:#" class="phone-number font-weight-bolder ls-50">+91 98845 88797</a>
                             </div>
                         </div>
-                        <a class="wishlist label-down link d-xs-show" href="wishlist.html">
+
+                        
+
+                <?php  if(session('customer_id')){ ?>
+                    
+                    <a class="wishlist label-down link d-xs-show" href="{{ route('myWishlist') }}">
                             <i class="w-icon-heart"></i>
                             <span class="wishlist-label d-lg-show mt-1">Wishlist</span>
                         </a>
-
-                <?php  if(session('customer_id')){ ?>
 
                       <a   href="{{ route('myAccount') }}"   class="compare label-down link d-xs-show" >
                                 <i class="w-icon-account"  style="font-size:28px;"></i>

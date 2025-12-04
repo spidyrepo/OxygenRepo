@@ -1,7 +1,7 @@
    @extends('app_template')
-   @section('title','Vendor Products')
+   @section('title','My Account')
    @section('content')
-   <!-- Start of Main -->
+
    <main class="main">
        <!-- Start of Page Header -->
        <div class="page-header">
@@ -49,7 +49,7 @@
                            <a href="wishlist.html" class="nav-link">Wishlist</a>
                        </li>
                        <li class="link-item">
-                           <a href="login.html" class="nav-link">Logout</a>
+                           <a href="{{ route('customer-logout') }}" class="nav-link">Logout</a>
                        </li>
                    </ul>
 
@@ -57,10 +57,10 @@
                        <div class="tab-pane active in" id="account-dashboard">
                            <p class="greeting">
                                Hello
-                               <span class="text-dark font-weight-bold">John Doe</span>
+                               <span class="text-dark font-weight-bold"><?=  $customer['customer_firstname'] ?></span>
                                (not
-                               <span class="text-dark font-weight-bold">John Doe</span>?
-                               <a href="#" class="text-primary">Log out</a>)
+                               <span class="text-dark font-weight-bold"><?=  $customer['customer_firstname'] ?></span> ?
+                               <a href="{{ route('customer-logout') }}" class="text-primary">Log out</a>)
                            </p>
 
                            <p class="mb-4">
@@ -147,7 +147,7 @@
                                    </a>
                                </div>
                                <div class="col-lg-4 col-md-6 col-sm-4 col-xs-6 mb-4">
-                                   <a href="#">
+                                   <a href="{{ route('customer-logout') }}">
                                        <div class="icon-box text-center">
                                            <span class="icon-box-icon icon-logout">
                                                <i class="w-icon-logout"></i>
