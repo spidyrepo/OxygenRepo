@@ -177,21 +177,17 @@
                                </thead>
                                <tbody>
                                    <tr>
-                                       <center><td class="order-id">#2321</td></center>
-                                       <center><td class="order-date">August 20, 2021</td></center>
-                                       <center><td class="order-status">Processing</td></center>
-                                       <center>
-                                        <td class="order-total">
+                                       <td class="order-id">#2321</td>
+                                       <td class="order-date">August 20, 2021</td>
+                                       <td class="order-status">Processing</td>
+                                       <td class="order-total">
                                            <span class="order-price">$121.00</span> for
                                            <span class="order-quantity"> 1</span> item
                                        </td>
-                                       </center>
-                                       <center>
-                                        <td class="order-action">
+                                       <td class="order-action">
                                            <a href="#"
                                                class="btn btn-outline btn-default btn-block btn-sm btn-rounded">View</a>
                                        </td>
-                                       </center>
                                    </tr>
                               
                                </tbody>
