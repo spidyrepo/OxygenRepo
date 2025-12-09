@@ -25,7 +25,7 @@
                 <thead>
                     <tr>
                         <th class="product-name"><span>Product</span></th>
-                        <th>Product Name</th>
+                        <th class="product-name">Product Name</th>
                         <th class="product-price"><span>Price</span></th>
                         <th class="product-stock-status"><span>Stock Status</span></th>
                         <th class="wishlist-action">Actions</th>
@@ -37,38 +37,38 @@
                                 @foreach ($wishlist as $product)
                                 @php  $i++; $images=explode(',',$product->product_detail_image);  $img=substr($images[0], 2, -1);       @endphp
                                 
-                    <tr>
-                        <td class="product-thumbnail">
-                            <div class="p-relative">
-                                <a href="{{url('ViewProduct_information',$product->ecom_product_id)}}">
-                                    <figure>
-                                        <img src="{{ asset('assets/images/products/detail') . '/' . $img }}"  alt="product" width="300"
-                                            height="338">
-                                    </figure>
-                                </a>
-                                <a   href="{{url('Delete_wishlist',$product->ecom_wishlist_id)}}" class="btn btn-close"><i
-                                        class="fas fa-times"></i></a>
-                            </div>
-                        </td>
-                        <td class="product-name">
-                            <a href="{{url('ViewProduct_information',$product->ecom_product_id)}}">
-                            {{ $product->product_name }}
-                            </a>
-                        </td>
-                        <td class="product-price"><ins class="new-price">Rs. {{ $product->selling_price }} <del><span class="currencySymbol">Rs.</span> {{ $product->retail_price }} </del></ins></td>
-                        <td class="product-stock-status">
-                            <span class="wishlist-in-stock">In Stock</span>
-                        </td>
-                        <td class="wishlist-action">
-                            <div class="d-lg-flex">
-                                <a href="{{url('Delete_wishlist',$product->ecom_wishlist_id)}}"
-                                    class="btn btn-default btn-rounded btn-sm mb-2 mb-lg-0">Remove 
-                                    </a>
-                                <a href="{{url('ViewProduct_information',$product->ecom_product_id)}}" class="btn btn-dark btn-rounded btn-sm ml-lg-2 btn-cart">Add to
-                                    cart</a>
-                            </div>
-                        </td>
-                    </tr>
+                                <tr>
+                                    <td style="text-align: center;" class="product-thumbnail">
+                                        <div class="p-relative">
+                                            <a href="{{url('productVar',$product->ecom_product_id)}}">
+                                                <figure>
+                                                    <img src="{{ asset('assets/images/products/detail') . '/' . $img }}"  alt="product" width="300"
+                                                        height="338">
+                                                </figure>
+                                            </a>
+                                            {{-- <a   href="{{url('Delete_wishlist',$product->ecom_wishlist_id)}}" class="btn btn-close"><i
+                                                    class="fas fa-times"></i></a> --}}
+                                        </div>
+                                    </td>
+                                    <td style="text-align: center;" class="product-name">
+                                        <a href="{{url('productVar',$product->ecom_product_id)}}">
+                                        {{ $product->product_name }}
+                                        </a>
+                                    </td>
+                                    <td  style="text-align: center;" class="product-price"><ins class="new-price">Rs. {{ $product->selling_price }} <del><span class="currencySymbol">Rs.</span> {{ $product->retail_price }} </del></ins></td>
+                                    <td  style="text-align: center;" class="product-stock-status">
+                                        <span class="wishlist-in-stock">In Stock</span>
+                                    </td>
+                                    <td  style="text-align: center;" class="wishlist-action">
+                                        <div class="d-lg-flex">
+                                            <a href="{{url('delete_wishlist',$product->ecom_wishlist_id)}}"
+                                                class="btn btn-default btn-rounded btn-sm mb-2 mb-lg-0">Remove 
+                                                </a>
+                                            <a href="{{url('productVar',$product->ecom_product_id)}}" class="btn btn-dark btn-rounded btn-sm ml-lg-2 btn-cart">Add to
+                                                cart</a>
+                                        </div>
+                                    </td>
+                                </tr>
                     
                                 @endforeach
                                 @else
@@ -80,7 +80,7 @@
                                 @endif
                                 <tr class="cart_item wrap-buttons">
                                     <td class="wrap-btn-control" colspan="4">
-                                        <a href="{{ url('/') }}" class="btn back-to-shop">Back to Shop</a>
+                                        <a href="{{ url('/demoEight') }}" class="btn back-to-shop">Back to Shop</a>
                                     </td>
                                 </tr>
                 </tbody>

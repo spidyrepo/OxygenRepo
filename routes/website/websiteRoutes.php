@@ -230,7 +230,7 @@ Route::get('/Addwishlist', [wishlistcontroller::class,'store'])->name('Addwishli
 Route::get('/View_wishlist', [wishlistcontroller::class,'show']);
 
 Route::get('/View_AuctionProducts', [HomeController::class,'auctionlist']);
-Route::get('/Delete_wishlist/{id}', [wishlistcontroller::class,'destroy']);
+Route::get('/delete_wishlist/{id}', [wishlistcontroller::class,'destroy']);
 
 
 Route::get('Informations/{id}', [HomeController::class, 'pageinfo']);

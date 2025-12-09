@@ -78,14 +78,13 @@
 			return view('front_end.site.wishlist',compact('wishlist','wishCount'));
 			
 		}
+		
 		public function destroy($id)
 		{
 			
-			$wishlists = wishlist :: where('ecom_wishlist_id', $id)->delete();
-			
-			 return redirect('/View_wishlist');
+			 wishlist :: where('ecom_wishlist_id', $id)->delete();
+			 return redirect('/myWishlist');
 		
-			
 		}
 		
 	}
