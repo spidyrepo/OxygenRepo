@@ -265,10 +265,13 @@
                                     <a class="nav-link active" data-target="#allProducts"
                                     onclick="activateTab(this.getAttribute('data-target'))">All Products</a>
                                 </li>
+
+
                                 <li  style="cursor:pointer;" class="nav-item">
-                                    <a class="nav-link" data-target="#topCollection"
-                                    onclick="activateTab(this.getAttribute('data-target'))">Top Collection</a>
+                                    <a class="nav-link" data-target="#offers"
+                                    onclick="activateTab(this.getAttribute('data-target'))">Offers</a>
                                 </li>
+                               
                                 <li  style="cursor:pointer;" class="nav-item">
                                     <a class="nav-link" data-target="#newCollection"
                                     onclick="activateTab(this.getAttribute('data-target'))">New Collection</a>
@@ -286,11 +289,65 @@
                                 @endforeach
                             </div>
 
-                            <div  id="topCollection" class="product-wrapper row cols-md-5 cols-sm-2 cols-2 tabContent d-none">
-                                @foreach ($topCollection as $product)
-                                    @include('frontend/product-card', ['product' => $product])
-                                @endforeach
+                            <div  id="offers" class="product-wrapper row cols-md-5 cols-sm-2 cols-2 tabContent d-none">
+                                @if(count($offerList) > 0)
+                                    @foreach($offerList as $products )
+
+                                        <div class="product-wrap">
+                                            <div class="product text-center">
+                                                <figure class="product-media">
+                                                    <a href="<?= url('/productVar/'.$products['id'] ) ?>">
+                                                        <img src="<?php echo asset('assets') ?>/images/products/<?= $products['product_image']  ?>" alt="Product" width="300"
+                                                            height="200" />
+                                                    </a>
+                                                    <div class="product-action-horizontal">
+                                                        <a href="" class="btn-product-icon btn-cart w-icon-cart"
+                                                            title="Add to cart"></a>
+                                                        <a href="#" class="btn-product-icon btn-wishlist w-icon-heart"
+                                                            title="Wishlist"></a>
+                                                    
+                                                        <a href="javascript:void(0)" onclick="showQuickView('<?= $products['id']  ?>')" data-id='<?=  $products['id']  ?>' class="btn-product-icon btn-quickview w-icon-search"
+                                                            title="Quick View"></a>
+                                                    </div>
+                                                </figure>
+                                                <div class="product-details">
+                                                   
+                                                    <h3 class="product-name">
+                                                        <a href="">{{ $products['product_name']  }}</a>
+                                                    </h3>
+                                                    <div class="ratings-container">
+                                                        <div class="ratings-full">
+                                                            <span class="ratings" style="width: 100%;"></span>
+                                                            <span class="tooltiptext tooltip-top"></span>
+                                                        </div>
+                                                        <a href="product-default.html" class="rating-reviews">(3 reviews)</a>
+                                                    </div>
+
+                                                    <div class="product-pa-wrapper">
+                                                        <div class="product-price">
+                                                            ₹{{ $products['selling_price'] }} 
+                                                        </div>
+                                                        <div  class="product-price-discount" >
+                                                                ₹{{ $products['retail_price'] }} 
+                                                        </div>
+                                                        <?php 
+                                                        $discount_percentage = (($products['retail_price'] - $products['selling_price']) / $products['retail_price']) * 100;
+                                                            $discount_rounded = round($discount_percentage / 10) * 10;
+                                                        ?>
+
+                                                        <div  class="product-offer-percentage" >
+                                                                {{ $discount_rounded }}% Off
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    @endforeach
+				                @endif
                             </div>
+
+                           
 
                             <div  id="newCollection" class="product-wrapper row cols-md-5 cols-sm-2 cols-2 tabContent d-none">
                                 @foreach ($newCollection as $product)

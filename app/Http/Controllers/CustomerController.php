@@ -89,22 +89,22 @@ class CustomerController extends Controller
             ]
         );
         session()->flash('success', 'Account Details Updated Successfully.');
-        return redirect('Accounts/Myaccount');
-        // customer shipping address update End
+        return redirect('myAccount');
+        
     }
+
     public function changepassword(Request $request)
     {
 
         $customer_id = Session::get('customer_id');
-        // customer shipping address update start
         Ecom_Customer_info::where('customer_id', $customer_id)->update(
             ['customer_password' => base64_encode(base64_encode($request->new_password))]
         );
-
-        session()->flash('success', 'password Updated Successfully.');
-        return redirect('/Myaccount');
-        // customer shipping address update End
+        session()->flash('success', 'Password Updated Successfully.');
+        return redirect('/myAccount');
+      
     }
+
     public function loginverify(Request $request)
     {
 

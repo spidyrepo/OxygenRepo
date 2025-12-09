@@ -105,6 +105,11 @@ class FrontendController extends Controller
             )
             ->get();
 
+            $offerList = $this->getProductByVendorOffers($id, $offer_id ='');
+
+            // print_r(  $prouctsList);exit;
+
+
 
 
 
@@ -139,6 +144,7 @@ class FrontendController extends Controller
                 "topCollection"     => $topCollection,
                 "newCollection"     => $products,
                 "featuredProducts"  => $products,
+                "offerList"         => $offerList,
                 "Categorysub"       => $Categorysub,
                 "vendordetails"     => $vendorcreate,
             ]);
