@@ -46,7 +46,7 @@
                            <a href="#account-details" class="nav-link">Account details</a>
                        </li>
                        <li class="link-item">
-                           <a href="wishlist.html" class="nav-link">Wishlist</a>
+                           <a href="#wishlist" class="nav-link">Wishlist</a>
                        </li>
                        <li class="link-item">
                            <a href="{{ route('customer-logout') }}" class="nav-link">Logout</a>
@@ -135,7 +135,7 @@
                                    </a>
                                </div>
                                <div class="col-lg-4 col-md-6 col-sm-4 col-xs-6 mb-4">
-                                   <a href="wishlist.html" class="link-to-tab">
+                                   <a href="#wishlist" class="link-to-tab">
                                        <div class="icon-box text-center">
                                            <span class="icon-box-icon icon-wishlist">
                                                <i class="w-icon-heart"></i>
@@ -162,16 +162,52 @@
                        </div>
 
                        <div class="tab-pane mb-4" id="account-orders">
-                           <div class="icon-box icon-box-side icon-box-light">
-                               <span class="icon-box-icon icon-orders">
-                                   <i class="w-icon-orders"></i>
-                               </span>
-                               <div class="icon-box-content">
-                                   <h4 class="icon-box-title text-capitalize ls-normal mb-0">Orders</h4>
-                               </div>
-                           </div>
+                           
+                           <center><h3>Orders</h3></center>
 
                            <table class="shop-table account-orders-table mb-6">
+                               <thead>
+                                   <tr>
+                                       <th class="order-id">Order</th>
+                                       <th class="order-date">Date</th>
+                                       <th class="order-status">Status</th>
+                                       <th class="order-total">Total</th>
+                                       <th class="order-actions">Actions</th>
+                                   </tr>
+                               </thead>
+                               <tbody>
+                                   <tr>
+                                       <center><td class="order-id">#2321</td></center>
+                                       <center><td class="order-date">August 20, 2021</td></center>
+                                       <center><td class="order-status">Processing</td></center>
+                                       <center>
+                                        <td class="order-total">
+                                           <span class="order-price">$121.00</span> for
+                                           <span class="order-quantity"> 1</span> item
+                                       </td>
+                                       </center>
+                                       <center>
+                                        <td class="order-action">
+                                           <a href="#"
+                                               class="btn btn-outline btn-default btn-block btn-sm btn-rounded">View</a>
+                                       </td>
+                                       </center>
+                                   </tr>
+                              
+                               </tbody>
+                           </table>
+
+                           <a href="shop-banner-sidebar.html" class="btn btn-dark btn-rounded btn-icon-right">Go
+                               Shop<i class="w-icon-long-arrow-right"></i></a>
+                       </div>
+
+                       <div class="tab-pane" id="account-downloads">
+                         
+                            <center><h3>Wallet</h3></center>
+
+                            <h2>Wallet Balance : 200</h2>
+
+                               <table class="shop-table account-orders-table mb-6">
                                <thead>
                                    <tr>
                                        <th class="order-id">Order</th>
@@ -195,77 +231,22 @@
                                                class="btn btn-outline btn-default btn-block btn-sm btn-rounded">View</a>
                                        </td>
                                    </tr>
-                                   <tr>
-                                       <td class="order-id">#2321</td>
-                                       <td class="order-date">August 20, 2021</td>
-                                       <td class="order-status">Processing</td>
-                                       <td class="order-total">
-                                           <span class="order-price">$150.00</span> for
-                                           <span class="order-quantity"> 1</span> item
-                                       </td>
-                                       <td class="order-action">
-                                           <a href="#"
-                                               class="btn btn-outline btn-default btn-block btn-sm btn-rounded">View</a>
-                                       </td>
-                                   </tr>
-                                   <tr>
-                                       <td class="order-id">#2319</td>
-                                       <td class="order-date">August 20, 2021</td>
-                                       <td class="order-status">Processing</td>
-                                       <td class="order-total">
-                                           <span class="order-price">$201.00</span> for
-                                           <span class="order-quantity"> 1</span> item
-                                       </td>
-                                       <td class="order-action">
-                                           <a href="#"
-                                               class="btn btn-outline btn-default btn-block btn-sm btn-rounded">View</a>
-                                       </td>
-                                   </tr>
-                                   <tr>
-                                       <td class="order-id">#2318</td>
-                                       <td class="order-date">August 20, 2021</td>
-                                       <td class="order-status">Processing</td>
-                                       <td class="order-total">
-                                           <span class="order-price">$321.00</span> for
-                                           <span class="order-quantity"> 1</span> item
-                                       </td>
-                                       <td class="order-action">
-                                           <a href="#"
-                                               class="btn btn-outline btn-default btn-block btn-sm btn-rounded">View</a>
-                                       </td>
-                                   </tr>
+                              
                                </tbody>
                            </table>
-
-                           <a href="shop-banner-sidebar.html" class="btn btn-dark btn-rounded btn-icon-right">Go
-                               Shop<i class="w-icon-long-arrow-right"></i></a>
-                       </div>
-
-                       <div class="tab-pane" id="account-downloads">
-                           <div class="icon-box icon-box-side icon-box-light">
-                               <span class="icon-box-icon icon-downloads mr-2">
-                                   <i class="w-icon-download"></i>
-                               </span>
-                               <div class="icon-box-content">
-                                   <h4 class="icon-box-title ls-normal">Downloads</h4>
-                               </div>
-                           </div>
-                           <p class="mb-4">No downloads available yet.</p>
-                           <a href="shop-banner-sidebar.html" class="btn btn-dark btn-rounded btn-icon-right">Go
-                               Shop<i class="w-icon-long-arrow-right"></i></a>
+                          
+                           
                        </div>
 
                        <div class="tab-pane" id="account-addresses">
-                           <div class="icon-box icon-box-side icon-box-light">
-                               <span class="icon-box-icon icon-map-marker">
-                                   <i class="w-icon-map-marker"></i>
-                               </span>
-                               <div class="icon-box-content">
-                                   <h4 class="icon-box-title mb-0 ls-normal">Addresses</h4>
-                               </div>
-                           </div>
-                           <p>The following addresses will be used on the checkout page
-                               by default.</p>
+                          
+                           <center><h3>Addresses</h3></center>
+
+                            <p>
+                                The following addresses will be used on the checkout page
+                                by default.
+                            </p>
+
                            <div class="row">
                                <div class="col-sm-6 mb-6">
                                    <div class="ecommerce-address billing-address pr-lg-8">
@@ -350,14 +331,8 @@
                            </div>
                        </div>
                        <div class="tab-pane" id="profile-details">
-                           <div class="icon-box icon-box-side icon-box-light">
-                               <span class="icon-box-icon icon-account mr-2">
-                                   <i class="w-icon-user"></i>
-                               </span>
-                               <div class="icon-box-content">
-                                   <h4 class="icon-box-title mb-0 ls-normal">Account Details</h4>
-                               </div>
-                           </div>
+                           
+                          <center><h3>Profile Details</h3></center> 
 
                            <form action="{{url('/updateaddress')}}" name="frm-login" method="post" autocomplete="Off" class="checkout-form" onsubmit="return confirm('Do you  want to Change Billing Address?');">
                                {{ csrf_field() }}
@@ -412,32 +387,102 @@
                       
                    </div>
 
-                       <div class="tab-pane" id="account-details">                           
-                           <p>The following addresses will be used on the checkout page
-                               by default.</p>
-                           <div class="row">
-                               <form action="{{url('/changepassword')}}" method="post" name="frm-login" autocomplete="Off" class="checkout-form" onsubmit="return confirm('Do you  want to Change Password?');">
-                               {{ csrf_field() }}
-                               <fieldset style="padding:20px;">
-                                   <legend>Password Change</legend>
-                                   <label>Current password </label>
-                                   <input type="password" class="form-control" id="customer_opassword" onblur="opass_verify(this.value)" name="current_password" required value="">
+                    <div class="tab-pane" id="account-details">                           
+                                <center><h3>Account Details</h3></center> 
+                        <div class="row">
+                            <form action="{{url('/changepassword')}}" method="post" name="frm-login" autocomplete="Off" class="checkout-form" onsubmit="return confirm('Do you  want to Change Password?');">
+                            {{ csrf_field() }}
+                            <fieldset style="padding:20px;">
+                                <legend>Password Change</legend>
+                                <label>Current password </label>
+                                <input type="password" class="form-control" id="customer_opassword" onblur="opass_verify(this.value)" name="current_password" required value="">
 
-                                   <label>New password (leave blank to leave unchanged)</label>
-                                   <input type="password" class="form-control" onblur="pass_verify(this.value)" id="customer_password" name="new_password" required>
+                                <label>New password (leave blank to leave unchanged)</label>
+                                <input type="password" class="form-control" onblur="pass_verify(this.value)" id="customer_password" name="new_password" required>
 
-                                   <label>Confirm new password</label>
-                                   <input type="password" onblur="cpass_verify(this.value)" class="form-control" id="customer_cpassword" name="confirm_password" required>
-                               </fieldset>
-                               <br>
-                               <div class="login-on-checkout">
-                                   <p class="form-row">
-                                       <button type="submit" name="btn btn-dark btn-rounded " class="btn">SAVE CHANGES</button>
-                                   </p>
-                               </div>
-                           </form>
-                           </div>
-                       </div>
+                                <label>Confirm new password</label>
+                                <input type="password" onblur="cpass_verify(this.value)" class="form-control" id="customer_cpassword" name="confirm_password" required>
+                            </fieldset>
+                            <br>
+                            <div class="login-on-checkout">
+                                <p class="form-row">
+                                    <button type="submit" name="btn btn-dark btn-rounded " class="btn">SAVE CHANGES</button>
+                                </p>
+                            </div>
+                        </form>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="wishlist">                           
+                        <center><h3>Wishlist</h3></center> 
+                        <div class="row">
+                            <div class="page-content">
+                                <div class="container">
+                                    <table class="shop-table wishlist-table">
+                                        <thead>
+                                            <tr>
+                                                <th class="product-name"><span>Product</span></th>
+                                                <th class="product-name">Product Name</th>
+                                                <th class="product-price"><span>Price</span></th>
+                                                <th class="product-stock-status"><span>Stock Status</span></th>
+                                                <th class="wishlist-action">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        @php $i=0; @endphp
+                                                        @if($wishCount>0)
+                                                        @foreach ($wishlist as $product)
+                                                        @php  $i++; $images=explode(',',$product->product_detail_image);  $img=substr($images[0], 2, -1);       @endphp
+                                                        
+                                                        <tr>
+                                                            <td style="text-align: center;" >
+                                                                <div class="p-relative"  >
+                                                                    <a href="{{url('productVar',$product->ecom_product_id)}}">
+                                                                    
+                                                                            <img   src="{{ asset('assets/images/products/detail') . '/' . $img }}"  alt="product" 
+                                                                                >
+                                                                    
+                                                                    </a>
+                                                                    {{-- <a   href="{{url('Delete_wishlist',$product->ecom_wishlist_id)}}" class="btn btn-close"><i
+                                                                            class="fas fa-times"></i></a> --}}
+                                                                </div>
+                                                            </td>
+                                                            <td style="text-align: center;" class="product-name">
+                                                                <a href="{{url('productVar',$product->ecom_product_id)}}">
+                                                                {{ $product->product_name }}
+                                                                </a>
+                                                            </td>
+                                                            <td  style="text-align: center;" class="product-price"><ins class="new-price">Rs. {{ $product->selling_price }} <del><span class="currencySymbol">Rs.</span> {{ $product->retail_price }} </del></ins></td>
+                                                            <td  style="text-align: center;" class="product-stock-status">
+                                                                <span class="wishlist-in-stock">In Stock</span>
+                                                            </td>
+                                                            <td  style="text-align: center;" class="wishlist-action">
+                                                                <div class="d-lg-flex">
+                                                                    <a href="{{url('delete_wishlist',$product->ecom_wishlist_id)}}"
+                                                                        class="btn btn-default btn-rounded btn-sm mb-2 mb-lg-0">Remove 
+                                                                        </a>
+                                                                    <a href="{{url('productVar',$product->ecom_product_id)}}" class="btn btn-dark btn-rounded btn-sm ml-lg-2 btn-cart">Add to
+                                                                        cart</a>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                            
+                                                        @endforeach
+                                                        @else
+                                                        <tr data-id="1">
+                                                            <td colspan="5">
+                                                                <center><i class="d-icon-bag"></i> Your Wishlist is Empty</center>
+                                                            </td>
+                                                        </tr>
+                                                        @endif
+                                                    
+                                        </tbody>
+                                    </table>
+                                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                        
                    </div>
                </div>

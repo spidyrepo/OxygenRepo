@@ -51,9 +51,15 @@ class FrontendController extends Controller
 
         $customer = Ecom_Customer_info::where('customer_id', $customer_id)->first();
 
-        // dd($customer);
+        $wishlist = wishlist::select('ecom_wishlist.*', 'pr.product_name', 'pd.product_detail_image', 'pd.retail_price', 'pd.selling_price')
+            ->leftJoin('products_details as pd', 'pd.id', '=', 'ecom_wishlist.ecom_product_id')
+            ->leftJoin('products as pr', 'pd.products_id', '=', 'pr.product_id')
+            ->where('ecom_wishlist.customer_id', '=', $customer_id)
+            ->get();
+        $wishCount = count($wishlist);
 
-        return view('frontend/my_account', compact('customer'));
+
+        return view('frontend/my_account', compact('customer', 'wishlist', 'wishCount'));
     }
 
     public function getProductImageList($id)

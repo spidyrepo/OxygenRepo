@@ -44,9 +44,11 @@
                             <li class="nav-item">
                                 <a href="#account-details" class="nav-link">Account details</a>
                             </li>
-                            <li class="link-item">
-                                <a href="wishlist.html">Wishlist</a>
+
+                            <li class="nav-item">
+                                <a href="#wishlist" class="nav-link">Wishlist</a>
                             </li>
+                            
                             <li class="link-item">
                                 <a href="login.html">Logout</a>
                             </li>
@@ -402,6 +404,24 @@
                                         Changes</button>
                                 </form>
                             </div>
+
+
+                              <div class="tab-pane" id="wishlist">
+                                <div class="icon-box icon-box-side icon-box-light">
+                                    <span class="icon-box-icon icon-account mr-2">
+                                        <i class="w-icon-user"></i>
+                                    </span>
+                                    <div class="icon-box-content">
+                                        <h4 class="icon-box-title mb-0 ls-normal">Wishlist</h4>
+                                    </div>
+                                </div>
+
+
+                                
+                            </div>
+
+
+
                         </div>
                     </div>
                 </div>
