@@ -80,7 +80,7 @@
 .swiper-slide-vendor img {
   display: block;
   width: 100%;
-  max-height: 100px !important;
+  max-height: 130px !important;
 }
 .swiper-container:not(.swiper-container-initialized) .swiper-wrapper.row {
   width: calc(100% + 2rem);
@@ -437,6 +437,7 @@ a:hover {
 }
 figure {
   margin: 0;
+  margin-top: 13px;
 }
 hr {
   margin: 0.5rem 0 1.5rem;

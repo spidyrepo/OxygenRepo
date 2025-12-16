@@ -675,10 +675,14 @@
                  
                 @isset($locations)
                     @foreach($locations as  $key=>$row)
+
+                    @php
+                        $imgNo = ($key % 9) + 1;
+                    @endphp
                         <div class="swiper-slide swiper-slide-vendor text-center">
                             <figure>
-                                <img src="{{ asset('frontend/images/00' . $key+1 . '.jpg') }}"  
-                                    alt="{{ $row->area }}" 
+                                <img src="{{ asset('frontend/images/00' .$imgNo  . '.jpg') }}"  
+                                    
                                     style="width:150px;height:150px;object-fit:cover;border-radius:50%;">
                                 
                                 <figcaption style="margin-top: 8px; font-weight: 600;">
