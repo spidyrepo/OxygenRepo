@@ -101,17 +101,20 @@
                                   
                                    <div class="widget widget-collapsible">
                                         <h3 class="widget-title"><label>Price</label></h3>
+
                                         <div class="widget-body">
                                             <div class="range-container">
 
-                                                <label class="range-label pb-2">
-                                                    <span class="range-value " id="minPriceValue">Rs. 0 </span> -
-                                                    <span class="range-value" id="maxPriceValue">Rs. 5000 </span>
-                                                </label>
-
                                                 <div class="double-range">
+                                                    <div class="slider-track"></div>
+
+                                                    <!-- MIN -->
                                                     <input class="price-filter" type="range" id="minPrice" min="0" max="5000" step="10" value="0">
-                                                    <input class="price-filter" type="range" id="maxPrice" min="0" max="5000" step="10" value="5000">
+                                                    <div class="price-bubble" id="minBubble">₹0</div>
+
+                                                    <!-- MAX -->
+                                                    <input  class="price-filter" type="range" id="maxPrice" min="0" max="5000" step="10" value="5000">
+                                                    <div class="price-bubble" id="maxBubble">₹500</div>
                                                 </div>
 
                                             </div>
@@ -273,29 +276,51 @@
         <!-- End of Main -->
 
          <script>
-        const minPrice = document.getElementById('minPrice');
-        const maxPrice = document.getElementById('maxPrice');
-        const minPriceValue = document.getElementById('minPriceValue');
-        const maxPriceValue = document.getElementById('maxPriceValue');
+            
+        const minSlider = document.getElementById("minPrice");
+        const maxSlider = document.getElementById("maxPrice");
+        const minBubble = document.getElementById("minBubble");
+        const maxBubble = document.getElementById("maxBubble");
 
-        function updatePriceRange() {
-            let minVal = parseInt(minPrice.value);
-            let maxVal = parseInt(maxPrice.value);
+        const sliderTrack = document.querySelector(".slider-track");
+        const rangeActive = document.createElement("div");
+        rangeActive.classList.add("range-active");
+        sliderTrack.appendChild(rangeActive);
 
-            // prevent crossing the sliders
-            if (minVal > maxVal - 100) {
-                minPrice.value = maxVal - 100;
-                minVal = maxVal - 100;
-            }
+        function setBubble(slider, bubble) {
+            const max = slider.max;
+            const val = slider.value;
+            const percent = (val / max) * 100;
 
-            minPriceValue.textContent = `Rs. ${minVal}`;
-            maxPriceValue.textContent = `Rs. ${maxVal}`;
+            bubble.innerHTML = "₹" + val;
+            bubble.style.left = percent + "%";
         }
 
-        minPrice.addEventListener('input', updatePriceRange);
-        maxPrice.addEventListener('input', updatePriceRange);
+        function updateRange() {
+            let min = parseInt(minSlider.value);
+            let max = parseInt(maxSlider.value);
 
+            if (min > max - 100) {
+                minSlider.value = max - 100;
+            }
+            if (max < min + 100) {
+                maxSlider.value = min + 100;
+            }
 
+            setBubble(minSlider, minBubble);
+            setBubble(maxSlider, maxBubble);
+
+            const minPercent = (minSlider.value / minSlider.max) * 100;
+            const maxPercent = (maxSlider.value / maxSlider.max) * 100;
+
+            rangeActive.style.left = minPercent + "%";
+            rangeActive.style.width = (maxPercent - minPercent) + "%";
+        }
+
+        minSlider.addEventListener("input", updateRange);
+        maxSlider.addEventListener("input", updateRange);
+
+        updateRange();
 
 
         $(document).ready(function() {

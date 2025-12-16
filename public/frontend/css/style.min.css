@@ -21826,61 +21826,70 @@ aside .sp-sidebar-banner span {
   font-weight: bold;
   margin-left: 8px;
 }
-
 .range-container {
-  margin: 20px 0;
-}
-
-.range-label {
-  font-weight: bold;
-  display: block;
-  margin-bottom: 10px;
-}
-
-.range-value {
-  display: inline-block;
-  background: white;
-  padding: 4px 8px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  /* margin: 0 5px; */
-  font-weight: bold;
+    width: 100%;
+    margin-top: 20px;
 }
 
 .double-range {
     position: relative;
-    height: 40px;
-}
-
-/* RANGE BASE */
-.double-range input[type="range"] {
-    position: absolute;
     width: 100%;
-    height: 8px;
-    -webkit-appearance: none;
-    background: transparent;
-    pointer-events: auto;  /* 🔥 ENABLE DRAGGING */
+    height: 50px;
 }
 
-/* RANGE TRACK */
-input[type="range"]::-webkit-slider-runnable-track {
-    height: 8px;
+/* TRACK BACKGROUND */
+.slider-track {
+    position: absolute;
+    height: 6px;
+    width: 100%;
     background: #ddd;
+    top: 22px;
     border-radius: 5px;
 }
 
-/* RANGE THUMB */
-input[type="range"]::-webkit-slider-thumb {
+/* RANGE INPUT */
+.double-range input[type="range"] {
+    position: absolute;
+    width: 100%;
+    height: 6px;
+    top: 22px;
+    background: none;
+    pointer-events: none;
     -webkit-appearance: none;
-    width: 18px;
-    height: 18px;
-    background: orange;
-    border-radius: 50%;
-    cursor: pointer;
-    margin-top: -5px; 
 }
 
+/* ENABLE THUMB */
+.double-range input[type="range"]::-webkit-slider-thumb {
+    pointer-events: auto;
+    -webkit-appearance: none;
+    height: 16px;
+    width: 16px;
+    background: #0088dd;
+    border-radius: 50%;
+    cursor: pointer;
+}
 
+/* PRICE BUBBLE */
+.price-bubble {
+    position: absolute;
+    top: -5px;
+    background: #0088dd;
+    color: #fff;
+    padding: 3px 8px;
+    font-size: 12px;
+    border-radius: 5px;
+    transform: translateX(-50%);
+    white-space: nowrap;
+}
+
+/* ACTIVE RANGE */
+.range-active {
+    position: absolute;
+    height: 6px;
+    background: #0088dd;
+    top: 22px;
+    border-radius: 5px;
+}
 .color-picker {
   display: flex;
   flex-wrap: wrap;
