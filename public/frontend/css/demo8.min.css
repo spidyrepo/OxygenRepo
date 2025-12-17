@@ -80,7 +80,15 @@
 .swiper-slide-vendor img {
   display: block;
   width: 100%;
+  min-height: 130px !important;
   max-height: 130px !important;
+}
+
+@media (max-width: 576px) {
+    .swiper-slide-vendor img {
+        min-height: 190px !important;
+        max-height: 190px !important;
+    }
 }
 .swiper-container:not(.swiper-container-initialized) .swiper-wrapper.row {
   width: calc(100% + 2rem);

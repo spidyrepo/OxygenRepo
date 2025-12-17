@@ -111,8 +111,6 @@ class FrontendController extends Controller
 
 
 
-
-
         $topCollection = DB::table('products')
             ->leftJoin('products_details', 'products.id', '=', 'products_details.products_id')
             ->leftJoin('category_sub', 'products.category_sub', '=', 'category_sub.id')
@@ -323,8 +321,8 @@ class FrontendController extends Controller
             ->get();
 
         $prouctsList = $this->getSpecificProduct('');
-        $vendorcreate = vendorcreate::get();
 
+        $vendorcreate = vendorcreate::get();
 
         $pincode = session('pincode');
 

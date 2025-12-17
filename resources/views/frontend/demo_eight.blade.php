@@ -632,9 +632,6 @@
                         </center> 
                       
                      </figure>
-
-                       
-                              
                  </div>
 
                  <?php }
