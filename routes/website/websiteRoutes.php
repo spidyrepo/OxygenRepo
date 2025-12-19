@@ -105,6 +105,9 @@ Route::get('/offer-products/{id}', [FrontendController::class, 'offers_products'
 
 Route::get('/customer-logout', [FrontendController::class, 'customer_logout'])->name('customer-logout');
 
+Route::post('/save-shipping-address', [FrontendController::class, 'saveShippingAddress'])->name('save-shipping-address');
+Route::post('/delete-shipping-address', [FrontendController::class, 'deleteShippingAddress'])->name('delete-shipping-address');
+Route::post('/set-default-shipping-address', [FrontendController::class, 'setDefaultShippingAddress'])->name('set-default-shipping-address');
 
 /** NEW CODE END  */
 

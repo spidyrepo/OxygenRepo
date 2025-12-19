@@ -20,6 +20,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\City;
 use App\Models\Ecom_Customer_info;
+use App\Models\Ecom_Customer_Shipping;
+
+
 use Illuminate\Support\Facades\Session;
 use App\Models\PinCode\PinCode;
 use App\Models\wishlist;
@@ -50,6 +53,7 @@ class FrontendController extends Controller
         $customer_id = Session::get('customer_id');
 
         $customer = Ecom_Customer_info::where('customer_id', $customer_id)->first();
+        $shipping_address = Ecom_Customer_Shipping::where('customer_id', $customer_id)->get();
 
         $wishlist = wishlist::select('ecom_wishlist.*', 'pr.product_name', 'pd.product_detail_image', 'pd.retail_price', 'pd.selling_price')
             ->leftJoin('products_details as pd', 'pd.id', '=', 'ecom_wishlist.ecom_product_id')
@@ -59,7 +63,61 @@ class FrontendController extends Controller
         $wishCount = count($wishlist);
 
 
-        return view('frontend/my_account', compact('customer', 'wishlist', 'wishCount'));
+        return view('frontend/my_account', compact('customer', 'wishlist', 'wishCount', 'shipping_address'));
+    }
+
+
+    public function saveShippingAddress(Request $request)
+    {
+
+        if ($request->address_id) {
+
+            Ecom_Customer_Shipping::where('id', $request->address_id)
+                ->update([
+                    'customer_firstname' => $request->customer_firstname,
+                    'customer_mobileno'  => $request->customer_mobileno,
+                    'customer_email'     => $request->customer_email,
+                    'customer_address'   => $request->customer_address,
+                    'customer_state'     => $request->customer_state,
+                    'customer_pincode'   => $request->customer_pincode,
+                ]);
+
+            return redirect()->back()->with('success', 'Address updated  successfully');
+        } else {
+            // ADD NEW
+            Ecom_Customer_Shipping::create([
+                'customer_id'        =>  Session::get('customer_id'),
+                'customer_firstname' => $request->customer_firstname,
+                'customer_mobileno'  => $request->customer_mobileno,
+                'customer_email'     => $request->customer_email,
+                'customer_address'   => $request->customer_address,
+                'customer_state'     => $request->customer_state,
+                'customer_pincode'   => $request->customer_pincode,
+            ]);
+
+            return redirect()->back()->with('success', 'Address saved successfully');
+        }
+    }
+
+    public function deleteShippingAddress(Request $request)
+    {
+        Ecom_Customer_Shipping::where('id', $request->address_id)->delete();
+
+        return response()->json(['success' => true]);
+    }
+
+    public function setDefaultShippingAddress(Request $request)
+    {
+        $customerId = Session::get('customer_id');
+
+        Ecom_Customer_Shipping::where('customer_id', $customerId)
+            ->update(['is_default' => 0]);
+
+        Ecom_Customer_Shipping::where('id', $request->address_id)
+            ->where('customer_id', $customerId)
+            ->update(['is_default' => 1]);
+
+        return response()->json(['success' => true]);
     }
 
     public function getProductImageList($id)
@@ -105,9 +163,9 @@ class FrontendController extends Controller
             )
             ->get();
 
-            $offerList = $this->getProductByVendorOffers($id, $offer_id ='');
+        $offerList = $this->getProductByVendorOffers($id, $offer_id = '');
 
-            // print_r(  $prouctsList);exit;
+        // print_r(  $prouctsList);exit;
 
 
 

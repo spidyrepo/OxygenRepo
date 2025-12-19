@@ -240,90 +240,118 @@
 
                             <p>
                                 The following addresses will be used on the checkout page
-                                by default.
+                                by   <input type="checkbox" checked disabled> default.
                             </p>
 
                            <div class="row">
                                <div class="col-sm-6 mb-6">
                                    <div class="ecommerce-address billing-address pr-lg-8">
-                                       <h4 class="title title-underline ls-25 font-weight-bold">Billing Address</h4>
-                                       <address class="mb-4">
-                                           <table class="address-table">
-                                               <tbody>
-                                                   <tr>
-                                                       <th>Name:</th>
-                                                       <td>John Doe</td>
-                                                   </tr>
-                                                   <tr>
-                                                       <th>Company:</th>
-                                                       <td>Conia</td>
-                                                   </tr>
-                                                   <tr>
-                                                       <th>Address:</th>
-                                                       <td>Wall Street</td>
-                                                   </tr>
-                                                   <tr>
-                                                       <th>City:</th>
-                                                       <td>California</td>
-                                                   </tr>
-                                                   <tr>
-                                                       <th>Country:</th>
-                                                       <td>United States (US)</td>
-                                                   </tr>
-                                                   <tr>
-                                                       <th>Postcode:</th>
-                                                       <td>92020</td>
-                                                   </tr>
-                                                   <tr>
-                                                       <th>Phone:</th>
-                                                       <td>1112223334</td>
-                                                   </tr>
-                                               </tbody>
-                                           </table>
-                                       </address>
-                                       <a href="#"
-                                           class="btn btn-link btn-underline btn-icon-right text-primary">Edit
-                                           your billing address<i class="w-icon-long-arrow-right"></i></a>
+
+                                    @forelse($shipping_address as $key => $address)
+                                    <div class="card mb-3 address-card "
+                                        onclick="showAddress(this)"
+                                        data-id="{{ $address->id }}"
+                                        data-name="{{ $address->customer_firstname }}"
+                                        data-mobile="{{ $address->customer_mobileno }}"
+                                        data-address="{{ $address->customer_address }}"
+                                        data-state="{{ $address->customer_state }}"
+                                        data-pincode="{{ $address->customer_pincode }}"
+                                        data-email="{{ $address->customer_email }}"
+                                        style="cursor:pointer;">
+
+                                         <div class="default-checkbox">
+                                                <input type="checkbox"
+                                                    {{ $address->is_default ? 'checked' : '' }}
+                                                    onclick="setDefaultAddress(event, {{ $address->id }})">
+                                            </div>
+                                        
+                                        <div class="card-body">
+                                            <h6 class="mb-1">{{ $address->customer_firstname }}</h6>
+                                            <p class="mb-0 small">
+                                                {{ $address->customer_address }}<br>
+                                                {{ $address->customer_state }}<br>
+                                                {{ $address->customer_mobileno }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                @empty
+                                    <p>No shipping addresses found.</p>
+                                @endforelse
+                                    
                                    </div>
                                </div>
-                               <div class="col-sm-6 mb-6">
-                                   <div class="ecommerce-address shipping-address pr-lg-8">
-                                       <h4 class="title title-underline ls-25 font-weight-bold">Shipping Address</h4>
-                                       <address class="mb-4">
-                                           <table class="address-table">
-                                               <tbody>
-                                                   <tr>
-                                                       <th>Name:</th>
-                                                       <td>John Doe</td>
-                                                   </tr>
-                                                   <tr>
-                                                       <th>Company:</th>
-                                                       <td>Conia</td>
-                                                   </tr>
-                                                   <tr>
-                                                       <th>Address:</th>
-                                                       <td>Wall Street</td>
-                                                   </tr>
-                                                   <tr>
-                                                       <th>City:</th>
-                                                       <td>California</td>
-                                                   </tr>
-                                                   <tr>
-                                                       <th>Country:</th>
-                                                       <td>United States (US)</td>
-                                                   </tr>
-                                                   <tr>
-                                                       <th>Postcode:</th>
-                                                       <td>92020</td>
-                                                   </tr>
-                                               </tbody>
-                                           </table>
-                                       </address>
-                                       <a href="#"
-                                           class="btn btn-link btn-underline btn-icon-right text-primary">Edit your
-                                           shipping address<i class="w-icon-long-arrow-right"></i></a>
-                                   </div>
-                               </div>
+                            <div class="col-sm-6 mb-6">
+                                <div class="ecommerce-address shipping-address pr-lg-8">
+                                   <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <h4 id="address-title" class="title title-underline ls-25 font-weight-bold mb-0">
+                                            Add Shipping Address
+                                        </h4>
+
+                                        <button type="button"
+                                                id="addNewAddressBtn"
+                                                class="btn submit-button btn-primary btn-sm">
+                                            Add Address
+                                        </button>
+                                    </div>
+
+                                     
+
+                                    <form method="POST" id="addressForm"     action="{{ route('save-shipping-address') }}">
+                                        @csrf
+
+                                        <input type="hidden" name="address_id" id="address_id">
+
+                                        <div class="mb-2">
+                                            <label>Name</label>
+                                            <input type="text" name="customer_firstname" id="customer_firstname"
+                                                class="form-control">
+                                        </div>
+
+                                        <div class="mb-2">
+                                            <label>Mobile</label>
+                                            <input type="text" name="customer_mobileno" id="customer_mobileno"
+                                                class="form-control">
+                                        </div>
+                                           <div class="mb-2">
+                                            <label>Email</label>
+                                            <input type="text" name="customer_email" id="customer_email"
+                                                class="form-control">
+                                        </div>
+
+                                        <div class="mb-2">
+                                            <label>Address</label>
+                                            <textarea name="customer_address" id="customer_address"
+                                                    class="form-control"></textarea>
+                                        </div>
+
+                                        <div class="mb-2">
+                                            <label>State</label>
+                                            <input type="text" name="customer_state" id="customer_state"
+                                                class="form-control">
+                                        </div>
+
+                                        <div class="mb-2">
+                                            <label>Pincode</label>
+                                            <input type="text" name="customer_pincode" id="customer_pincode"
+                                                class="form-control">
+                                        </div>
+
+
+                                         <div class="d-flex justify-content-between align-items-center mb-3">
+                                     <button type="submit"  id="submitBtn"  class="btn submit-button btn-primary btn-sm mt-2">
+                                            Add Address
+                                        </button>
+
+                                       <button type="button" id="deleteBtn"
+                                             style="background-color: rgb(214, 47, 47) ; color:#fff" class="btn submit-button btn-danger btn-sm mt-2 d-none">
+                                            Delete Address
+                                        </button>
+                                    </div>
+
+                                    </form>
+                                </div>
+                            </div>
+
                            </div>
                        </div>
                        <div class="tab-pane" id="profile-details">
@@ -486,5 +514,140 @@
        </div>
        <!-- End of PageContent -->
    </main>
+
+
+   
    <!-- End of Main -->
    @endsection
+
+<script>
+
+    function setDefaultAddress(e, addressId) {
+    e.stopPropagation(); // prevent card click
+
+    if (!confirm('Set this address as default?')) {
+        e.target.checked = false;
+        return;
+    }
+
+    fetch("{{ route('set-default-shipping-address') }}", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-TOKEN": "{{ csrf_token() }}"
+        },
+        body: JSON.stringify({ address_id: addressId })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.success) {
+            swal("Success!", "Default address updated", "success")
+                .then(() => location.reload());
+        }
+    });
+}
+
+
+
+function showAddress(card) {
+
+    // remove active from all cards
+    document.querySelectorAll('.address-card').forEach(el => {
+        el.classList.remove('active');
+    });
+
+    // add active to clicked card
+    card.classList.add('active');
+
+    // fill form values
+    document.getElementById('address_id').value = card.dataset.id;
+    document.getElementById('customer_firstname').value = card.dataset.name;
+    document.getElementById('customer_mobileno').value = card.dataset.mobile;
+    document.getElementById('customer_email').value = card.dataset.email;
+    document.getElementById('customer_address').value = card.dataset.address;
+    document.getElementById('customer_state').value = card.dataset.state;
+    document.getElementById('customer_pincode').value = card.dataset.pincode;
+
+    // update button
+    const btn = document.getElementById('submitBtn');
+    btn.innerText = 'Update Address';
+    btn.classList.remove('btn-primary');
+    btn.classList.add('btn-success');
+
+    // update title
+    document.getElementById('address-title').innerText = 'Edit Shipping Address';
+    document.getElementById('deleteBtn').classList.remove('d-none');
+}
+
+// ✅ ADD NEW ADDRESS RESET
+document.addEventListener('DOMContentLoaded', function () {
+
+    document.getElementById('addNewAddressBtn').addEventListener('click', function () {
+
+        // clear form
+        document.getElementById('addressForm').reset();
+        document.getElementById('address_id').value = '';
+
+        // remove active cards
+        document.querySelectorAll('.address-card').forEach(el => {
+            el.classList.remove('active');
+        });
+
+        // reset submit button
+        const btn = document.getElementById('submitBtn');
+        btn.innerText = 'Add Address';
+        btn.classList.remove('btn-success');
+        btn.classList.add('btn-primary');
+
+        // reset title
+        document.getElementById('address-title').innerText = 'Add Shipping Address';
+        document.getElementById('deleteBtn').classList.add('d-none');
+        
+    });
+
+
+    document.getElementById('deleteBtn').addEventListener('click', function () {
+
+    const addressId = document.getElementById('address_id').value;
+
+    if (!addressId) {
+        alert('Please select an address');
+        return;
+    }
+
+    if (!confirm('Are you sure you want to delete this address?')) {
+        return;
+    }
+
+    fetch("{{ route('delete-shipping-address') }}", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-TOKEN": "{{ csrf_token() }}"
+        },
+        body: JSON.stringify({ address_id: addressId })
+    })
+    .then(res => res.json())
+    .then(data => {
+        swal({
+            title: "Success!",
+            text: "Address deleted successfully",
+            icon: "success",
+            button: "OK",
+        }).then(() => {
+            location.reload(); // ✅ reload AFTER OK click
+        });
+    });
+});
+
+
+
+});
+
+
+
+
+
+</script>
+
+

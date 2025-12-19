@@ -90,6 +90,7 @@
         max-height: 190px !important;
     }
 }
+
 .swiper-container:not(.swiper-container-initialized) .swiper-wrapper.row {
   width: calc(100% + 2rem);
 }
