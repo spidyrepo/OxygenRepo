@@ -21887,7 +21887,7 @@ aside .sp-sidebar-banner span {
     position: absolute;
     height: 6px;
     background: #0088dd;
-    top: 22px;
+    top: 0px;
     border-radius: 5px;
 }
 .color-picker {
