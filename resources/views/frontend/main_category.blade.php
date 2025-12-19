@@ -92,7 +92,7 @@
                                         <a href="#" class="btn btn-dark btn-link filter-clean"></a>
                                     </div>
                                   
-                                   <div class="widget widget-collapsible">
+                                    <div class="widget widget-collapsible">
                                         <h3 class="widget-title"><label>Price</label></h3>
                                        <div class="widget-body">
                                             <div class="range-container">
