@@ -51,19 +51,24 @@ class FrontendController extends Controller
     {
 
         $customer_id = Session::get('customer_id');
+        if ($customer_id) {
+            $customer = Ecom_Customer_info::where('customer_id', $customer_id)->first();
+            $shipping_address = Ecom_Customer_Shipping::where('customer_id', $customer_id)->get();
 
-        $customer = Ecom_Customer_info::where('customer_id', $customer_id)->first();
-        $shipping_address = Ecom_Customer_Shipping::where('customer_id', $customer_id)->get();
-
-        $wishlist = wishlist::select('ecom_wishlist.*', 'pr.product_name', 'pd.product_detail_image', 'pd.retail_price', 'pd.selling_price')
-            ->leftJoin('products_details as pd', 'pd.id', '=', 'ecom_wishlist.ecom_product_id')
-            ->leftJoin('products as pr', 'pd.products_id', '=', 'pr.product_id')
-            ->where('ecom_wishlist.customer_id', '=', $customer_id)
-            ->get();
-        $wishCount = count($wishlist);
+            $wishlist = wishlist::select('ecom_wishlist.*', 'pr.product_name', 'pd.product_detail_image', 'pd.retail_price', 'pd.selling_price')
+                ->leftJoin('products_details as pd', 'pd.id', '=', 'ecom_wishlist.ecom_product_id')
+                ->leftJoin('products as pr', 'pd.products_id', '=', 'pr.product_id')
+                ->where('ecom_wishlist.customer_id', '=', $customer_id)
+                ->get();
+            $wishCount = count($wishlist);
 
 
-        return view('frontend/my_account', compact('customer', 'wishlist', 'wishCount', 'shipping_address'));
+            return view('frontend/my_account', compact('customer', 'wishlist', 'wishCount', 'shipping_address'));
+        } else {
+
+               return redirect('/demoEight');
+
+        }
     }
 
 
