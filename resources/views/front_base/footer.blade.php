@@ -1196,6 +1196,8 @@ function togglePasswordRegister(inputId, icon) {
 
     function opass_verify(cpass) {
         var pass = $('#cpd').val();
+
+        
         if (pass != cpass) {
             swal("Warning!", "Old Password Miss Matched", "warning");
             $('#customer_opassword').val('');

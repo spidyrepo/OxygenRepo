@@ -49,7 +49,11 @@
                            <a href="#wishlist" class="nav-link">Wishlist</a>
                        </li>
                        <li class="link-item">
-                           <a href="{{ route('customer-logout') }}" class="nav-link">Logout</a>
+                            <a href="{{ route('customer-logout') }}" 
+                                class="nav-link"
+                                onclick="window.location.href=this.href; return false;">
+                                Logout
+                            </a>
                        </li>
                    </ul>
 
@@ -414,18 +418,30 @@
                     <div class="tab-pane" id="account-details">                           
                                 <center><h3>Account Details</h3></center> 
                         <div class="row">
-                            <form action="{{url('/changepassword')}}" method="post" name="frm-login" autocomplete="Off" class="checkout-form" onsubmit="return confirm('Do you  want to Change Password?');">
+                            <form action="{{url('/change-customer-password')}}" method="post" name="frm-login" autocomplete="Off" class="checkout-form" onsubmit="return confirm('Do you  want to Change Password?');">
                             {{ csrf_field() }}
                             <fieldset style="padding:20px;">
                                 <legend>Password Change</legend>
-                                <label>Current password </label>
-                                <input type="password" class="form-control" id="customer_opassword" onblur="opass_verify(this.value)" name="current_password" required value="">
+                                <div >
+                                                                    <label>Current password </label>
+                                <input type="password" class="form-control" id="customer_opassword"  name="current_password" required value="">
 
-                                <label>New password (leave blank to leave unchanged)</label>
-                                <input type="password" class="form-control" onblur="pass_verify(this.value)" id="customer_password" name="new_password" required>
+                                </div>
+                                <div class="mt-2">
+                                                                    <label class="">New password</label>
+                                <input type="password" class="form-control "  id="customer_password" name="new_password" required>
 
+
+                                </div>
+                                <div class="mt-2">
                                 <label>Confirm new password</label>
                                 <input type="password" onblur="cpass_verify(this.value)" class="form-control" id="customer_cpassword" name="confirm_password" required>
+
+
+                                </div>
+
+
+
                             </fieldset>
                             <br>
                             <div class="login-on-checkout">
@@ -523,128 +539,126 @@
 <script>
 
     function setDefaultAddress(e, addressId) {
-    e.stopPropagation(); // prevent card click
+        e.stopPropagation(); // prevent card click
 
-    if (!confirm('Set this address as default?')) {
-        e.target.checked = false;
-        return;
+        if (!confirm('Set this address as default?')) {
+            e.target.checked = false;
+            return;
+        }
+
+        fetch("{{ route('set-default-shipping-address') }}", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": "{{ csrf_token() }}"
+            },
+            body: JSON.stringify({ address_id: addressId })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                swal("Success!", "Default address updated", "success")
+                    .then(() => location.reload());
+            }
+        });
     }
 
-    fetch("{{ route('set-default-shipping-address') }}", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "X-CSRF-TOKEN": "{{ csrf_token() }}"
-        },
-        body: JSON.stringify({ address_id: addressId })
-    })
-    .then(res => res.json())
-    .then(data => {
-        if (data.success) {
-            swal("Success!", "Default address updated", "success")
-                .then(() => location.reload());
-        }
-    });
-}
 
 
+    function showAddress(card) {
 
-function showAddress(card) {
-
-    // remove active from all cards
-    document.querySelectorAll('.address-card').forEach(el => {
-        el.classList.remove('active');
-    });
-
-    // add active to clicked card
-    card.classList.add('active');
-
-    // fill form values
-    document.getElementById('address_id').value = card.dataset.id;
-    document.getElementById('customer_firstname').value = card.dataset.name;
-    document.getElementById('customer_mobileno').value = card.dataset.mobile;
-    document.getElementById('customer_email').value = card.dataset.email;
-    document.getElementById('customer_address').value = card.dataset.address;
-    document.getElementById('customer_state').value = card.dataset.state;
-    document.getElementById('customer_pincode').value = card.dataset.pincode;
-
-    // update button
-    const btn = document.getElementById('submitBtn');
-    btn.innerText = 'Update Address';
-    btn.classList.remove('btn-primary');
-    btn.classList.add('btn-success');
-
-    // update title
-    document.getElementById('address-title').innerText = 'Edit Shipping Address';
-    document.getElementById('deleteBtn').classList.remove('d-none');
-}
-
-// ✅ ADD NEW ADDRESS RESET
-document.addEventListener('DOMContentLoaded', function () {
-
-    document.getElementById('addNewAddressBtn').addEventListener('click', function () {
-
-        // clear form
-        document.getElementById('addressForm').reset();
-        document.getElementById('address_id').value = '';
-
-        // remove active cards
+        // remove active from all cards
         document.querySelectorAll('.address-card').forEach(el => {
             el.classList.remove('active');
         });
 
-        // reset submit button
+        // add active to clicked card
+        card.classList.add('active');
+
+        // fill form values
+        document.getElementById('address_id').value = card.dataset.id;
+        document.getElementById('customer_firstname').value = card.dataset.name;
+        document.getElementById('customer_mobileno').value = card.dataset.mobile;
+        document.getElementById('customer_email').value = card.dataset.email;
+        document.getElementById('customer_address').value = card.dataset.address;
+        document.getElementById('customer_state').value = card.dataset.state;
+        document.getElementById('customer_pincode').value = card.dataset.pincode;
+
+        // update button
         const btn = document.getElementById('submitBtn');
-        btn.innerText = 'Add Address';
-        btn.classList.remove('btn-success');
-        btn.classList.add('btn-primary');
+        btn.innerText = 'Update Address';
+        btn.classList.remove('btn-primary');
+        btn.classList.add('btn-success');
 
-        // reset title
-        document.getElementById('address-title').innerText = 'Add Shipping Address';
-        document.getElementById('deleteBtn').classList.add('d-none');
-        
-    });
-
-
-    document.getElementById('deleteBtn').addEventListener('click', function () {
-
-    const addressId = document.getElementById('address_id').value;
-
-    if (!addressId) {
-        alert('Please select an address');
-        return;
+        // update title
+        document.getElementById('address-title').innerText = 'Edit Shipping Address';
+        document.getElementById('deleteBtn').classList.remove('d-none');
     }
 
-    if (!confirm('Are you sure you want to delete this address?')) {
-        return;
-    }
+// ✅ ADD NEW ADDRESS RESET
+    document.addEventListener('DOMContentLoaded', function () {
 
-    fetch("{{ route('delete-shipping-address') }}", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-            "X-CSRF-TOKEN": "{{ csrf_token() }}"
-        },
-        body: JSON.stringify({ address_id: addressId })
-    })
-    .then(res => res.json())
-    .then(data => {
-        swal({
-            title: "Success!",
-            text: "Address deleted successfully",
-            icon: "success",
-            button: "OK",
-        }).then(() => {
-            location.reload(); // ✅ reload AFTER OK click
+        document.getElementById('addNewAddressBtn').addEventListener('click', function () {
+
+            // clear form
+            document.getElementById('addressForm').reset();
+            document.getElementById('address_id').value = '';
+
+            // remove active cards
+            document.querySelectorAll('.address-card').forEach(el => {
+                el.classList.remove('active');
+            });
+
+            // reset submit button
+            const btn = document.getElementById('submitBtn');
+            btn.innerText = 'Add Address';
+            btn.classList.remove('btn-success');
+            btn.classList.add('btn-primary');
+
+            // reset title
+            document.getElementById('address-title').innerText = 'Add Shipping Address';
+            document.getElementById('deleteBtn').classList.add('d-none');
+            
+        });
+
+
+        document.getElementById('deleteBtn').addEventListener('click', function () {
+
+        const addressId = document.getElementById('address_id').value;
+
+        if (!addressId) {
+            alert('Please select an address');
+            return;
+        }
+
+        if (!confirm('Are you sure you want to delete this address?')) {
+            return;
+        }
+
+        fetch("{{ route('delete-shipping-address') }}", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": "{{ csrf_token() }}"
+            },
+            body: JSON.stringify({ address_id: addressId })
+        })
+        .then(res => res.json())
+        .then(data => {
+            swal({
+                title: "Success!",
+                text: "Address deleted successfully",
+                icon: "success",
+                button: "OK",
+            }).then(() => {
+                location.reload(); // ✅ reload AFTER OK click
+            });
         });
     });
-});
 
 
 
 });
-
-
 
 
 

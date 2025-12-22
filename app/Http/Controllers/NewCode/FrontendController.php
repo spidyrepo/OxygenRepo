@@ -66,10 +66,57 @@ class FrontendController extends Controller
             return view('frontend/my_account', compact('customer', 'wishlist', 'wishCount', 'shipping_address'));
         } else {
 
-               return redirect('/demoEight');
-
+            return redirect('/demoEight');
         }
     }
+
+
+
+    public function changeCustomerPassword(Request $request)
+{
+    $request->validate([
+        'current_password' => 'required',
+        'new_password' => 'required|min:6',
+        'confirm_password' => 'required|same:new_password',
+    ]);
+
+    $customer_id = Session::get('customer_id');
+
+    $customer = Ecom_Customer_info::where('customer_id', $customer_id)->first();
+
+    if (!$customer) {
+        return back()->with('error', 'Customer not found.');
+    }
+
+    // Decode stored password
+    $dbPassword = base64_decode(base64_decode($customer->customer_password));
+
+    // VERIFY OLD PASSWORD
+    if ($request->current_password !== $dbPassword) {
+        return back()->with('error', 'Old password is incorrect.');
+    }
+
+    // UPDATE NEW PASSWORD
+    $customer->update([
+        'customer_password' => base64_encode(base64_encode($request->new_password))
+    ]);
+
+    return redirect('/myAccount')->with('success', 'Password Updated Successfully.');
+}
+
+
+
+    // public function changeCustomerPassword(Request $request)
+    // {
+
+    //     $customer_id = Session::get('customer_id');
+    //     Ecom_Customer_info::where('customer_id', $customer_id)->update(
+    //         ['customer_password' => base64_encode(base64_encode($request->new_password))]
+    //     );
+    //     session()->flash('success', 'Password Updated Successfully.');
+    //     return redirect('/myAccount');
+    // }
+
 
 
     public function saveShippingAddress(Request $request)
@@ -961,3 +1008,7 @@ class FrontendController extends Controller
         return response()->json(['msg' => 'Success', 'wishcount' => $wishCount], 200);
     }
 }
+
+
+
+

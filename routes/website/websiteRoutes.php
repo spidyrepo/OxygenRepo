@@ -109,6 +109,8 @@ Route::post('/save-shipping-address', [FrontendController::class, 'saveShippingA
 Route::post('/delete-shipping-address', [FrontendController::class, 'deleteShippingAddress'])->name('delete-shipping-address');
 Route::post('/set-default-shipping-address', [FrontendController::class, 'setDefaultShippingAddress'])->name('set-default-shipping-address');
 
+
+Route::post('/change-customer-password', [FrontendController::class,'changeCustomerPassword'])->name('change-customer-password');
 /** NEW CODE END  */
 
 Route::resource('/', HomeController::class, ['names' => 'home']);
