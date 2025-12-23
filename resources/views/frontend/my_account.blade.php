@@ -442,7 +442,7 @@
                     <div class="tab-pane" id="account-details">                           
                         <center><h3>Account Details</h3></center> 
                         <div class="row">
-                            <form action="{{url('/change-customer-password')}}" method="post" name="frm-login" autocomplete="Off" class="checkout-form" onsubmit="return confirm('Do you  want to Change Password?');">
+                            <form id="changePasswordForm"  action="{{url('/change-customer-password')}}" method="post" name="frm-login" autocomplete="Off" class="checkout-form" >
                             {{ csrf_field() }}
                             <fieldset style="padding:20px;">
                                 <legend>Password Change</legend>
@@ -568,6 +568,9 @@
 
 <script>
 
+
+
+
     function setDefaultAddress(e, addressId) {
         e.stopPropagation(); // prevent card click
 
@@ -625,6 +628,26 @@
     }
 
     document.addEventListener('DOMContentLoaded', function () {
+
+
+       document.getElementById('changePasswordForm').addEventListener('submit', function (e) {
+    e.preventDefault(); // stop normal submit
+
+    swal({
+        title: "Are you sure?",
+        text: "Do you want to change your password?",
+        icon: "warning",
+        buttons: ["No", "Yes, Change"],
+        dangerMode: true,
+    }).then(function (willChange) {
+        if (willChange) {
+            e.target.submit(); 
+        }
+    });
+});
+
+
+
 
         document.getElementById('addNewAddressBtn').addEventListener('click', function () {
 

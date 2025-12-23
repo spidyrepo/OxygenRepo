@@ -99,9 +99,9 @@ class FrontendController extends Controller
            return redirect('/myAccount#account-details')->with('error', 'New password and confirm password not matched .');
         }
 
-        $customer->update([
-            'customer_password' => base64_encode(base64_encode($request->new_password))
-        ]);
+       Ecom_Customer_info::where('customer_id', $customer_id)->update(
+            ['customer_password' => base64_encode(base64_encode($request->new_password))]
+        );
 
         return redirect('/myAccount#account-details')->with('success', 'Password Updated Successfully.');
     }
