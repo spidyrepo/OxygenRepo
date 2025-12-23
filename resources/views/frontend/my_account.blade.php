@@ -52,29 +52,29 @@
                <div class="tab tab-vertical row gutter-lg">
                    <ul class="nav nav-tabs mb-6" role="tablist">
                        <li class="nav-item">
-                           <a href="#account-dashboard" class="nav-link active">Dashboard</a>
+                           <a href="#account-dashboard"  data-bs-toggle="tab"  class="nav-link    active">Dashboard</a>
                        </li>
                        <li class="nav-item">
-                           <a href="#account-orders" class="nav-link">Orders</a>
+                           <a href="#account-orders"  data-bs-toggle="tab"   class="nav-link  ">Orders</a>
                        </li>
                        <li class="nav-item">
-                           <a href="#account-downloads" class="nav-link">Wallet</a>
+                           <a href="#account-downloads"  data-bs-toggle="tab"  class="nav-link  ">Wallet</a>
                        </li>
                        <li class="nav-item">
-                           <a href="#account-addresses" class="nav-link">Addresses</a>
+                           <a href="#account-addresses"  data-bs-toggle="tab"  class="nav-link ">Addresses</a>
                        </li>
                        <li class="nav-item">
-                           <a href="#profile-details" class="nav-link">profile details</a>
+                           <a href="#profile-details"  data-bs-toggle="tab"  class="nav-link ">profile Details</a>
                        </li>
                        <li class="nav-item">
-                           <a href="#account-details" class="nav-link">Account details</a>
+                           <a href="#account-details"  data-bs-toggle="tab"   class="nav-link ">Account Settings</a>
                        </li>
                        <li class="link-item">
-                           <a href="#wishlist" class="nav-link">Wishlist</a>
+                           <a href="#wishlist"  data-bs-toggle="tab"  class="nav-link ">Wishlist</a>
                        </li>
                        <li class="link-item">
                             <a href="{{ route('customer-logout') }}" 
-                                class="nav-link"
+                                class="nav-link " 
                                 onclick="window.location.href=this.href; return false;">
                                 Logout
                             </a>
@@ -145,7 +145,7 @@
                                                <i class="w-icon-user"></i>
                                            </span>
                                            <div class="icon-box-content">
-                                               <p class="text-uppercase mb-0">Account Details</p>
+                                               <p class="text-uppercase mb-0">profile  Details</p>
                                            </div>
                                        </div>
                                    </a>
@@ -154,10 +154,10 @@
                                    <a href="#account-details" class="link-to-tab">
                                        <div class="icon-box text-center">
                                            <span class="icon-box-icon icon-account">
-                                               <i class="w-icon-user"></i>
+                                               <i class="w-icon-tools"></i>
                                            </span>
                                            <div class="icon-box-content">
-                                               <p class="text-uppercase mb-0">Account Details</p>
+                                               <p class="text-uppercase mb-0">Account Settings</p>
                                            </div>
                                        </div>
                                    </a>
@@ -567,7 +567,6 @@
    @endsection
 
 <script>
-
 
     function setDefaultAddress(e, addressId) {
         e.stopPropagation(); // prevent card click

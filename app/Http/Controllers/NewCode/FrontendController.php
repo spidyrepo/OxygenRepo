@@ -73,36 +73,38 @@ class FrontendController extends Controller
 
 
     public function changeCustomerPassword(Request $request)
-{
-    $request->validate([
-        'current_password' => 'required',
-        'new_password' => 'required|min:6',
-        'confirm_password' => 'required|same:new_password',
-    ]);
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required',
+            'confirm_password' => 'required',
+        ]);
 
-    $customer_id = Session::get('customer_id');
+        $customer_id = Session::get('customer_id');
 
-    $customer = Ecom_Customer_info::where('customer_id', $customer_id)->first();
+        $customer = Ecom_Customer_info::where('customer_id', $customer_id)->first();
 
-    if (!$customer) {
-        return back()->with('error', 'Customer not found.');
+        if (!$customer) {
+            return redirect('/myAccount#account-details')->with('error', 'Customer not found.');
+        }
+
+        $dbPassword = base64_decode(base64_decode($customer->customer_password));
+
+        if ($request->current_password !== $dbPassword) {
+           return redirect('/myAccount#account-details')->with('error', 'Old password is incorrect.');
+        }
+
+
+        if ($request->new_password !== $request->confirm_password) {
+           return redirect('/myAccount#account-details')->with('error', 'New password and confirm password not matched .');
+        }
+
+        $customer->update([
+            'customer_password' => base64_encode(base64_encode($request->new_password))
+        ]);
+
+        return redirect('/myAccount#account-details')->with('success', 'Password Updated Successfully.');
     }
-
-    // Decode stored password
-    $dbPassword = base64_decode(base64_decode($customer->customer_password));
-
-    // VERIFY OLD PASSWORD
-    if ($request->current_password !== $dbPassword) {
-        return back()->with('error', 'Old password is incorrect.');
-    }
-
-    // UPDATE NEW PASSWORD
-    $customer->update([
-        'customer_password' => base64_encode(base64_encode($request->new_password))
-    ]);
-
-    return redirect('/myAccount')->with('success', 'Password Updated Successfully.');
-}
 
 
 
@@ -1008,7 +1010,3 @@ class FrontendController extends Controller
         return response()->json(['msg' => 'Success', 'wishcount' => $wishCount], 200);
     }
 }
-
-
-
-
