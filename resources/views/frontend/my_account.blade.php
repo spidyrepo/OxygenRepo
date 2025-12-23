@@ -2,6 +2,30 @@
    @section('title','My Account')
    @section('content')
 
+
+   <style>
+    /* .form-group {
+        position: relative;
+    }
+
+    .toggle-password {
+        position: absolute;
+        right: 12px;
+        top: 38px;
+        cursor: pointer;
+        color: #666;
+        font-size: 16px;
+    }
+
+    @media (max-width: 768px) {
+        .toggle-password {
+            right: 10px;
+            top: 36px;
+            font-size: 18px;
+        }
+    } */
+    </style>
+
    <main class="main">
        <!-- Start of Page Header -->
        <div class="page-header">
@@ -416,31 +440,37 @@
                    </div>
 
                     <div class="tab-pane" id="account-details">                           
-                                <center><h3>Account Details</h3></center> 
+                        <center><h3>Account Details</h3></center> 
                         <div class="row">
                             <form action="{{url('/change-customer-password')}}" method="post" name="frm-login" autocomplete="Off" class="checkout-form" onsubmit="return confirm('Do you  want to Change Password?');">
                             {{ csrf_field() }}
                             <fieldset style="padding:20px;">
                                 <legend>Password Change</legend>
-                                <div >
-                                                                    <label>Current password </label>
-                                <input type="password" class="form-control" id="customer_opassword"  name="current_password" required value="">
+                                <div class="form-group col-md-8  mt-2" >
 
+                                    <label>Current password </label>
+                                    <input type="password" class="form-control" id="customer_opassword"  name="current_password" required value="">
+                                      <i class="fa-solid fa-eye toggle-password-1"
+                                      onclick="togglePasswordAccount('customer_opassword', this)"
+                                            style="position:absolute; right:360px; margin-top:-30px; cursor:pointer;">
+                                    </i>
                                 </div>
-                                <div class="mt-2">
-                                                                    <label class="">New password</label>
-                                <input type="password" class="form-control "  id="customer_password" name="new_password" required>
-
-
+                                <div class="form-group col-md-8   mt-2">
+                                    <label class="">New password</label>
+                                    <input type="password" class="form-control "  id="customer_password" name="new_password" required>
+                                    <i class="fa-solid fa-eye toggle-password-1"
+                                    onclick="togglePasswordAccount('customer_password', this)"
+                                            style="position:absolute; right:360px; margin-top:-30px; cursor:pointer;">
+                                    </i>
                                 </div>
-                                <div class="mt-2">
-                                <label>Confirm new password</label>
-                                <input type="password" onblur="cpass_verify(this.value)" class="form-control" id="customer_cpassword" name="confirm_password" required>
-
-
+                                <div class="form-group col-md-8  mt-2">
+                                    <label>Confirm new password</label>
+                                    <input type="password"  class="form-control" id="customer_cpassword" name="confirm_password" required>
+                                    <i class="fa-solid fa-eye toggle-password-1"
+                                    onclick="togglePasswordAccount('customer_cpassword', this)"
+                                            style="position:absolute; right:360px; margin-top:-30px; cursor:pointer;">
+                                    </i>
                                 </div>
-
-
 
                             </fieldset>
                             <br>
@@ -449,7 +479,7 @@
                                     <button type="submit" name="btn btn-dark btn-rounded " class="btn">SAVE CHANGES</button>
                                 </p>
                             </div>
-                        </form>
+                            </form>
                         </div>
                     </div>
 
@@ -538,6 +568,7 @@
 
 <script>
 
+
     function setDefaultAddress(e, addressId) {
         e.stopPropagation(); // prevent card click
 
@@ -562,7 +593,6 @@
             }
         });
     }
-
 
 
     function showAddress(card) {
@@ -595,7 +625,6 @@
         document.getElementById('deleteBtn').classList.remove('d-none');
     }
 
-// ✅ ADD NEW ADDRESS RESET
     document.addEventListener('DOMContentLoaded', function () {
 
         document.getElementById('addNewAddressBtn').addEventListener('click', function () {
@@ -655,8 +684,6 @@
             });
         });
     });
-
-
 
 });
 
